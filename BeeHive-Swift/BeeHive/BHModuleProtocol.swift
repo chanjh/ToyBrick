@@ -14,10 +14,22 @@ protocol BHModuleProtocol {
     var async: Bool { get }
     
     func modSetUp(_ context: BHContext)
+    func modInit(_ context: BHContext)
+    func modSplash(_ context: BHContext)
+    func modQuickAction(_ context: BHContext)
+    func modTearDown(_ context: BHContext)
+    func modWillResignActive(_ context: BHContext)
+    func modDidEnterBackground(_ context: BHContext)
 }
 
 extension BHModuleProtocol {
     func modSetUp(_ context: BHContext) { }
+    func modInit(_ context: BHContext) { }
+    func modSplash(_ context: BHContext) { }
+    func modQuickAction(_ context: BHContext) { }
+    func modTearDown(_ context: BHContext) { }
+    func modWillResignActive(_ context: BHContext) { }
+    func modDidEnterBackground(_ context: BHContext) { }
 }
 
 
@@ -30,20 +42,6 @@ extension BHModuleProtocol {
 //- (NSInteger)modulePriority;
 //
 //- (BOOL)async;
-//
-//- (void)modSetUp:(BHContext *)context;
-//
-//- (void)modInit:(BHContext *)context;
-//
-//- (void)modSplash:(BHContext *)context;
-//
-//- (void)modQuickAction:(BHContext *)context;
-//
-//- (void)modTearDown:(BHContext *)context;
-//
-//- (void)modWillResignActive:(BHContext *)context;
-//
-//- (void)modDidEnterBackground:(BHContext *)context;
 //
 //- (void)modWillEnterForeground:(BHContext *)context;
 //

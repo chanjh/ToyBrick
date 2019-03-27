@@ -19,6 +19,7 @@
 		0D05D2B2224BD28500BB87BD /* BHContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D05D2B1224BD28500BB87BD /* BHContext.swift */; };
 		0D05D2B4224BD66400BB87BD /* BHModuleManager+Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D05D2B3224BD66400BB87BD /* BHModuleManager+Define.swift */; };
 		0D05D2B6224BD84900BB87BD /* BHTimeProfiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D05D2B5224BD84900BB87BD /* BHTimeProfiler.swift */; };
+		0D05D2B8224BDCE300BB87BD /* FirstModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D05D2B7224BDCE300BB87BD /* FirstModule.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		0D05D2B1224BD28500BB87BD /* BHContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BHContext.swift; sourceTree = "<group>"; };
 		0D05D2B3224BD66400BB87BD /* BHModuleManager+Define.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "BHModuleManager+Define.swift"; path = "../../../beehive-swift/BeeHive-Swift/BeeHive/BHModuleManager+Define.swift"; sourceTree = "<group>"; };
 		0D05D2B5224BD84900BB87BD /* BHTimeProfiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BHTimeProfiler.swift; path = "../../../beehive-swift/BeeHive-Swift/BeeHive/BHTimeProfiler.swift"; sourceTree = "<group>"; };
+		0D05D2B7224BDCE300BB87BD /* FirstModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirstModule.swift; path = "../../beehive-swift/BeeHive-Swift/FirstModule.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				0D05D296224BD18200BB87BD /* AppDelegate.swift */,
+				0D05D2B7224BDCE300BB87BD /* FirstModule.swift */,
 				0D05D298224BD18200BB87BD /* ViewController.swift */,
 				0D05D29A224BD18200BB87BD /* Main.storyboard */,
 				0D05D29D224BD18300BB87BD /* Assets.xcassets */,
@@ -172,6 +175,7 @@
 				0D05D299224BD18200BB87BD /* ViewController.swift in Sources */,
 				0D05D297224BD18200BB87BD /* AppDelegate.swift in Sources */,
 				0D05D2B2224BD28500BB87BD /* BHContext.swift in Sources */,
+				0D05D2B8224BDCE300BB87BD /* FirstModule.swift in Sources */,
 				0D05D2B0224BD26100BB87BD /* BHModuleManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -23,6 +23,8 @@ protocol BHModuleProtocol {
 }
 
 extension BHModuleProtocol {
+    var modulePrioriry: Int { return 1000 }
+    var async: Bool { return true }
     func modSetUp(_ context: BHContext) { }
     func modInit(_ context: BHContext) { }
     func modSplash(_ context: BHContext) { }

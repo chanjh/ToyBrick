@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum BHModuleLevel: Int {
+    case BHModuleBasic  = 0
+    case BHModuleNormal
+}
+
 enum BHModuleEventType: Int {
     case BHMSetupEvent = 0
     case BHMInitEvent

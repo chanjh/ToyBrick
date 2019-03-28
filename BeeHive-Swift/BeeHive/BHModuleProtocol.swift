@@ -8,8 +8,9 @@
 
 import Foundation
 
-protocol BHModuleProtocol {
-//    var basicModuleLevel { get }
+/// NSObjectProtocol 太 OC 了，有没有 Swift 一点的做法？
+protocol BHModuleProtocol: NSObjectProtocol {
+    func basicModuleLevel() -> BHModuleLevel
     var modulePrioriry: Int { get }
     var async: Bool { get }
     
@@ -23,6 +24,7 @@ protocol BHModuleProtocol {
 }
 
 extension BHModuleProtocol {
+    func basicModuleLevel() -> BHModuleLevel { return BHModuleLevel.BHModuleNormal }
     var modulePrioriry: Int { return 1000 }
     var async: Bool { return true }
     func modSetUp(_ context: BHContext) { }
@@ -42,8 +44,6 @@ extension BHModuleProtocol {
 //- (void)basicModuleLevel;
 ////越大越优先
 //- (NSInteger)modulePriority;
-//
-//- (BOOL)async;
 //
 //- (void)modWillEnterForeground:(BHContext *)context;
 //

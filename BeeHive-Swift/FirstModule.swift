@@ -8,6 +8,6 @@
 
 import Foundation
 
-class FirstModule: BHModuleProtocol {
+class FirstModule: NSObject, BHModuleProtocol {
     
 }

@@ -21,8 +21,8 @@ class BHModuleManager {
     private var BHSelectorByEvent: [Int: String] = [:]
     private var BHModulesByEvent: [Int: [BHModuleProtocol]] = [:]
     
-    func registerDynamicModule(_ moduleClass: AnyClass) {
-        
+    func registerDynamicModule(_ moduleClass: AnyClass, shouldTriggerInitEvent: Bool = false) {
+        addModule(from: moduleClass, shouldTriggerInitEvent: shouldTriggerInitEvent)
     }
     
     func triggerEvent(_ eventType: BHModuleEventType, param: [String: Any]? = nil) {
@@ -62,9 +62,9 @@ class BHModuleManager {
         var tmpArray: [BHModuleProtocol] = []
         BHModuleInfos.forEach { (module) in
             guard let classStr = module[kModuleInfoNameKey] as? String else { return }
-            let moduleClass: AnyClass? = NSClassFromString(classStr)
+            let moduleClass: NSObject.Type? = NSClassFromString(classStr) as? NSObject.Type
             let hasInstantiated = module[kModuleInfoHasInstantiatedKey] as? Bool ?? false
-            if moduleClass != nil, let moduleInstance = (moduleClass)?.initialize() as? BHModuleProtocol, !hasInstantiated {
+            if moduleClass != nil, let moduleInstance = (moduleClass?.init()) as? BHModuleProtocol, !hasInstantiated {
                 tmpArray.append(moduleInstance)
             }
         }
@@ -75,45 +75,35 @@ class BHModuleManager {
 
 /// Private
 extension BHModuleManager {
-    private func registerAllSystemEvents() {
-        BHModules.forEach { (moduleInstance) in
-            self.registerEventsByModuleInstance(moduleInstance)
-        }
-    }
-    private func registerEventsByModuleInstance(_ moduleInstance: BHModuleProtocol) {
-        let events = BHSelectorByEvent.keys
-        events.forEach { (obj) in
-            if let type = BHModuleEventType(rawValue: obj), let selector = BHSelectorByEvent[obj] {
-                self.registerEvent(type, moduleInstance: moduleInstance, selectorStr: selector)
+    private func addModule(from obj: AnyClass?, shouldTriggerInitEvent: Bool) {
+        guard let cla = obj else { return }
+        let moduleName = NSStringFromClass(cla)
+        var flag = true
+        for module in BHModules {
+            if module.isKind(of: cla) {
+                flag = false
+                break
             }
         }
-    }
-    private func registerEvent(_ eventType: BHModuleEventType, moduleInstance: BHModuleProtocol, selectorStr: String) {
-        let selector = NSSelectorFromString(selectorStr)
-        if BHSelectorByEvent[eventType.rawValue] == nil {
-            BHSelectorByEvent[eventType.rawValue] = selectorStr
+        if !flag {
+            return
         }
-        if BHModulesByEvent[eventType.rawValue] == nil {
-            BHModulesByEvent[eventType.rawValue] = []
-        }
-        let eventModules = BHModulesByEvent[eventType.rawValue]
+        if cla is BHModuleProtocol.Type {
+            var moduleInfo: [String: Any] = [:]
+            var levelInt = BHModuleLevel.BHModuleNormal
+            if cla.instancesRespond(to: NSSelectorFromString("basicModuleLevel")) {
+                levelInt = BHModuleLevel.BHModuleBasic
+            }
+            moduleInfo[kModuleInfoLevelKey] = levelInt
+            moduleInfo[kModuleInfoNameKey] = moduleName
+            BHModuleInfos.append(moduleInfo)
+//            guard let moduleInstance = cla.initialize() as? BHModuleProtocol else { return }
+//            BHModules.append(moduleInstance)
 
-//        SEL selector = NSSelectorFromString(selectorStr);
-//        if (!selector || ![moduleInstance respondsToSelector:selector]) {
-//            return;
-//        }
-//        NSNumber *eventTypeNumber = @(eventType);
-//        if (!self.BHSelectorByEvent[eventTypeNumber]) {
-//            [self.BHSelectorByEvent setObject:selectorStr forKey:eventTypeNumber];
-//        }
-//        if (!self.BHModulesByEvent[eventTypeNumber]) {
-//            [self.BHModulesByEvent setObject:@[].mutableCopy forKey:eventTypeNumber];
-//        }
-
-//        NSMutableArray *eventModules = [self.BHModulesByEvent objectForKey:eventTypeNumber];
-//        if (![eventModules containsObject:moduleInstance]) {
-//            [eventModules addObject:moduleInstance];
-//            [eventModules sortUsingComparator:^NSComparisonResult(id<BHModuleProtocol> moduleInstance1, id<BHModuleProtocol> moduleInstance2) {
+//            id<BHModuleProtocol> moduleInstance = [[class alloc] init];
+//            [self.BHModules addObject:moduleInstance];
+//            [moduleInfo setObject:@(YES) forKey:kModuleInfoHasInstantiatedKey];
+//            [self.BHModules sortUsingComparator:^NSComparisonResult(id<BHModuleProtocol> moduleInstance1, id<BHModuleProtocol> moduleInstance2) {
 //                NSNumber *module1Level = @(BHModuleNormal);
 //                NSNumber *module2Level = @(BHModuleNormal);
 //                if ([moduleInstance1 respondsToSelector:@selector(basicModuleLevel)]) {
@@ -136,6 +126,55 @@ extension BHModuleManager {
 //                return module1Priority < module2Priority;
 //                }
 //                }];
+//            [self registerEventsByModuleInstance:moduleInstance];
+//
+//            if (shouldTriggerInitEvent) {
+//                [self handleModuleEvent:BHMSetupEvent forTarget:moduleInstance withSeletorStr:nil andCustomParam:nil];
+//                [self handleModulesInitEventForTarget:moduleInstance withCustomParam:nil];
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    [self handleModuleEvent:BHMSplashEvent forTarget:moduleInstance withSeletorStr:nil andCustomParam:nil];
+//                    });
+//            }
 //        }
+
+        }
+    }
+
+    private func registerAllSystemEvents() {
+        BHModules.forEach { (moduleInstance) in
+            self.registerEventsByModuleInstance(moduleInstance)
+        }
+    }
+    private func registerEventsByModuleInstance(_ moduleInstance: BHModuleProtocol) {
+        let events = BHSelectorByEvent.keys
+        events.forEach { (obj) in
+            if let type = BHModuleEventType(rawValue: obj), let selector = BHSelectorByEvent[obj] {
+                self.registerEvent(type, moduleInstance: moduleInstance, selectorStr: selector)
+            }
+        }
+    }
+    private func registerEvent(_ eventType: BHModuleEventType, moduleInstance: BHModuleProtocol, selectorStr: String) {
+        let selector = NSSelectorFromString(selectorStr)
+        if !moduleInstance.responds(to: selector) {
+            return
+        }
+        if BHSelectorByEvent[eventType.rawValue] == nil {
+            BHSelectorByEvent[eventType.rawValue] = selectorStr
+        }
+        if BHModulesByEvent[eventType.rawValue] == nil {
+            BHModulesByEvent[eventType.rawValue] = []
+        }
+        if var eventModules = BHModulesByEvent[eventType.rawValue], !eventModules.contains(where: { (obj) -> Bool in return obj === moduleInstance }) {
+            eventModules.append(moduleInstance)
+            eventModules.sort { (moduleInstance1, moduleInstance2) -> Bool in
+                let module1Level = moduleInstance1.basicModuleLevel()
+                let module2Level = moduleInstance2.basicModuleLevel()
+                if module1Level != module2Level {
+                    return module1Level.rawValue > module2Level.rawValue
+                } else {
+                    return moduleInstance1.modulePrioriry < moduleInstance2.modulePrioriry
+                }
+            }
+        }
     }
 }

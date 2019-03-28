@@ -19,6 +19,7 @@ class BHModuleManager {
     private var BHModuleInfos: [[String: Any]] = []
     private var BHModules: [BHModuleProtocol] = []
     private var BHSelectorByEvent: [Int: String] = [:]
+    private var BHModulesByEvent: [Int: [BHModuleProtocol]] = [:]
     
     func registerDynamicModule(_ moduleClass: AnyClass) {
         
@@ -83,11 +84,58 @@ extension BHModuleManager {
         let events = BHSelectorByEvent.keys
         events.forEach { (obj) in
             if let type = BHModuleEventType(rawValue: obj), let selector = BHSelectorByEvent[obj] {
-                self.registerEvent(type, moduleInstance: moduleInstance, selector: selector)
+                self.registerEvent(type, moduleInstance: moduleInstance, selectorStr: selector)
             }
         }
     }
-    private func registerEvent(_ eventType: BHModuleEventType, moduleInstance: BHModuleProtocol, selector: String) {
-        
+    private func registerEvent(_ eventType: BHModuleEventType, moduleInstance: BHModuleProtocol, selectorStr: String) {
+        let selector = NSSelectorFromString(selectorStr)
+        if BHSelectorByEvent[eventType.rawValue] == nil {
+            BHSelectorByEvent[eventType.rawValue] = selectorStr
+        }
+        if BHModulesByEvent[eventType.rawValue] == nil {
+            BHModulesByEvent[eventType.rawValue] = []
+        }
+        let eventModules = BHModulesByEvent[eventType.rawValue]
+
+//        SEL selector = NSSelectorFromString(selectorStr);
+//        if (!selector || ![moduleInstance respondsToSelector:selector]) {
+//            return;
+//        }
+//        NSNumber *eventTypeNumber = @(eventType);
+//        if (!self.BHSelectorByEvent[eventTypeNumber]) {
+//            [self.BHSelectorByEvent setObject:selectorStr forKey:eventTypeNumber];
+//        }
+//        if (!self.BHModulesByEvent[eventTypeNumber]) {
+//            [self.BHModulesByEvent setObject:@[].mutableCopy forKey:eventTypeNumber];
+//        }
+
+//        NSMutableArray *eventModules = [self.BHModulesByEvent objectForKey:eventTypeNumber];
+//        if (![eventModules containsObject:moduleInstance]) {
+//            [eventModules addObject:moduleInstance];
+//            [eventModules sortUsingComparator:^NSComparisonResult(id<BHModuleProtocol> moduleInstance1, id<BHModuleProtocol> moduleInstance2) {
+//                NSNumber *module1Level = @(BHModuleNormal);
+//                NSNumber *module2Level = @(BHModuleNormal);
+//                if ([moduleInstance1 respondsToSelector:@selector(basicModuleLevel)]) {
+//                module1Level = @(BHModuleBasic);
+//                }
+//                if ([moduleInstance2 respondsToSelector:@selector(basicModuleLevel)]) {
+//                module2Level = @(BHModuleBasic);
+//                }
+//                if (module1Level.integerValue != module2Level.integerValue) {
+//                return module1Level.integerValue > module2Level.integerValue;
+//                } else {
+//                NSInteger module1Priority = 0;
+//                NSInteger module2Priority = 0;
+//                if ([moduleInstance1 respondsToSelector:@selector(modulePriority)]) {
+//                module1Priority = [moduleInstance1 modulePriority];
+//                }
+//                if ([moduleInstance2 respondsToSelector:@selector(modulePriority)]) {
+//                module2Priority = [moduleInstance2 modulePriority];
+//                }
+//                return module1Priority < module2Priority;
+//                }
+//                }];
+//        }
     }
 }

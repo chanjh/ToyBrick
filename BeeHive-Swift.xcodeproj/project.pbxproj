@@ -20,6 +20,7 @@
 		0D05D2B4224BD66400BB87BD /* BHModuleManager+Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D05D2B3224BD66400BB87BD /* BHModuleManager+Define.swift */; };
 		0D05D2B6224BD84900BB87BD /* BHTimeProfiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D05D2B5224BD84900BB87BD /* BHTimeProfiler.swift */; };
 		0D05D2B8224BDCE300BB87BD /* FirstModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D05D2B7224BDCE300BB87BD /* FirstModule.swift */; };
+		0D05D2BE224C540A00BB87BD /* BeeHive.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0D05D2BD224C540A00BB87BD /* BeeHive.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		0D05D2B3224BD66400BB87BD /* BHModuleManager+Define.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "BHModuleManager+Define.swift"; path = "../../../beehive-swift/BeeHive-Swift/BeeHive/BHModuleManager+Define.swift"; sourceTree = "<group>"; };
 		0D05D2B5224BD84900BB87BD /* BHTimeProfiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BHTimeProfiler.swift; path = "../../../beehive-swift/BeeHive-Swift/BeeHive/BHTimeProfiler.swift"; sourceTree = "<group>"; };
 		0D05D2B7224BDCE300BB87BD /* FirstModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirstModule.swift; path = "../../beehive-swift/BeeHive-Swift/FirstModule.swift"; sourceTree = "<group>"; };
+		0D05D2BD224C540A00BB87BD /* BeeHive.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = BeeHive.bundle; path = "../../../beehive-swift/BeeHive-Swift/BeeHive/BeeHive.bundle"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				0D05D2A8224BD22900BB87BD /* BeeHive.swift */,
+				0D05D2BD224C540A00BB87BD /* BeeHive.bundle */,
 				0D05D2B1224BD28500BB87BD /* BHContext.swift */,
 				0D05D2AB224BD24500BB87BD /* BHAppDelegate.swift */,
 				0D05D2AD224BD25100BB87BD /* BHModuleProtocol.swift */,
@@ -157,6 +160,7 @@
 				0D05D2A1224BD18300BB87BD /* LaunchScreen.storyboard in Resources */,
 				0D05D29E224BD18300BB87BD /* Assets.xcassets in Resources */,
 				0D05D29C224BD18200BB87BD /* Main.storyboard in Resources */,
+				0D05D2BE224C540A00BB87BD /* BeeHive.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

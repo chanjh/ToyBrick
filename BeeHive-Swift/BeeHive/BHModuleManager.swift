@@ -26,7 +26,7 @@ class BHModuleManager {
     }
     
     func triggerEvent(_ eventType: BHModuleEventType, param: [String: Any]? = nil) {
-        
+        handleModuleEvent(eventType: eventType, target: nil, param: param)
     }
     func loadLocalModules() {
         guard let path = Bundle.main.path(forResource: BHContext.shared.moduleName, ofType: "plist"),
@@ -157,6 +157,63 @@ extension BHModuleManager {
 extension BHModuleManager {
     private func handleModuleEvent(eventType: BHModuleEventType,
                                    target: BHModuleProtocol?,
+                                   param: [AnyHashable: Any]?) {
+        switch eventType {
+        case .BHMInitEvent: handleModulesInitEvent(for: nil, param: param)
+        case .BHMTearDownEvent: handleModulesTearDownEvent(for: nil, param: param)
+        default:
+            handleModuleEvent(eventType: eventType,
+                              target: nil,
+                              selectorStr: BHSelectorByEvent[eventType.rawValue],
+                              param: param)
+        }
+
+    }
+    private func handleModulesInitEvent(for target: BHModuleProtocol?, param: [AnyHashable: Any]?) {
+        let context = BHContext.shared
+        let tmpParam = context.customParam
+        let tmpEvent = context.customEvent
+        context.customParam = param
+        context.customEvent = .BHMInitEvent
+        var moduleInstances: [BHModuleProtocol] = []
+        if let instance = target {
+            moduleInstances.append(instance)
+        } else {
+            moduleInstances = BHModulesByEvent[BHModuleEventType.BHMInitEvent.rawValue] ?? []
+        }
+        moduleInstances.forEach { (instance) in
+            BHTimeProfiler.shared.recordEventTime("\(String(describing: instance.superclass)) -- modInit:")
+            if instance.async {
+                DispatchQueue.main.async {
+                    instance.modInit(context)
+                }
+            } else {
+                instance.modInit(context)
+            }
+        }
+        context.customParam = tmpParam
+        context.customEvent = tmpEvent
+    }
+    private func handleModulesTearDownEvent(for target: BHModuleProtocol?, param: [AnyHashable: Any]?) {
+        let context = BHContext.shared
+        let tmpParam = context.customParam
+        let tmpEvent = context.customEvent
+        context.customParam = param
+        context.customEvent = .BHMInitEvent
+        var moduleInstances: [BHModuleProtocol] = []
+        if let instance = target {
+            moduleInstances.append(instance)
+        } else {
+            moduleInstances = BHModulesByEvent[BHModuleEventType.BHMTearDownEvent.rawValue] ?? []
+        }
+        moduleInstances.forEach { (instance) in
+            instance.modTearDown(context)
+        }
+        context.customParam = tmpParam
+        context.customEvent = tmpEvent
+    }
+    private func handleModuleEvent(eventType: BHModuleEventType,
+                                   target: BHModuleProtocol?,
                                    selectorStr: String?,
                                    param: [AnyHashable: Any]?) {
         guard let selectorStr = selectorStr ?? (BHSelectorByEvent[eventType.rawValue]) else { return }
@@ -167,12 +224,17 @@ extension BHModuleManager {
         } else {
             moduleInstances = BHModulesByEvent[eventType.rawValue] ?? []
         }
-        moduleInstances.forEach { (moduleInstances) in
-            
+        let context = BHContext.shared
+        let tmpParam = context.customParam
+        let tmpEvent = context.customEvent
+        moduleInstances.forEach { (moduleInstance) in
+            let context = BHContext.shared
+            context.customParam = param
+            context.customEvent = eventType
+            moduleInstance.perform(selector, with: context)
+            BHTimeProfiler.shared.recordEventTime("\(String(describing: moduleInstance.superclass)) --- \(selectorStr)")
         }
-    }
-
-    private func handleModulesInitEvent(for target: BHModuleProtocol, param: [AnyHashable: Any]?) {
-
+        context.customParam = tmpParam
+        context.customEvent = tmpEvent
     }
 }

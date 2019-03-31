@@ -25,28 +25,61 @@ class BHAppDelegate: UIResponder, UIApplicationDelegate {
         #endif
         return true
     }
+
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        let item = BHShortcutItem(shortcutItem: shortcutItem, scompletionHandler: completionHandler)
+        BeeHive.shared.context?.touchShortcutItem = item
+        BHModuleManager.shared.triggerEvent(.BHMQuickActionEvent)
+    }
     
     func applicationWillResignActive(_ application: UIApplication) {
-        
+        BHModuleManager.shared.triggerEvent(.BHMWillResignActiveEvent)
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
-        
+        BHModuleManager.shared.triggerEvent(.BHMDidEnterBackgroundEvent)
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
-        
+        BHModuleManager.shared.triggerEvent(.BHMWillEnterForegroundEvent)
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-        
+        BHModuleManager.shared.triggerEvent(.BHMDidBecomeActiveEvent)
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
+        BHModuleManager.shared.triggerEvent(.BHMWillTerminateEvent)
+    }
+
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        let item = BHOpenURLItem(openURL: url, options: options)
+        BeeHive.shared.context?.openURLItem = item
+        BHModuleManager.shared.triggerEvent(.BHMOpenURLEvent)
+        return true
+    }
+
+    func applicationDidReceiveMemoryWarning(_ application: UIApplication) {
+        BHModuleManager.shared.triggerEvent(.BHMDidReceiveMemoryWarningEvent)
+    }
+
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         
     }
 }
 
 extension BHAppDelegate: UNUserNotificationCenterDelegate {
     
+}
+
+typealias BHShortcutCompletionHandler = (Bool) -> Void
+
+struct BHShortcutItem {
+    var shortcutItem: UIApplicationShortcutItem
+    var scompletionHandler: BHShortcutCompletionHandler
+}
+
+struct BHOpenURLItem {
+    var openURL: URL
+    var options: [UIApplication.OpenURLOptionsKey : Any]
 }

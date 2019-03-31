@@ -15,4 +15,10 @@ class BHContext {
     var launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     var moduleName: String?
     var serviceConfigName: String?
+
+    var customParam: [AnyHashable: Any]?
+    var customEvent: BHModuleEventType?
+
+    var touchShortcutItem: BHShortcutItem?
+    var openURLItem: BHOpenURLItem?
 }

@@ -8,13 +8,14 @@
 
 import Foundation
 
-fileprivate let kModuleArrayKey               = "moduleClasses"
-fileprivate let kModuleInfoNameKey            = "moduleClass"
-fileprivate let kModuleInfoLevelKey           = "moduleLevel"
-fileprivate let kModuleInfoPriorityKey        = "modulePriority"
-fileprivate let kModuleInfoHasInstantiatedKey = "moduleHasInstantiated"
-
 class BHModuleManager {
+    
+    fileprivate let kModuleArrayKey               = "moduleClasses"
+    fileprivate let kModuleInfoNameKey            = "moduleClass"
+    fileprivate let kModuleInfoLevelKey           = "moduleLevel"
+    fileprivate let kModuleInfoPriorityKey        = "modulePriority"
+    fileprivate let kModuleInfoHasInstantiatedKey = "moduleHasInstantiated"
+    
     static let shared: BHModuleManager = BHModuleManager()
     private var BHModuleInfos: [[String: Any]] = []
     private var BHModules: [BHModuleProtocol] = []
@@ -28,20 +29,21 @@ class BHModuleManager {
     func triggerEvent(_ eventType: BHModuleEventType, param: [String: Any]? = nil) {
         handleModuleEvent(eventType: eventType, target: nil, param: param)
     }
+    
     func loadLocalModules() {
         guard let path = Bundle.main.path(forResource: BHContext.shared.moduleName, ofType: "plist"),
             FileManager.default.fileExists(atPath: path) else { return }
         let moduleList = NSDictionary(contentsOfFile: path)
-        var moduleInfoByClass: [Int: Int] = [:]
-        guard let modulesArray = (moduleList?.object(forKey: kModuleArrayKey) as? Array<[String: Int]>) else { return }
+        var moduleInfoByClass: [String: Int] = [:]
+        guard let modulesArray = (moduleList?.object(forKey: kModuleArrayKey) as? [[String: Any]]) else { return }
         BHModuleInfos.forEach { (info) in
-            if let key = info[kModuleInfoNameKey] as? Int {
+            if let key = info[kModuleInfoNameKey] as? String {
                 moduleInfoByClass[key] = 1
             }
         }
         modulesArray.forEach { (dict) in
-            if let key = dict[kModuleInfoNameKey] {
-                if moduleInfoByClass[key] != nil {
+            if let key = dict[kModuleInfoNameKey] as? String {
+                if moduleInfoByClass[key] == nil {
                     self.BHModuleInfos.append(dict)
                 }
             }
@@ -236,5 +238,71 @@ extension BHModuleManager {
         }
         context.customParam = tmpParam
         context.customEvent = tmpEvent
+    }
+}
+
+extension BHModuleManager {
+    static let kSetupSelector = "modSetUp:"
+    static let kInitSelector  = "modInit:"
+//    static  NSString *kSplashSeletor = @"modSplash:";
+//    static  NSString *kTearDownSelector = @"modTearDown:";
+//    static  NSString *kWillResignActiveSelector = @"modWillResignActive:";
+//    static  NSString *kDidEnterBackgroundSelector = @"modDidEnterBackground:";
+//    static  NSString *kWillEnterForegroundSelector = @"modWillEnterForeground:";
+//    static  NSString *kDidBecomeActiveSelector = @"modDidBecomeActive:";
+//    static  NSString *kWillTerminateSelector = @"modWillTerminate:";
+//    static  NSString *kUnmountEventSelector = @"modUnmount:";
+//    static  NSString *kQuickActionSelector = @"modQuickAction:";
+//    static  NSString *kOpenURLSelector = @"modOpenURL:";
+//    static  NSString *kDidReceiveMemoryWarningSelector = @"modDidReceiveMemoryWaring:";
+//    static  NSString *kFailToRegisterForRemoteNotificationsSelector = @"modDidFailToRegisterForRemoteNotifications:";
+//    static  NSString *kDidRegisterForRemoteNotificationsSelector = @"modDidRegisterForRemoteNotifications:";
+//    static  NSString *kDidReceiveRemoteNotificationsSelector = @"modDidReceiveRemoteNotification:";
+//    static  NSString *kDidReceiveLocalNotificationsSelector = @"modDidReceiveLocalNotification:";
+//    static  NSString *kWillPresentNotificationSelector = @"modWillPresentNotification:";
+//    static  NSString *kDidReceiveNotificationResponseSelector = @"modDidReceiveNotificationResponse:";
+//    static  NSString *kWillContinueUserActivitySelector = @"modWillContinueUserActivity:";
+//    static  NSString *kContinueUserActivitySelector = @"modContinueUserActivity:";
+//    static  NSString *kDidUpdateContinueUserActivitySelector = @"modDidUpdateContinueUserActivity:";
+//    static  NSString *kFailToContinueUserActivitySelector = @"modDidFailToContinueUserActivity:";
+//    static  NSString *kHandleWatchKitExtensionRequestSelector = @"modHandleWatchKitExtensionRequest:";
+//    static  NSString *kAppCustomSelector = @"modDidCustomEvent:";
+    static func BHSelectorByEvent() -> [Int: String] {
+        let dict = [
+            BHModuleEventType.BHMSetupEvent.rawValue: kSetupSelector,
+            BHModuleEventType.BHMInitEvent.rawValue: kInitSelector
+//            @(BHMTearDownEvent):kTearDownSelector,
+//            @(BHMSplashEvent):kSplashSeletor,
+//            @(BHMWillResignActiveEvent):kWillResignActiveSelector,
+//            @(BHMDidEnterBackgroundEvent):kDidEnterBackgroundSelector,
+//            @(BHMWillEnterForegroundEvent):kWillEnterForegroundSelector,
+//            @(BHMDidBecomeActiveEvent):kDidBecomeActiveSelector,
+//            @(BHMWillTerminateEvent):kWillTerminateSelector,
+//            @(BHMUnmountEvent):kUnmountEventSelector,
+//            @(BHMOpenURLEvent):kOpenURLSelector,
+//            @(BHMDidReceiveMemoryWarningEvent):kDidReceiveMemoryWarningSelector,
+//
+//            @(BHMDidReceiveRemoteNotificationEvent):kDidReceiveRemoteNotificationsSelector,
+//            @(BHMWillPresentNotificationEvent):kWillPresentNotificationSelector,
+//            @(BHMDidReceiveNotificationResponseEvent):kDidReceiveNotificationResponseSelector,
+//
+//            @(BHMDidFailToRegisterForRemoteNotificationsEvent):kFailToRegisterForRemoteNotificationsSelector,
+//            @(BHMDidRegisterForRemoteNotificationsEvent):kDidRegisterForRemoteNotificationsSelector,
+//
+//            @(BHMDidReceiveLocalNotificationEvent):kDidReceiveLocalNotificationsSelector,
+//
+//            @(BHMWillContinueUserActivityEvent):kWillContinueUserActivitySelector,
+//
+//            @(BHMContinueUserActivityEvent):kContinueUserActivitySelector,
+//
+//            @(BHMDidFailToContinueUserActivityEvent):kFailToContinueUserActivitySelector,
+//
+//            @(BHMDidUpdateUserActivityEvent):kDidUpdateContinueUserActivitySelector,
+//
+//            @(BHMQuickActionEvent):kQuickActionSelector,
+//            @(BHMHandleWatchKitExtensionRequestEvent):kHandleWatchKitExtensionRequestSelector,
+//            @(BHMDidCustomEvent):kAppCustomSelector,
+        ]
+        return dict
     }
 }

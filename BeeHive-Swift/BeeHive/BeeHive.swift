@@ -18,7 +18,7 @@ class BeeHive {
         }
     }
     class func registerDynamicModule(_ module: AnyClass) {
-        
+        BHModuleManager.shared.registerDynamicModule(module)
     }
 }
 
@@ -28,6 +28,7 @@ extension BeeHive {
         
     }
     private func loadStaticModules() {
-        
+        BHModuleManager.shared.loadLocalModules()
+        BHModuleManager.shared.registedAllModules()
     }
 }

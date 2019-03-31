@@ -13,6 +13,8 @@ protocol BHModuleProtocol: NSObjectProtocol {
     func basicModuleLevel() -> BHModuleLevel
     var modulePrioriry: Int { get }
     var async: Bool { get }
+
+    init(_ context: BHContext)
     
     func modSetUp(_ context: BHContext)
     func modInit(_ context: BHContext)

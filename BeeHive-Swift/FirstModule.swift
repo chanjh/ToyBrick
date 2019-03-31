@@ -9,5 +9,7 @@
 import Foundation
 
 class FirstModule: NSObject, BHModuleProtocol {
-    
+    required init(_ context: BHContext) {
+
+    }
 }

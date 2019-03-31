@@ -21,4 +21,7 @@ class BHContext {
 
     var touchShortcutItem: BHShortcutItem?
     var openURLItem: BHOpenURLItem?
+    var notificationsItem: BHNotificationsItem = BHNotificationsItem()
+    var userActivityItem: BHUserActivityItem = BHUserActivityItem()
+    var watchItem: BHWatchItem?
 }

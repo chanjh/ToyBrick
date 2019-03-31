@@ -23,6 +23,24 @@ protocol BHModuleProtocol: NSObjectProtocol {
     func modTearDown(_ context: BHContext)
     func modWillResignActive(_ context: BHContext)
     func modDidEnterBackground(_ context: BHContext)
+    func modWillEnterForeground(_ context: BHContext)
+    func modDidBecomActive(_ context: BHContext)
+    func modWillTerminate(_ context: BHContext)
+    func modUnmount(_ context: BHContext)
+    func modOpebURL(_ context: BHContext)
+    func modDidReceiveMemoryWaring(_ context: BHContext)
+    func modDidFailToRegisterForRemoteNotifications(_ context: BHContext)
+    func modDidRegisterForRemoteNotifications(_ context: BHContext)
+    func modDidReceiveRemoteNotification(_ context: BHContext)
+    func modDidReceiveLocalNotification(_ context: BHContext)
+    func modWillPresentNotification(_ context: BHContext)
+    func modDidReceiveNotificationResponse(_ context: BHContext)
+    func modWillContinueUserActivity(_ context: BHContext)
+    func modContinueUserActivity(_ context: BHContext)
+    func modDidFailToContinueUserActivity(_ context: BHContext)
+    func modDidUpdateContinueUserActivity(_ context: BHContext)
+    func modHandleWatchKitExtensionRequest(_ context: BHContext)
+    func modDidCustomEvent(_ context: BHContext)
 }
 
 extension BHModuleProtocol {
@@ -36,6 +54,24 @@ extension BHModuleProtocol {
     func modTearDown(_ context: BHContext) { }
     func modWillResignActive(_ context: BHContext) { }
     func modDidEnterBackground(_ context: BHContext) { }
+    func modWillEnterForeground(_ context: BHContext) { }
+    func modDidBecomActive(_ context: BHContext) { }
+    func modWillTerminate(_ context: BHContext) { }
+    func modUnmount(_ context: BHContext) { }
+    func modOpebURL(_ context: BHContext) { }
+    func modDidReceiveMemoryWaring(_ context: BHContext) { }
+    func modDidFailToRegisterForRemoteNotifications(_ context: BHContext) { }
+    func modDidRegisterForRemoteNotifications(_ context: BHContext) { }
+    func modDidReceiveRemoteNotification(_ context: BHContext) { }
+    func modDidReceiveLocalNotification(_ context: BHContext) { }
+    func modWillPresentNotification(_ context: BHContext) { }
+    func modDidReceiveNotificationResponse(_ context: BHContext) { }
+    func modWillContinueUserActivity(_ context: BHContext) { }
+    func modContinueUserActivity(_ context: BHContext) { }
+    func modDidFailToContinueUserActivity(_ context: BHContext) { }
+    func modDidUpdateContinueUserActivity(_ context: BHContext) { }
+    func modHandleWatchKitExtensionRequest(_ context: BHContext) { }
+    func modDidCustomEvent(_ context: BHContext) { }
 }
 
 
@@ -46,39 +82,3 @@ extension BHModuleProtocol {
 //- (void)basicModuleLevel;
 ////越大越优先
 //- (NSInteger)modulePriority;
-//
-//- (void)modWillEnterForeground:(BHContext *)context;
-//
-//- (void)modDidBecomeActive:(BHContext *)context;
-//
-//- (void)modWillTerminate:(BHContext *)context;
-//
-//- (void)modUnmount:(BHContext *)context;
-//
-//- (void)modOpenURL:(BHContext *)context;
-//
-//- (void)modDidReceiveMemoryWaring:(BHContext *)context;
-//
-//- (void)modDidFailToRegisterForRemoteNotifications:(BHContext *)context;
-//
-//- (void)modDidRegisterForRemoteNotifications:(BHContext *)context;
-//
-//- (void)modDidReceiveRemoteNotification:(BHContext *)context;
-//
-//- (void)modDidReceiveLocalNotification:(BHContext *)context;
-//
-//- (void)modWillPresentNotification:(BHContext *)context;
-//
-//- (void)modDidReceiveNotificationResponse:(BHContext *)context;
-//
-//- (void)modWillContinueUserActivity:(BHContext *)context;
-//
-//- (void)modContinueUserActivity:(BHContext *)context;
-//
-//- (void)modDidFailToContinueUserActivity:(BHContext *)context;
-//
-//- (void)modDidUpdateContinueUserActivity:(BHContext *)context;
-//
-//- (void)modHandleWatchKitExtensionRequest:(BHContext *)context;
-//
-//- (void)modDidCustomEvent:(BHContext *)context;

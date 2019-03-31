@@ -12,4 +12,8 @@ class FirstModule: NSObject, BHModuleProtocol {
     required init(_ context: BHContext) {
 
     }
+    
+    func modInit(_ context: BHContext) {
+        
+    }
 }

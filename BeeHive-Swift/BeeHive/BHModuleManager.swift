@@ -19,7 +19,7 @@ class BHModuleManager {
     static let shared: BHModuleManager = BHModuleManager()
     private var BHModuleInfos: [[String: Any]] = []
     private var BHModules: [BHModuleProtocol] = []
-    private var BHSelectorByEvent: [Int: String] = makeSelectorByEvent()
+    private var BHSelectorByEvent: [Int: String] = [:]//makeSelectorByEvent()
     private var BHModulesByEvent: [Int: [BHModuleProtocol]] = [:]
     
     func registerDynamicModule(_ moduleClass: AnyClass, shouldTriggerInitEvent: Bool = false) {
@@ -27,7 +27,17 @@ class BHModuleManager {
     }
     
     func triggerEvent(_ eventType: BHModuleEventType, param: [String: Any]? = nil) {
-        handleModuleEvent(eventType: eventType, target: nil, param: param)
+        if eventType == .BHMSetupEvent {
+            handleModulesSetupEvent()
+        } else if eventType == .BHMTearDownEvent {
+            for index in (BHModules.count - 1)...0 {
+                BHModules[index].modTearDown(BHContext.shared)
+            }
+        } else {
+            BHModules.forEach { (instance) in
+                triggerEvent(eventType, target: instance, param: param)
+            }
+        }
     }
     
     func loadLocalModules() {
@@ -110,13 +120,13 @@ extension BHModuleManager {
             }
         }
         registerEventsByModuleInstance(moduleInstance)
-        if shouldTriggerInitEvent {
-            handleModuleEvent(eventType: .BHMSetupEvent, target: moduleInstance, selectorStr: nil, param: nil)
-            handleModulesInitEvent(for: moduleInstance, param: nil)
-            DispatchQueue.main.async { [weak self] in
-                self?.handleModuleEvent(eventType: .BHMSplashEvent, target: moduleInstance, selectorStr: nil, param: nil)
-            }
-        }
+//        if shouldTriggerInitEvent {
+//            handleModuleEvent(eventType: .BHMSetupEvent, target: moduleInstance, selectorStr: nil, param: nil)
+//            handleModulesInitEvent(for: moduleInstance, param: nil)
+//            DispatchQueue.main.async { [weak self] in
+//                self?.handleModuleEvent(eventType: .BHMSplashEvent, target: moduleInstance, selectorStr: nil, param: nil)
+//            }
+//        }
     }
     private func registerAllSystemEvents() {
         BHModules.forEach { (moduleInstance) in
@@ -159,152 +169,132 @@ extension BHModuleManager {
 
 /// MARK: -- Handle
 extension BHModuleManager {
-    private func handleModuleEvent(eventType: BHModuleEventType,
-                                   target: BHModuleProtocol?,
-                                   param: [AnyHashable: Any]?) {
-        switch eventType {
-        case .BHMInitEvent: handleModulesInitEvent(for: nil, param: param)
-        case .BHMTearDownEvent: handleModulesTearDownEvent(for: nil, param: param)
-        default:
-            handleModuleEvent(eventType: eventType,
-                              target: nil,
-                              selectorStr: BHSelectorByEvent[eventType.rawValue],
-                              param: param)
-        }
-
-    }
-    private func handleModulesInitEvent(for target: BHModuleProtocol?, param: [AnyHashable: Any]?) {
+    private func triggerEvent(_ eventType: BHModuleEventType, target: BHModuleProtocol, param: [String: Any]? = nil) {
         let context = BHContext.shared
-        let tmpParam = context.customParam
-        let tmpEvent = context.customEvent
-        context.customParam = param
-        context.customEvent = .BHMInitEvent
-        var moduleInstances: [BHModuleProtocol] = []
-        if let instance = target {
-            moduleInstances.append(instance)
-        } else {
-            moduleInstances = BHModulesByEvent[BHModuleEventType.BHMInitEvent.rawValue] ?? []
+        switch eventType {
+        case .BHMInitEvent: target.modInit(context)
+        case .BHMSplashEvent: target.modSplash(context)
+        case .BHMWillResignActiveEvent: target.modWillResignActive(context)
+        case .BHMDidEnterBackgroundEvent: target.modDidEnterBackground(context)
+        case .BHMWillEnterForegroundEvent: target.modWillEnterForeground(context)
+        case .BHMDidBecomeActiveEvent: target.modDidBecomActive(context)
+        case .BHMWillTerminateEvent: target.modWillTerminate(context)
+        case .BHMUnmountEvent: target.modUnmount(context)
+        case .BHMQuickActionEvent: target.modQuickAction(context)
+        case .BHMOpenURLEvent: target.modOpebURL(context)
+        case .BHMDidReceiveMemoryWarningEvent: target.modDidReceiveMemoryWaring(context)
+        case .BHMDidFailToRegisterForRemoteNotificationsEvent: target.modDidFailToRegisterForRemoteNotifications(context)
+        case .BHMDidRegisterForRemoteNotificationsEvent: target.modDidRegisterForRemoteNotifications(context)
+        case .BHMDidReceiveLocalNotificationEvent: target.modDidReceiveLocalNotification(context)
+        case .BHMWillPresentNotificationEvent: target.modWillPresentNotification(context)
+        case .BHMDidReceiveNotificationResponseEvent: target.modDidReceiveNotificationResponse(context)
+        case .BHMWillContinueUserActivityEvent: target.modWillContinueUserActivity(context)
+        case .BHMContinueUserActivityEvent: target.modContinueUserActivity(context)
+        case .BHMDidUpdateUserActivityEvent: target.modDidUpdateContinueUserActivity(context)
+        case .BHMDidFailToContinueUserActivityEvent: target.modDidFailToContinueUserActivity(context)
+        case .BHMHandleWatchKitExtensionRequestEvent: target.modHandleWatchKitExtensionRequest(context)
+        default:
+            assertionFailure()
+//            target.modDidCustomEvent(context)
         }
-        moduleInstances.forEach { (instance) in
-            BHTimeProfiler.shared.recordEventTime("\(String(describing: instance.superclass)) -- modInit:")
+    }
+    private func handleModulesSetupEvent() {
+        for instance in BHModules {
+            let bk: () -> Void = {
+                instance.modSetUp(BHContext.shared)
+            }
             if instance.async {
                 DispatchQueue.main.async {
-                    instance.modInit(context)
+                    bk()
                 }
             } else {
-                instance.modInit(context)
+                bk()
             }
         }
-        context.customParam = tmpParam
-        context.customEvent = tmpEvent
-    }
-    private func handleModulesTearDownEvent(for target: BHModuleProtocol?, param: [AnyHashable: Any]?) {
-        let context = BHContext.shared
-        let tmpParam = context.customParam
-        let tmpEvent = context.customEvent
-        context.customParam = param
-        context.customEvent = .BHMInitEvent
-        var moduleInstances: [BHModuleProtocol] = []
-        if let instance = target {
-            moduleInstances.append(instance)
-        } else {
-            moduleInstances = BHModulesByEvent[BHModuleEventType.BHMTearDownEvent.rawValue] ?? []
-        }
-        moduleInstances.forEach { (instance) in
-            instance.modTearDown(context)
-        }
-        context.customParam = tmpParam
-        context.customEvent = tmpEvent
-    }
-    private func handleModuleEvent(eventType: BHModuleEventType,
-                                   target: BHModuleProtocol?,
-                                   selectorStr: String?,
-                                   param: [AnyHashable: Any]?) {
-        guard let selectorStr = selectorStr ?? (BHSelectorByEvent[eventType.rawValue]) else { return }
-        let selector = Selector(selectorStr)
-        var moduleInstances: [BHModuleProtocol] = []
-        if let instance = target {
-            moduleInstances.append(instance)
-        } else {
-            moduleInstances = BHModulesByEvent[eventType.rawValue] ?? []
-        }
-        let context = BHContext.shared
-        let tmpParam = context.customParam
-        let tmpEvent = context.customEvent
-        moduleInstances.forEach { (moduleInstance) in
-            let context = BHContext.shared
-            context.customParam = param
-            context.customEvent = eventType
-            moduleInstance.perform(selector, with: context)
-            BHTimeProfiler.shared.recordEventTime("\(String(describing: moduleInstance.superclass)) --- \(selectorStr)")
-        }
-        context.customParam = tmpParam
-        context.customEvent = tmpEvent
     }
 }
 
 extension BHModuleManager {
-    static let kSetupSelector = "modSetUp(_:)"
-    static let kInitSelector  = "modInit(_:)"
-//    static  NSString *kSplashSeletor = @"modSplash:";
-//    static  NSString *kTearDownSelector = @"modTearDown:";
-//    static  NSString *kWillResignActiveSelector = @"modWillResignActive:";
-//    static  NSString *kDidEnterBackgroundSelector = @"modDidEnterBackground:";
-//    static  NSString *kWillEnterForegroundSelector = @"modWillEnterForeground:";
-//    static  NSString *kDidBecomeActiveSelector = @"modDidBecomeActive:";
-//    static  NSString *kWillTerminateSelector = @"modWillTerminate:";
-//    static  NSString *kUnmountEventSelector = @"modUnmount:";
-//    static  NSString *kQuickActionSelector = @"modQuickAction:";
-//    static  NSString *kOpenURLSelector = @"modOpenURL:";
-//    static  NSString *kDidReceiveMemoryWarningSelector = @"modDidReceiveMemoryWaring:";
-//    static  NSString *kFailToRegisterForRemoteNotificationsSelector = @"modDidFailToRegisterForRemoteNotifications:";
-//    static  NSString *kDidRegisterForRemoteNotificationsSelector = @"modDidRegisterForRemoteNotifications:";
-//    static  NSString *kDidReceiveRemoteNotificationsSelector = @"modDidReceiveRemoteNotification:";
-//    static  NSString *kDidReceiveLocalNotificationsSelector = @"modDidReceiveLocalNotification:";
-//    static  NSString *kWillPresentNotificationSelector = @"modWillPresentNotification:";
-//    static  NSString *kDidReceiveNotificationResponseSelector = @"modDidReceiveNotificationResponse:";
-//    static  NSString *kWillContinueUserActivitySelector = @"modWillContinueUserActivity:";
-//    static  NSString *kContinueUserActivitySelector = @"modContinueUserActivity:";
-//    static  NSString *kDidUpdateContinueUserActivitySelector = @"modDidUpdateContinueUserActivity:";
-//    static  NSString *kFailToContinueUserActivitySelector = @"modDidFailToContinueUserActivity:";
-//    static  NSString *kHandleWatchKitExtensionRequestSelector = @"modHandleWatchKitExtensionRequest:";
-//    static  NSString *kAppCustomSelector = @"modDidCustomEvent:";
-    static func makeSelectorByEvent() -> [Int: String] {
-        let dict = [
-            BHModuleEventType.BHMSetupEvent.rawValue: kSetupSelector,
-            BHModuleEventType.BHMInitEvent.rawValue: kInitSelector
-//            @(BHMTearDownEvent):kTearDownSelector,
-//            @(BHMSplashEvent):kSplashSeletor,
-//            @(BHMWillResignActiveEvent):kWillResignActiveSelector,
-//            @(BHMDidEnterBackgroundEvent):kDidEnterBackgroundSelector,
-//            @(BHMWillEnterForegroundEvent):kWillEnterForegroundSelector,
-//            @(BHMDidBecomeActiveEvent):kDidBecomeActiveSelector,
-//            @(BHMWillTerminateEvent):kWillTerminateSelector,
-//            @(BHMUnmountEvent):kUnmountEventSelector,
-//            @(BHMOpenURLEvent):kOpenURLSelector,
-//            @(BHMDidReceiveMemoryWarningEvent):kDidReceiveMemoryWarningSelector,
+//    private func handleModuleEvent(eventType: BHModuleEventType,
+//                                   target: BHModuleProtocol?,
+//                                   param: [AnyHashable: Any]?) {
+//        switch eventType {
+//        case .BHMInitEvent: handleModulesInitEvent(for: nil, param: param)
+//        case .BHMTearDownEvent: handleModulesTearDownEvent(for: nil, param: param)
+//        default:
+//            handleModuleEvent(eventType: eventType,
+//                              target: nil,
+//                              selectorStr: BHSelectorByEvent[eventType.rawValue],
+//                              param: param)
+//        }
 //
-//            @(BHMDidReceiveRemoteNotificationEvent):kDidReceiveRemoteNotificationsSelector,
-//            @(BHMWillPresentNotificationEvent):kWillPresentNotificationSelector,
-//            @(BHMDidReceiveNotificationResponseEvent):kDidReceiveNotificationResponseSelector,
-//
-//            @(BHMDidFailToRegisterForRemoteNotificationsEvent):kFailToRegisterForRemoteNotificationsSelector,
-//            @(BHMDidRegisterForRemoteNotificationsEvent):kDidRegisterForRemoteNotificationsSelector,
-//
-//            @(BHMDidReceiveLocalNotificationEvent):kDidReceiveLocalNotificationsSelector,
-//
-//            @(BHMWillContinueUserActivityEvent):kWillContinueUserActivitySelector,
-//
-//            @(BHMContinueUserActivityEvent):kContinueUserActivitySelector,
-//
-//            @(BHMDidFailToContinueUserActivityEvent):kFailToContinueUserActivitySelector,
-//
-//            @(BHMDidUpdateUserActivityEvent):kDidUpdateContinueUserActivitySelector,
-//
-//            @(BHMQuickActionEvent):kQuickActionSelector,
-//            @(BHMHandleWatchKitExtensionRequestEvent):kHandleWatchKitExtensionRequestSelector,
-//            @(BHMDidCustomEvent):kAppCustomSelector,
-        ]
-        return dict
-    }
+//    }
+//    private func handleModulesInitEvent(for target: BHModuleProtocol?, param: [AnyHashable: Any]?) {
+//        let context = BHContext.shared
+//        let tmpParam = context.customParam
+//        let tmpEvent = context.customEvent
+//        context.customParam = param
+//        context.customEvent = .BHMInitEvent
+//        var moduleInstances: [BHModuleProtocol] = []
+//        if let instance = target {
+//            moduleInstances.append(instance)
+//        } else {
+//            moduleInstances = BHModulesByEvent[BHModuleEventType.BHMInitEvent.rawValue] ?? []
+//        }
+//        moduleInstances.forEach { (instance) in
+//            BHTimeProfiler.shared.recordEventTime("\(String(describing: instance.superclass)) -- modInit:")
+//            if instance.async {
+//                DispatchQueue.main.async {
+//                    instance.modInit(context)
+//                }
+//            } else {
+//                instance.modInit(context)
+//            }
+//        }
+//        context.customParam = tmpParam
+//        context.customEvent = tmpEvent
+//    }
+//    private func handleModulesTearDownEvent(for target: BHModuleProtocol?, param: [AnyHashable: Any]?) {
+//        let context = BHContext.shared
+//        let tmpParam = context.customParam
+//        let tmpEvent = context.customEvent
+//        context.customParam = param
+//        context.customEvent = .BHMInitEvent
+//        var moduleInstances: [BHModuleProtocol] = []
+//        if let instance = target {
+//            moduleInstances.append(instance)
+//        } else {
+//            moduleInstances = BHModulesByEvent[BHModuleEventType.BHMTearDownEvent.rawValue] ?? []
+//        }
+//        moduleInstances.forEach { (instance) in
+//            instance.modTearDown(context)
+//        }
+//        context.customParam = tmpParam
+//        context.customEvent = tmpEvent
+//    }
+//    private func handleModuleEvent(eventType: BHModuleEventType,
+//                                   target: BHModuleProtocol?,
+//                                   selectorStr: String?,
+//                                   param: [AnyHashable: Any]?) {
+//        guard let selectorStr = selectorStr ?? (BHSelectorByEvent[eventType.rawValue]) else { return }
+//        let selector = Selector(selectorStr)
+//        var moduleInstances: [BHModuleProtocol] = []
+//        if let instance = target {
+//            moduleInstances.append(instance)
+//        } else {
+//            moduleInstances = BHModulesByEvent[eventType.rawValue] ?? []
+//        }
+//        let context = BHContext.shared
+//        let tmpParam = context.customParam
+//        let tmpEvent = context.customEvent
+//        moduleInstances.forEach { (moduleInstance) in
+//            let context = BHContext.shared
+//            context.customParam = param
+//            context.customEvent = eventType
+//            moduleInstance.perform(selector, with: context)
+//            BHTimeProfiler.shared.recordEventTime("\(String(describing: moduleInstance.superclass)) --- \(selectorStr)")
+//        }
+//        context.customParam = tmpParam
+//        context.customEvent = tmpEvent
+//    }
 }

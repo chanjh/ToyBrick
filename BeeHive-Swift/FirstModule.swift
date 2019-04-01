@@ -14,6 +14,6 @@ class FirstModule: NSObject, BHModuleProtocol {
     }
     
     func modInit(_ context: BHContext) {
-        
+        print("OJBK!!!!!")
     }
 }

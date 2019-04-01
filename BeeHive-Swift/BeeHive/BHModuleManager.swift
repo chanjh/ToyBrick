@@ -19,7 +19,7 @@ class BHModuleManager {
     static let shared: BHModuleManager = BHModuleManager()
     private var BHModuleInfos: [[String: Any]] = []
     private var BHModules: [BHModuleProtocol] = []
-    private var BHSelectorByEvent: [Int: String] = [:]
+    private var BHSelectorByEvent: [Int: String] = makeSelectorByEvent()
     private var BHModulesByEvent: [Int: [BHModuleProtocol]] = [:]
     
     func registerDynamicModule(_ moduleClass: AnyClass, shouldTriggerInitEvent: Bool = false) {
@@ -65,7 +65,9 @@ class BHModuleManager {
         BHModuleInfos.forEach { (module) in
             guard let classStr = module[kModuleInfoNameKey] as? String else { return }
             let hasInstantiated = module[kModuleInfoHasInstantiatedKey] as? Bool ?? false
-            if let moduleClass = NSClassFromString(classStr) as? BHModuleProtocol.Type, !hasInstantiated {
+            let appName = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String
+            let realClassName = (appName?.replacingOccurrences(of: "-", with: "_") ?? "") + "." + classStr
+            if let moduleClass = NSClassFromString(realClassName) as? BHModuleProtocol.Type, !hasInstantiated {
                 let moduleInstance = moduleClass.init(BHContext.shared)
                 tmpArray.append(moduleInstance)
             }
@@ -242,8 +244,8 @@ extension BHModuleManager {
 }
 
 extension BHModuleManager {
-    static let kSetupSelector = "modSetUp:"
-    static let kInitSelector  = "modInit:"
+    static let kSetupSelector = "modSetUp(_:)"
+    static let kInitSelector  = "modInit(_:)"
 //    static  NSString *kSplashSeletor = @"modSplash:";
 //    static  NSString *kTearDownSelector = @"modTearDown:";
 //    static  NSString *kWillResignActiveSelector = @"modWillResignActive:";
@@ -267,7 +269,7 @@ extension BHModuleManager {
 //    static  NSString *kFailToContinueUserActivitySelector = @"modDidFailToContinueUserActivity:";
 //    static  NSString *kHandleWatchKitExtensionRequestSelector = @"modHandleWatchKitExtensionRequest:";
 //    static  NSString *kAppCustomSelector = @"modDidCustomEvent:";
-    static func BHSelectorByEvent() -> [Int: String] {
+    static func makeSelectorByEvent() -> [Int: String] {
         let dict = [
             BHModuleEventType.BHMSetupEvent.rawValue: kSetupSelector,
             BHModuleEventType.BHMInitEvent.rawValue: kInitSelector

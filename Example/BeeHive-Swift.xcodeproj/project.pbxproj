@@ -18,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0323E824A9FDF60AFCA19825 /* Pods-BeeHive-Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeeHive-Swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeeHive-Swift/Pods-BeeHive-Swift.debug.xcconfig"; sourceTree = "<group>"; };
 		0D05D293224BD18200BB87BD /* BeeHive-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BeeHive-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D05D296224BD18200BB87BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0D05D298224BD18200BB87BD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -30,6 +31,7 @@
 		93235EF22E69A0D4CEB73677 /* Pods-BeeHive-Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeeHive-Swift.debug.xcconfig"; path = "Target Support Files/Pods-BeeHive-Swift/Pods-BeeHive-Swift.debug.xcconfig"; sourceTree = "<group>"; };
 		E891B22F2253206900FBF537 /* FirstModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstModule.swift; sourceTree = "<group>"; };
 		E891B2312253207100FBF537 /* ToyBrick */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ToyBrick; path = ../../ToyBrick; sourceTree = "<group>"; };
+		F641B1044F313F56C567F1E9 /* Pods-BeeHive-Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeeHive-Swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeeHive-Swift/Pods-BeeHive-Swift.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,8 @@
 			children = (
 				93235EF22E69A0D4CEB73677 /* Pods-BeeHive-Swift.debug.xcconfig */,
 				31A408153C15DC3A0B2F2798 /* Pods-BeeHive-Swift.release.xcconfig */,
+				0323E824A9FDF60AFCA19825 /* Pods-BeeHive-Swift.debug.xcconfig */,
+				F641B1044F313F56C567F1E9 /* Pods-BeeHive-Swift.release.xcconfig */,
 			);
 			name = Pods;
 			path = Pods;
@@ -170,15 +174,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-BeeHive-Swift-checkManifestLockResult.txt",
 			);
@@ -192,15 +192,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-BeeHive-Swift/Pods-BeeHive-Swift-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ToyBrick/ToyBrick.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ToyBrick.framework",
 			);

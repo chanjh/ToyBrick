@@ -8,14 +8,14 @@
 
 import Foundation
 
-class BHTimeProfiler {
-    static let shared: BHTimeProfiler = BHTimeProfiler()
+public class BHTimeProfiler {
+    public static let shared: BHTimeProfiler = BHTimeProfiler()
     
     func saveTimeProfileDataIntoFile(_ file: String) {
         
     }
     
-    func recordEventTime(_ time: String) {
+    public func recordEventTime(_ time: String) {
         
     }
 }

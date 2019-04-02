@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ToyBrick
 
 class FirstModule: NSObject, BHModuleProtocol {
     required init(_ context: BHContext) { }

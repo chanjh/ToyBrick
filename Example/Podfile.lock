@@ -1,0 +1,16 @@
+PODS:
+  - ToyBrick (0.0.1)
+
+DEPENDENCIES:
+  - ToyBrick (from `../`)
+
+EXTERNAL SOURCES:
+  ToyBrick:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  ToyBrick: cf5a4bb5fa91ca17035cac8a9db4b1fd65170003
+
+PODFILE CHECKSUM: 7cdf7aa019649c661ede8812921ea007c4cd306b
+
+COCOAPODS: 1.6.1

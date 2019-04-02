@@ -31,7 +31,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "177"
             endingLineNumber = "177"
-            landmarkName = "handleModulesInitEvent(for:param:)"
+            landmarkName = "triggerEvent(_:target:param:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -47,7 +47,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "188"
             endingLineNumber = "188"
-            landmarkName = "handleModulesInitEvent(for:param:)"
+            landmarkName = "triggerEvent(_:target:param:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -86,22 +86,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BeeHive-Swift/BeeHive/BHModuleManager.swift"
-            timestampString = "575790156.13129"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
-            landmarkName = "registerEvent(_:moduleInstance:selectorStr:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -111,56 +95,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "127"
             endingLineNumber = "127"
-            landmarkName = "registerEventsByModuleInstance(_:)"
+            landmarkName = "addModule(from:shouldTriggerInitEvent:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BeeHive-Swift/BeeHive/BHModuleManager.swift"
-            timestampString = "575790156.131862"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
-            landmarkName = "registerEvent(_:moduleInstance:selectorStr:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "BeeHive_Swift.BHModuleManager.(registerEvent in _7D83BE099622613623B465829DB77483)(_: BeeHive_Swift.BHModuleEventType, moduleInstance: BeeHive_Swift.BHModuleProtocol, selectorStr: Swift.String) -&gt; ()"
-                  moduleName = "BeeHive-Swift"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gillchan/Git/beehive-swift/BeeHive-Swift/BeeHive/BHModuleManager.swift"
-                  timestampString = "575790156.246106"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "145"
-                  endingLineNumber = "145"
-                  offsetFromSymbolStart = "1768">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (BeeHive_Swift.BHModuleProtocol) -&gt; Swift.Bool in BeeHive_Swift.BHModuleManager.(registerEvent in _7D83BE099622613623B465829DB77483)(_: BeeHive_Swift.BHModuleEventType, moduleInstance: BeeHive_Swift.BHModuleProtocol, selectorStr: Swift.String) -&gt; ()"
-                  moduleName = "BeeHive-Swift"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gillchan/Git/beehive-swift/BeeHive-Swift/BeeHive/BHModuleManager.swift"
-                  timestampString = "575790156.24951"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "145"
-                  endingLineNumber = "145"
-                  offsetFromSymbolStart = "24">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

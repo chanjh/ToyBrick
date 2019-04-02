@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ToyBrick
 
 @UIApplicationMain
 class AppDelegate: BHAppDelegate {

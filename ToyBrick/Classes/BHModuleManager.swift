@@ -17,10 +17,10 @@ class BHModuleManager {
     fileprivate let kModuleInfoHasInstantiatedKey = "moduleHasInstantiated"
     
     static let shared: BHModuleManager = BHModuleManager()
-    private var BHModuleInfos: [[String: Any]] = []
-    private var BHModules: [BHModuleProtocol] = []
-    private var BHSelectorByEvent: [Int: String] = [:]//makeSelectorByEvent()
-    private var BHModulesByEvent: [Int: [BHModuleProtocol]] = [:]
+    fileprivate var BHModuleInfos: [[String: Any]] = []
+    fileprivate var BHModules: [BHModuleProtocol] = []
+    fileprivate var BHSelectorByEvent: [Int: String] = [:]//makeSelectorByEvent()
+    fileprivate var BHModulesByEvent: [Int: [BHModuleProtocol]] = [:]
     
     func registerDynamicModule(_ moduleClass: AnyClass, shouldTriggerInitEvent: Bool = false) {
         addModule(from: moduleClass, shouldTriggerInitEvent: shouldTriggerInitEvent)

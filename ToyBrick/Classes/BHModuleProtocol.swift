@@ -9,7 +9,7 @@
 import Foundation
 
 /// NSObjectProtocol 太 OC 了，有没有 Swift 一点的做法？
-protocol BHModuleProtocol: NSObjectProtocol {
+public protocol BHModuleProtocol: NSObjectProtocol {
     func basicModuleLevel() -> BHModuleLevel
     var modulePrioriry: Int { get }
     var async: Bool { get }
@@ -43,7 +43,7 @@ protocol BHModuleProtocol: NSObjectProtocol {
     func modDidCustomEvent(_ context: BHContext)
 }
 
-extension BHModuleProtocol {
+public extension BHModuleProtocol {
     func basicModuleLevel() -> BHModuleLevel { return BHModuleLevel.BHModuleNormal }
     var modulePrioriry: Int { return 1000 }
     var async: Bool { return true }

@@ -8,26 +8,26 @@
 
 import Foundation
 
-class BeeHive {
-    static let shared: BeeHive = BeeHive()
-    var enableException: Bool = false
-    var context: BHContext? {
+public class BeeHive {
+    public static let shared: BeeHive = BeeHive()
+    public var enableException: Bool = false
+    public var context: BHContext? {
         didSet {
             loadStaticServices()
             loadStaticModules()
         }
     }
-    class func registerDynamicModule(_ module: AnyClass) {
+    public class func registerDynamicModule(_ module: AnyClass) {
         BHModuleManager.shared.registerDynamicModule(module)
     }
 }
 
 /// Private
-extension BeeHive {
-    private func loadStaticServices() {
-        
+fileprivate extension BeeHive {
+    fileprivate func loadStaticServices() {
+
     }
-    private func loadStaticModules() {
+    fileprivate func loadStaticModules() {
         BHModuleManager.shared.loadLocalModules()
         BHModuleManager.shared.registedAllModules()
     }

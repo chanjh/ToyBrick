@@ -1,0 +1,6 @@
+framework module ToyBrick {
+  umbrella header "ToyBrick-umbrella.h"
+
+  export *
+  module * { export * }
+}

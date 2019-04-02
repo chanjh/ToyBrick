@@ -1,0 +1,640 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		391C0806AF80944890C6F7310E9029D0 /* BHModuleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A29C3F8624AA3BBCC3D14E1AA3334B2 /* BHModuleManager.swift */; };
+		4291344ED45C0A461621CD4AB600CB06 /* BHModuleManager+Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AE7A6E937AC6FF9469B9F3E8A331A5 /* BHModuleManager+Define.swift */; };
+		46AB3EDD8951084727E6CB745E3D2F84 /* BHModuleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67FAF53099583629F517A717FC23930 /* BHModuleProtocol.swift */; };
+		536FFD84500BBDEC7F6A9A2B1E2B63F4 /* BHTimeProfiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424F5350277CD338F4374AD2E4CF6C4E /* BHTimeProfiler.swift */; };
+		6D1CB47C1B52F7D348EDAA4B1E338F01 /* ToyBrick-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 388A17A55C00BC87997BBAD0242CCC6C /* ToyBrick-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7057639B019E2190981066C1B749F7FD /* BHAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A49782FD2567972B8DA27236B2DA9D /* BHAppDelegate.swift */; };
+		75E6CCE855E545F4ECBFEC7E5ABB6A46 /* Pods-BeeHive-Swift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FC637592D2A36DC1A6FE2B4A51913252 /* Pods-BeeHive-Swift-dummy.m */; };
+		782413F0FBC4F9DB665AEE21E917FE5E /* BHContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B62B2A8B16C395B344D90C6E4AD9B10 /* BHContext.swift */; };
+		9AC76AF2ADEA7EB79ADA0F1418562B0A /* ToyBrick-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 688768CCDE9B3E4AAC6FF4C8911A1C2B /* ToyBrick-dummy.m */; };
+		A0F7362A966DB32B25B17FE5055B65D1 /* Pods-BeeHive-Swift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C228560C675BB8B9B4388FD0E7725D55 /* Pods-BeeHive-Swift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B942101D486CA9B8FB84283DBAEA1FFC /* ToyBrick.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BB1494D88E1C10217B3EDD14E291C716 /* ToyBrick.bundle */; };
+		BF77F99979FA33D40E96C5B3E0330241 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */; };
+		C098180ADBB035A0278163FEE2F929A4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */; };
+		DFD1B0A05BC082F904DF6F45753D8375 /* BeeHive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18333F38D69BCDAC9CC9567459B27110 /* BeeHive.swift */; };
+		E891B238225324D600FBF537 /* ToyBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = E891B237225324D600FBF537 /* ToyBrick.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		00A8F05007A5238D0E358CB8FE783EFA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ED3035C96F9B6B074A7519BB3931C408;
+			remoteInfo = ToyBrick;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		075495953F872CE2077F832A693B21C1 /* ToyBrick-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ToyBrick-prefix.pch"; sourceTree = "<group>"; };
+		092013A94EE3C2B37A79954AA0766727 /* ToyBrick-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ToyBrick-Info.plist"; sourceTree = "<group>"; };
+		0F6C79380383E61B1723AC3DF0A1CA4A /* ToyBrick.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ToyBrick.modulemap; sourceTree = "<group>"; };
+		18333F38D69BCDAC9CC9567459B27110 /* BeeHive.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeeHive.swift; path = ToyBrick/Classes/BeeHive.swift; sourceTree = "<group>"; };
+		22A49782FD2567972B8DA27236B2DA9D /* BHAppDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BHAppDelegate.swift; path = ToyBrick/Classes/BHAppDelegate.swift; sourceTree = "<group>"; };
+		30E2DBFD31021248003F2176A8A1FFC1 /* ToyBrick.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = ToyBrick.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		388A17A55C00BC87997BBAD0242CCC6C /* ToyBrick-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ToyBrick-umbrella.h"; sourceTree = "<group>"; };
+		3F1DBC9E21F8C1C36562611BBE02B4A8 /* Pods-BeeHive-Swift-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BeeHive-Swift-frameworks.sh"; sourceTree = "<group>"; };
+		424F5350277CD338F4374AD2E4CF6C4E /* BHTimeProfiler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BHTimeProfiler.swift; path = ToyBrick/Classes/BHTimeProfiler.swift; sourceTree = "<group>"; };
+		44FB59AF6B62CB615D1468D8B315624F /* Pods-BeeHive-Swift-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BeeHive-Swift-acknowledgements.plist"; sourceTree = "<group>"; };
+		5B62B2A8B16C395B344D90C6E4AD9B10 /* BHContext.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BHContext.swift; path = ToyBrick/Classes/BHContext.swift; sourceTree = "<group>"; };
+		61B7622F86E9CF70EB4FFC74D6856A3D /* Pods-BeeHive-Swift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-BeeHive-Swift.modulemap"; sourceTree = "<group>"; };
+		688768CCDE9B3E4AAC6FF4C8911A1C2B /* ToyBrick-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ToyBrick-dummy.m"; sourceTree = "<group>"; };
+		74803FE4B611C2E74B1312A0256364E8 /* ToyBrick.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ToyBrick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A29C3F8624AA3BBCC3D14E1AA3334B2 /* BHModuleManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BHModuleManager.swift; path = ToyBrick/Classes/BHModuleManager.swift; sourceTree = "<group>"; };
+		81E9A3A64CAAB241F70875C87CE9BE27 /* Pods-BeeHive-Swift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BeeHive-Swift-Info.plist"; sourceTree = "<group>"; };
+		833F029A0AC11EAB35BF4FF87E7E82A4 /* ToyBrick.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ToyBrick.xcconfig; sourceTree = "<group>"; };
+		8B783C9E35A2304AEC9683EFBE7E9CB4 /* Pods-BeeHive-Swift-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BeeHive-Swift-acknowledgements.markdown"; sourceTree = "<group>"; };
+		94547E51EB01CECE6E967EEC4B557389 /* Pods-BeeHive-Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BeeHive-Swift.debug.xcconfig"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		B67FAF53099583629F517A717FC23930 /* BHModuleProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BHModuleProtocol.swift; path = ToyBrick/Classes/BHModuleProtocol.swift; sourceTree = "<group>"; };
+		BB1494D88E1C10217B3EDD14E291C716 /* ToyBrick.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = ToyBrick.bundle; path = ToyBrick/ToyBrick.bundle; sourceTree = "<group>"; };
+		BE335BD0A1654B6E4F99BAE44ECA0C55 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C228560C675BB8B9B4388FD0E7725D55 /* Pods-BeeHive-Swift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BeeHive-Swift-umbrella.h"; sourceTree = "<group>"; };
+		CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		DA153808C0C9C225E637563B1BFCE66C /* Pods-BeeHive-Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BeeHive-Swift.release.xcconfig"; sourceTree = "<group>"; };
+		E891B237225324D600FBF537 /* ToyBrick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ToyBrick.swift; path = ToyBrick/Classes/ToyBrick.swift; sourceTree = "<group>"; };
+		F4AE7A6E937AC6FF9469B9F3E8A331A5 /* BHModuleManager+Define.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "BHModuleManager+Define.swift"; path = "ToyBrick/Classes/BHModuleManager+Define.swift"; sourceTree = "<group>"; };
+		FC637592D2A36DC1A6FE2B4A51913252 /* Pods-BeeHive-Swift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BeeHive-Swift-dummy.m"; sourceTree = "<group>"; };
+		FCF9D0CD35C621BEC6D21652F96DD048 /* Pods_BeeHive_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeeHive_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3D4EEBE857A0F87277154F4651E608C5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF77F99979FA33D40E96C5B3E0330241 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B7D66EC37FF0A805D0E780B639CCD291 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C098180ADBB035A0278163FEE2F929A4 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		13092AD7793F4A8C43DD77D418281DB0 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				0F6C79380383E61B1723AC3DF0A1CA4A /* ToyBrick.modulemap */,
+				833F029A0AC11EAB35BF4FF87E7E82A4 /* ToyBrick.xcconfig */,
+				688768CCDE9B3E4AAC6FF4C8911A1C2B /* ToyBrick-dummy.m */,
+				092013A94EE3C2B37A79954AA0766727 /* ToyBrick-Info.plist */,
+				075495953F872CE2077F832A693B21C1 /* ToyBrick-prefix.pch */,
+				388A17A55C00BC87997BBAD0242CCC6C /* ToyBrick-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/ToyBrick";
+			sourceTree = "<group>";
+		};
+		1ADFCFE74BE7DDA65C4C53A53E926B0D /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3B9805D7A39D824B9CE3CC730784E9AB /* ToyBrick */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		3B9805D7A39D824B9CE3CC730784E9AB /* ToyBrick */ = {
+			isa = PBXGroup;
+			children = (
+				E891B237225324D600FBF537 /* ToyBrick.swift */,
+				18333F38D69BCDAC9CC9567459B27110 /* BeeHive.swift */,
+				22A49782FD2567972B8DA27236B2DA9D /* BHAppDelegate.swift */,
+				5B62B2A8B16C395B344D90C6E4AD9B10 /* BHContext.swift */,
+				7A29C3F8624AA3BBCC3D14E1AA3334B2 /* BHModuleManager.swift */,
+				F4AE7A6E937AC6FF9469B9F3E8A331A5 /* BHModuleManager+Define.swift */,
+				B67FAF53099583629F517A717FC23930 /* BHModuleProtocol.swift */,
+				424F5350277CD338F4374AD2E4CF6C4E /* BHTimeProfiler.swift */,
+				707A0958CBD201B0A3DD9372325BB54D /* Pod */,
+				935C9D5DA9ED66785478932D3796EFD1 /* Resources */,
+				13092AD7793F4A8C43DD77D418281DB0 /* Support Files */,
+			);
+			name = ToyBrick;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		6A6D7401671890BC1FB860E8E5722F65 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FCF9D0CD35C621BEC6D21652F96DD048 /* Pods_BeeHive_Swift.framework */,
+				74803FE4B611C2E74B1312A0256364E8 /* ToyBrick.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		707A0958CBD201B0A3DD9372325BB54D /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				BE335BD0A1654B6E4F99BAE44ECA0C55 /* README.md */,
+				30E2DBFD31021248003F2176A8A1FFC1 /* ToyBrick.podspec */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		795D5E2385B72A1D49B90DFD28E131CB /* Pods-BeeHive-Swift */ = {
+			isa = PBXGroup;
+			children = (
+				61B7622F86E9CF70EB4FFC74D6856A3D /* Pods-BeeHive-Swift.modulemap */,
+				8B783C9E35A2304AEC9683EFBE7E9CB4 /* Pods-BeeHive-Swift-acknowledgements.markdown */,
+				44FB59AF6B62CB615D1468D8B315624F /* Pods-BeeHive-Swift-acknowledgements.plist */,
+				FC637592D2A36DC1A6FE2B4A51913252 /* Pods-BeeHive-Swift-dummy.m */,
+				3F1DBC9E21F8C1C36562611BBE02B4A8 /* Pods-BeeHive-Swift-frameworks.sh */,
+				81E9A3A64CAAB241F70875C87CE9BE27 /* Pods-BeeHive-Swift-Info.plist */,
+				C228560C675BB8B9B4388FD0E7725D55 /* Pods-BeeHive-Swift-umbrella.h */,
+				94547E51EB01CECE6E967EEC4B557389 /* Pods-BeeHive-Swift.debug.xcconfig */,
+				DA153808C0C9C225E637563B1BFCE66C /* Pods-BeeHive-Swift.release.xcconfig */,
+			);
+			name = "Pods-BeeHive-Swift";
+			path = "Target Support Files/Pods-BeeHive-Swift";
+			sourceTree = "<group>";
+		};
+		935C9D5DA9ED66785478932D3796EFD1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BB1494D88E1C10217B3EDD14E291C716 /* ToyBrick.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		9B055D0CFEA43187E72B03DED11F5662 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				1ADFCFE74BE7DDA65C4C53A53E926B0D /* Development Pods */,
+				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
+				6A6D7401671890BC1FB860E8E5722F65 /* Products */,
+				DD3E7DB443822C46F39B4DFB7C21E7E8 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9B055D0CFEA43187E72B03DED11F5662 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DD3E7DB443822C46F39B4DFB7C21E7E8 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				795D5E2385B72A1D49B90DFD28E131CB /* Pods-BeeHive-Swift */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		61399A467140675CB188C5BB4CB87679 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D1CB47C1B52F7D348EDAA4B1E338F01 /* ToyBrick-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B7E6B9040B13B9DE182B665E49E63B16 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0F7362A966DB32B25B17FE5055B65D1 /* Pods-BeeHive-Swift-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		9DF0A8FAF1F34FE993880B2D2FD36EAF /* Pods-BeeHive-Swift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 908463686CC4EFD3C3B38E6D7504DDD6 /* Build configuration list for PBXNativeTarget "Pods-BeeHive-Swift" */;
+			buildPhases = (
+				B7E6B9040B13B9DE182B665E49E63B16 /* Headers */,
+				19D0AD77EE78BF07530FE1A986C9A69E /* Sources */,
+				3D4EEBE857A0F87277154F4651E608C5 /* Frameworks */,
+				CA21D3526D03AC3471B880AAB9422591 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B5AD5910884B1D36CED7DC7772C70D5E /* PBXTargetDependency */,
+			);
+			name = "Pods-BeeHive-Swift";
+			productName = "Pods-BeeHive-Swift";
+			productReference = FCF9D0CD35C621BEC6D21652F96DD048 /* Pods_BeeHive_Swift.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		ED3035C96F9B6B074A7519BB3931C408 /* ToyBrick */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C8CA8B26EE1256E9071FA35879A4726E /* Build configuration list for PBXNativeTarget "ToyBrick" */;
+			buildPhases = (
+				61399A467140675CB188C5BB4CB87679 /* Headers */,
+				1D03255AE5575617B815DBE1BEB813E3 /* Sources */,
+				B7D66EC37FF0A805D0E780B639CCD291 /* Frameworks */,
+				F4C30FE04E1931A6D8C82EC1414F0305 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ToyBrick;
+			productName = ToyBrick;
+			productReference = 74803FE4B611C2E74B1312A0256364E8 /* ToyBrick.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = 6A6D7401671890BC1FB860E8E5722F65 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9DF0A8FAF1F34FE993880B2D2FD36EAF /* Pods-BeeHive-Swift */,
+				ED3035C96F9B6B074A7519BB3931C408 /* ToyBrick */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CA21D3526D03AC3471B880AAB9422591 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4C30FE04E1931A6D8C82EC1414F0305 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B942101D486CA9B8FB84283DBAEA1FFC /* ToyBrick.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		19D0AD77EE78BF07530FE1A986C9A69E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75E6CCE855E545F4ECBFEC7E5ABB6A46 /* Pods-BeeHive-Swift-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1D03255AE5575617B815DBE1BEB813E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DFD1B0A05BC082F904DF6F45753D8375 /* BeeHive.swift in Sources */,
+				7057639B019E2190981066C1B749F7FD /* BHAppDelegate.swift in Sources */,
+				782413F0FBC4F9DB665AEE21E917FE5E /* BHContext.swift in Sources */,
+				4291344ED45C0A461621CD4AB600CB06 /* BHModuleManager+Define.swift in Sources */,
+				391C0806AF80944890C6F7310E9029D0 /* BHModuleManager.swift in Sources */,
+				46AB3EDD8951084727E6CB745E3D2F84 /* BHModuleProtocol.swift in Sources */,
+				536FFD84500BBDEC7F6A9A2B1E2B63F4 /* BHTimeProfiler.swift in Sources */,
+				9AC76AF2ADEA7EB79ADA0F1418562B0A /* ToyBrick-dummy.m in Sources */,
+				E891B238225324D600FBF537 /* ToyBrick.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B5AD5910884B1D36CED7DC7772C70D5E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ToyBrick;
+			target = ED3035C96F9B6B074A7519BB3931C408 /* ToyBrick */;
+			targetProxy = 00A8F05007A5238D0E358CB8FE783EFA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		4C30F667B343FC2DA3C6FEF8E2E5249B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DA153808C0C9C225E637563B1BFCE66C /* Pods-BeeHive-Swift.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-BeeHive-Swift/Pods-BeeHive-Swift-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-BeeHive-Swift/Pods-BeeHive-Swift.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		4CE281642D6EE9FAB113046B4B6328A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.2;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		6DFA1578582149B7E24AD55CBA30F07A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		7B05BA25CCE25477B29042B8F7D0BB11 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 94547E51EB01CECE6E967EEC4B557389 /* Pods-BeeHive-Swift.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-BeeHive-Swift/Pods-BeeHive-Swift-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-BeeHive-Swift/Pods-BeeHive-Swift.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		87FCCA69038DF3CD01C10C99073C3E4E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 833F029A0AC11EAB35BF4FF87E7E82A4 /* ToyBrick.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/ToyBrick/ToyBrick-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ToyBrick/ToyBrick-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/ToyBrick/ToyBrick.modulemap";
+				PRODUCT_MODULE_NAME = ToyBrick;
+				PRODUCT_NAME = ToyBrick;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		D654B0E02BDB4C28E0B5F72AEF3645BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 833F029A0AC11EAB35BF4FF87E7E82A4 /* ToyBrick.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/ToyBrick/ToyBrick-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ToyBrick/ToyBrick-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/ToyBrick/ToyBrick.modulemap";
+				PRODUCT_MODULE_NAME = ToyBrick;
+				PRODUCT_NAME = ToyBrick;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6DFA1578582149B7E24AD55CBA30F07A /* Debug */,
+				4CE281642D6EE9FAB113046B4B6328A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		908463686CC4EFD3C3B38E6D7504DDD6 /* Build configuration list for PBXNativeTarget "Pods-BeeHive-Swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7B05BA25CCE25477B29042B8F7D0BB11 /* Debug */,
+				4C30F667B343FC2DA3C6FEF8E2E5249B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C8CA8B26EE1256E9071FA35879A4726E /* Build configuration list for PBXNativeTarget "ToyBrick" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				87FCCA69038DF3CD01C10C99073C3E4E /* Debug */,
+				D654B0E02BDB4C28E0B5F72AEF3645BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}

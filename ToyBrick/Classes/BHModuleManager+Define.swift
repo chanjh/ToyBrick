@@ -8,12 +8,12 @@
 
 import Foundation
 
-enum BHModuleLevel: Int {
+public enum BHModuleLevel: Int {
     case BHModuleBasic  = 0
     case BHModuleNormal
 }
 
-enum BHModuleEventType: Int {
+public enum BHModuleEventType: Int {
     case BHMSetupEvent = 0
     case BHMInitEvent
     case BHMTearDownEvent

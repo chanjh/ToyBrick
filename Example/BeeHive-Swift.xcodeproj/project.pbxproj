@@ -7,20 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00F61092FBCDE12BF2BE4F72 /* Pods_BeeHive_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 829BD311D4BBF7D7B74E22A4 /* Pods_BeeHive_Swift.framework */; };
 		0D05D297224BD18200BB87BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D05D296224BD18200BB87BD /* AppDelegate.swift */; };
 		0D05D299224BD18200BB87BD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D05D298224BD18200BB87BD /* ViewController.swift */; };
 		0D05D29C224BD18200BB87BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D05D29A224BD18200BB87BD /* Main.storyboard */; };
 		0D05D29E224BD18300BB87BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D05D29D224BD18300BB87BD /* Assets.xcassets */; };
 		0D05D2A1224BD18300BB87BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D05D29F224BD18300BB87BD /* LaunchScreen.storyboard */; };
-		0D05D2A9224BD22900BB87BD /* BeeHive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D05D2A8224BD22900BB87BD /* BeeHive.swift */; };
-		0D05D2AC224BD24500BB87BD /* BHAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D05D2AB224BD24500BB87BD /* BHAppDelegate.swift */; };
-		0D05D2AE224BD25100BB87BD /* BHModuleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D05D2AD224BD25100BB87BD /* BHModuleProtocol.swift */; };
-		0D05D2B0224BD26100BB87BD /* BHModuleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D05D2AF224BD26100BB87BD /* BHModuleManager.swift */; };
-		0D05D2B2224BD28500BB87BD /* BHContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D05D2B1224BD28500BB87BD /* BHContext.swift */; };
-		0D05D2B4224BD66400BB87BD /* BHModuleManager+Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D05D2B3224BD66400BB87BD /* BHModuleManager+Define.swift */; };
-		0D05D2B6224BD84900BB87BD /* BHTimeProfiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D05D2B5224BD84900BB87BD /* BHTimeProfiler.swift */; };
-		0D05D2B8224BDCE300BB87BD /* FirstModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D05D2B7224BDCE300BB87BD /* FirstModule.swift */; };
-		0D05D2BE224C540A00BB87BD /* BeeHive.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0D05D2BD224C540A00BB87BD /* BeeHive.bundle */; };
+		E891B2302253206900FBF537 /* FirstModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = E891B22F2253206900FBF537 /* FirstModule.swift */; };
+		E891B2322253207100FBF537 /* ToyBrick in Resources */ = {isa = PBXBuildFile; fileRef = E891B2312253207100FBF537 /* ToyBrick */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,15 +25,11 @@
 		0D05D29D224BD18300BB87BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0D05D2A0224BD18300BB87BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0D05D2A2224BD18300BB87BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0D05D2A8224BD22900BB87BD /* BeeHive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeeHive.swift; sourceTree = "<group>"; };
-		0D05D2AB224BD24500BB87BD /* BHAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BHAppDelegate.swift; sourceTree = "<group>"; };
-		0D05D2AD224BD25100BB87BD /* BHModuleProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BHModuleProtocol.swift; sourceTree = "<group>"; };
-		0D05D2AF224BD26100BB87BD /* BHModuleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BHModuleManager.swift; sourceTree = "<group>"; };
-		0D05D2B1224BD28500BB87BD /* BHContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BHContext.swift; sourceTree = "<group>"; };
-		0D05D2B3224BD66400BB87BD /* BHModuleManager+Define.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "BHModuleManager+Define.swift"; path = "../../../beehive-swift/BeeHive-Swift/BeeHive/BHModuleManager+Define.swift"; sourceTree = "<group>"; };
-		0D05D2B5224BD84900BB87BD /* BHTimeProfiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BHTimeProfiler.swift; path = "../../../beehive-swift/BeeHive-Swift/BeeHive/BHTimeProfiler.swift"; sourceTree = "<group>"; };
-		0D05D2B7224BDCE300BB87BD /* FirstModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirstModule.swift; path = "../../beehive-swift/BeeHive-Swift/FirstModule.swift"; sourceTree = "<group>"; };
-		0D05D2BD224C540A00BB87BD /* BeeHive.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = BeeHive.bundle; path = "../../../beehive-swift/BeeHive-Swift/BeeHive/BeeHive.bundle"; sourceTree = "<group>"; };
+		31A408153C15DC3A0B2F2798 /* Pods-BeeHive-Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeeHive-Swift.release.xcconfig"; path = "Target Support Files/Pods-BeeHive-Swift/Pods-BeeHive-Swift.release.xcconfig"; sourceTree = "<group>"; };
+		829BD311D4BBF7D7B74E22A4 /* Pods_BeeHive_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeeHive_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		93235EF22E69A0D4CEB73677 /* Pods-BeeHive-Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeeHive-Swift.debug.xcconfig"; path = "Target Support Files/Pods-BeeHive-Swift/Pods-BeeHive-Swift.debug.xcconfig"; sourceTree = "<group>"; };
+		E891B22F2253206900FBF537 /* FirstModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstModule.swift; sourceTree = "<group>"; };
+		E891B2312253207100FBF537 /* ToyBrick */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ToyBrick; path = ../../ToyBrick; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00F61092FBCDE12BF2BE4F72 /* Pods_BeeHive_Swift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +49,8 @@
 			children = (
 				0D05D295224BD18200BB87BD /* BeeHive-Swift */,
 				0D05D294224BD18200BB87BD /* Products */,
+				E18CDDFE169364776D7435A9 /* Pods */,
+				C15008310ADF859ECFAA5E89 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,30 +66,33 @@
 			isa = PBXGroup;
 			children = (
 				0D05D296224BD18200BB87BD /* AppDelegate.swift */,
-				0D05D2B7224BDCE300BB87BD /* FirstModule.swift */,
+				E891B22F2253206900FBF537 /* FirstModule.swift */,
 				0D05D298224BD18200BB87BD /* ViewController.swift */,
 				0D05D29A224BD18200BB87BD /* Main.storyboard */,
 				0D05D29D224BD18300BB87BD /* Assets.xcassets */,
 				0D05D29F224BD18300BB87BD /* LaunchScreen.storyboard */,
 				0D05D2A2224BD18300BB87BD /* Info.plist */,
-				0D05D2AA224BD23100BB87BD /* BeeHive */,
+				E891B2312253207100FBF537 /* ToyBrick */,
 			);
 			path = "BeeHive-Swift";
 			sourceTree = "<group>";
 		};
-		0D05D2AA224BD23100BB87BD /* BeeHive */ = {
+		C15008310ADF859ECFAA5E89 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0D05D2A8224BD22900BB87BD /* BeeHive.swift */,
-				0D05D2BD224C540A00BB87BD /* BeeHive.bundle */,
-				0D05D2B1224BD28500BB87BD /* BHContext.swift */,
-				0D05D2AB224BD24500BB87BD /* BHAppDelegate.swift */,
-				0D05D2AD224BD25100BB87BD /* BHModuleProtocol.swift */,
-				0D05D2AF224BD26100BB87BD /* BHModuleManager.swift */,
-				0D05D2B3224BD66400BB87BD /* BHModuleManager+Define.swift */,
-				0D05D2B5224BD84900BB87BD /* BHTimeProfiler.swift */,
+				829BD311D4BBF7D7B74E22A4 /* Pods_BeeHive_Swift.framework */,
 			);
-			path = BeeHive;
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E18CDDFE169364776D7435A9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				93235EF22E69A0D4CEB73677 /* Pods-BeeHive-Swift.debug.xcconfig */,
+				31A408153C15DC3A0B2F2798 /* Pods-BeeHive-Swift.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -106,9 +102,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0D05D2A5224BD18300BB87BD /* Build configuration list for PBXNativeTarget "BeeHive-Swift" */;
 			buildPhases = (
+				2772A4FCA4EBA29E7B72D47F /* [CP] Check Pods Manifest.lock */,
 				0D05D28F224BD18200BB87BD /* Sources */,
 				0D05D290224BD18200BB87BD /* Frameworks */,
 				0D05D291224BD18200BB87BD /* Resources */,
+				93131DA48B2E2BA8EA626113 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -160,27 +158,67 @@
 				0D05D2A1224BD18300BB87BD /* LaunchScreen.storyboard in Resources */,
 				0D05D29E224BD18300BB87BD /* Assets.xcassets in Resources */,
 				0D05D29C224BD18200BB87BD /* Main.storyboard in Resources */,
-				0D05D2BE224C540A00BB87BD /* BeeHive.bundle in Resources */,
+				E891B2322253207100FBF537 /* ToyBrick in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2772A4FCA4EBA29E7B72D47F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BeeHive-Swift-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		93131DA48B2E2BA8EA626113 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BeeHive-Swift/Pods-BeeHive-Swift-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ToyBrick/ToyBrick.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ToyBrick.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BeeHive-Swift/Pods-BeeHive-Swift-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0D05D28F224BD18200BB87BD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0D05D2B4224BD66400BB87BD /* BHModuleManager+Define.swift in Sources */,
-				0D05D2AC224BD24500BB87BD /* BHAppDelegate.swift in Sources */,
-				0D05D2A9224BD22900BB87BD /* BeeHive.swift in Sources */,
-				0D05D2AE224BD25100BB87BD /* BHModuleProtocol.swift in Sources */,
-				0D05D2B6224BD84900BB87BD /* BHTimeProfiler.swift in Sources */,
 				0D05D299224BD18200BB87BD /* ViewController.swift in Sources */,
 				0D05D297224BD18200BB87BD /* AppDelegate.swift in Sources */,
-				0D05D2B2224BD28500BB87BD /* BHContext.swift in Sources */,
-				0D05D2B8224BDCE300BB87BD /* FirstModule.swift in Sources */,
-				0D05D2B0224BD26100BB87BD /* BHModuleManager.swift in Sources */,
+				E891B2302253206900FBF537 /* FirstModule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +362,7 @@
 		};
 		0D05D2A6224BD18300BB87BD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93235EF22E69A0D4CEB73677 /* Pods-BeeHive-Swift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -343,6 +382,7 @@
 		};
 		0D05D2A7224BD18300BB87BD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 31A408153C15DC3A0B2F2798 /* Pods-BeeHive-Swift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

@@ -23,11 +23,12 @@ public class BeeHive {
 }
 
 /// Private
-fileprivate extension BeeHive {
-    fileprivate func loadStaticServices() {
-
+extension BeeHive {
+    func loadStaticServices() {
+        BHSeriveManager.shared.enableException = enableException
+        BHSeriveManager.shared.registerLocalServices()
     }
-    fileprivate func loadStaticModules() {
+    func loadStaticModules() {
         BHModuleManager.shared.loadLocalModules()
         BHModuleManager.shared.registedAllModules()
     }

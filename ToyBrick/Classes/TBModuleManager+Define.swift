@@ -8,35 +8,35 @@
 
 import Foundation
 
-public enum BHModuleLevel: Int {
-    case BHModuleBasic  = 0
-    case BHModuleNormal
+public enum ModuleLevel: Int {
+    case basic  = 0
+    case normal
 }
 
-public enum BHModuleEventType: Int {
-    case BHMSetupEvent = 0
-    case BHMInitEvent
-    case BHMTearDownEvent
-    case BHMSplashEvent
-    case BHMQuickActionEvent
-    case BHMWillResignActiveEvent
-    case BHMDidEnterBackgroundEvent
-    case BHMWillEnterForegroundEvent
-    case BHMDidBecomeActiveEvent
-    case BHMWillTerminateEvent
-    case BHMUnmountEvent
-    case BHMOpenURLEvent
-    case BHMDidReceiveMemoryWarningEvent
-    case BHMDidFailToRegisterForRemoteNotificationsEvent
-    case BHMDidRegisterForRemoteNotificationsEvent
-    case BHMDidReceiveRemoteNotificationEvent
-    case BHMDidReceiveLocalNotificationEvent
-    case BHMWillPresentNotificationEvent
-    case BHMDidReceiveNotificationResponseEvent
-    case BHMWillContinueUserActivityEvent
-    case BHMContinueUserActivityEvent
-    case BHMDidFailToContinueUserActivityEvent
-    case BHMDidUpdateUserActivityEvent
-    case BHMHandleWatchKitExtensionRequestEvent
-    case BHMDidCustomEvent
+public enum ModuleEventType: Int {
+    case setupEvent = 0
+    case initEvent
+    case tearDownEvent
+    case splashEvent
+    case quickActionEvent
+    case willResignActiveEvent
+    case didEnterBackgroundEvent
+    case willEnterForegroundEvent
+    case didBecomeActiveEvent
+    case willTerminateEvent
+    case unmountEvent
+    case openURLEvent
+    case didReceiveMemoryWarningEvent
+    case didFailToRegisterForRemoteNotificationsEvent
+    case didRegisterForRemoteNotificationsEvent
+    case didReceiveRemoteNotificationEvent
+    case didReceiveLocalNotificationEvent
+    case willPresentNotificationEvent
+    case didReceiveNotificationResponseEvent
+    case willContinueUserActivityEvent
+    case continueUserActivityEvent
+    case didFailToContinueUserActivityEvent
+    case didUpdateUserActivityEvent
+    case handleWatchKitExtensionRequestEvent
+    case didCustomEvent
 }

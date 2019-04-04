@@ -17,11 +17,11 @@ open class TBContext {
     open var serviceConfigName: String?
 
     open var customParam: [AnyHashable: Any]?
-    open var customEvent: BHModuleEventType?
+    open var customEvent: ModuleEventType?
 
-    open var touchShortcutItem: BHShortcutItem?
-    open var openURLItem: BHOpenURLItem?
-    open var notificationsItem: BHNotificationsItem = BHNotificationsItem()
-    open var userActivityItem: BHUserActivityItem = BHUserActivityItem()
-    open var watchItem: BHWatchItem?
+    open var touchShortcutItem: TBShortcutItem?
+    open var openURLItem: TBOpenURLItem?
+    open var notificationsItem: TBNotificationsItem = TBNotificationsItem()
+    open var userActivityItem: TBUserActivityItem = TBUserActivityItem()
+    open var watchItem: TBWatchItem?
 }

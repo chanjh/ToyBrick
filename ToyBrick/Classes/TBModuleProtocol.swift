@@ -1,5 +1,5 @@
 //
-//  BHModuleProtocol.swift
+//  TBModuleProtocol.swift
 //  ToyBrick-Swift
 //
 //  Created by 陈嘉豪 on 2019/3/27.
@@ -10,7 +10,7 @@ import Foundation
 
 /// NSObjectProtocol 太 OC 了，有没有 Swift 一点的做法？
 public protocol TBModuleProtocol: NSObjectProtocol {
-    func basicModuleLevel() -> BHModuleLevel
+    func basicModuleLevel() -> ModuleLevel
     ////越大越优先
     var modulePrioriry: Int { get }
     var async: Bool { get }
@@ -45,7 +45,7 @@ public protocol TBModuleProtocol: NSObjectProtocol {
 }
 
 public extension TBModuleProtocol {
-    func basicModuleLevel() -> BHModuleLevel { return BHModuleLevel.BHModuleNormal }
+    func basicModuleLevel() -> ModuleLevel { return ModuleLevel.normal }
     var modulePrioriry: Int { return 1000 }
     var async: Bool { return true }
     func modSetUp(_ context: TBContext) { }

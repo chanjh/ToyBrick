@@ -26,10 +26,10 @@ class TBModuleManager {
         addModule(from: moduleClass, shouldTriggerInitEvent: shouldTriggerInitEvent)
     }
     
-    func triggerEvent(_ eventType: BHModuleEventType, param: [String: Any]? = nil) {
-        if eventType == .BHMSetupEvent {
+    func triggerEvent(_ eventType: ModuleEventType, param: [String: Any]? = nil) {
+        if eventType == .setupEvent {
             handleModulesSetupEvent()
-        } else if eventType == .BHMTearDownEvent {
+        } else if eventType == .tearDownEvent {
             for index in (BHModules.count - 1)...0 {
                 BHModules[index].modTearDown(TBContext.shared)
             }
@@ -138,12 +138,12 @@ extension TBModuleManager {
     private func registerEventsByModuleInstance(_ moduleInstance: TBModuleProtocol) {
         let events = BHSelectorByEvent.keys
         events.forEach { (obj) in
-            if let type = BHModuleEventType(rawValue: obj), let selector = BHSelectorByEvent[obj] {
+            if let type = ModuleEventType(rawValue: obj), let selector = BHSelectorByEvent[obj] {
                 self.registerEvent(type, moduleInstance: moduleInstance, selectorStr: selector)
             }
         }
     }
-    private func registerEvent(_ eventType: BHModuleEventType, moduleInstance: TBModuleProtocol, selectorStr: String) {
+    private func registerEvent(_ eventType: ModuleEventType, moduleInstance: TBModuleProtocol, selectorStr: String) {
         let selector = NSSelectorFromString(selectorStr)
         if !moduleInstance.responds(to: selector) {
             return
@@ -171,30 +171,30 @@ extension TBModuleManager {
 
 /// MARK: -- Handle
 extension TBModuleManager {
-    private func triggerEvent(_ eventType: BHModuleEventType, target: TBModuleProtocol, param: [String: Any]? = nil) {
+    private func triggerEvent(_ eventType: ModuleEventType, target: TBModuleProtocol, param: [String: Any]? = nil) {
         let context = TBContext.shared
         switch eventType {
-        case .BHMInitEvent: target.modInit(context)
-        case .BHMSplashEvent: target.modSplash(context)
-        case .BHMWillResignActiveEvent: target.modWillResignActive(context)
-        case .BHMDidEnterBackgroundEvent: target.modDidEnterBackground(context)
-        case .BHMWillEnterForegroundEvent: target.modWillEnterForeground(context)
-        case .BHMDidBecomeActiveEvent: target.modDidBecomActive(context)
-        case .BHMWillTerminateEvent: target.modWillTerminate(context)
-        case .BHMUnmountEvent: target.modUnmount(context)
-        case .BHMQuickActionEvent: target.modQuickAction(context)
-        case .BHMOpenURLEvent: target.modOpebURL(context)
-        case .BHMDidReceiveMemoryWarningEvent: target.modDidReceiveMemoryWaring(context)
-        case .BHMDidFailToRegisterForRemoteNotificationsEvent: target.modDidFailToRegisterForRemoteNotifications(context)
-        case .BHMDidRegisterForRemoteNotificationsEvent: target.modDidRegisterForRemoteNotifications(context)
-        case .BHMDidReceiveLocalNotificationEvent: target.modDidReceiveLocalNotification(context)
-        case .BHMWillPresentNotificationEvent: target.modWillPresentNotification(context)
-        case .BHMDidReceiveNotificationResponseEvent: target.modDidReceiveNotificationResponse(context)
-        case .BHMWillContinueUserActivityEvent: target.modWillContinueUserActivity(context)
-        case .BHMContinueUserActivityEvent: target.modContinueUserActivity(context)
-        case .BHMDidUpdateUserActivityEvent: target.modDidUpdateContinueUserActivity(context)
-        case .BHMDidFailToContinueUserActivityEvent: target.modDidFailToContinueUserActivity(context)
-        case .BHMHandleWatchKitExtensionRequestEvent: target.modHandleWatchKitExtensionRequest(context)
+        case .initEvent: target.modInit(context)
+        case .splashEvent: target.modSplash(context)
+        case .willResignActiveEvent: target.modWillResignActive(context)
+        case .didEnterBackgroundEvent: target.modDidEnterBackground(context)
+        case .willEnterForegroundEvent: target.modWillEnterForeground(context)
+        case .didBecomeActiveEvent: target.modDidBecomActive(context)
+        case .willTerminateEvent: target.modWillTerminate(context)
+        case .unmountEvent: target.modUnmount(context)
+        case .quickActionEvent: target.modQuickAction(context)
+        case .openURLEvent: target.modOpebURL(context)
+        case .didReceiveMemoryWarningEvent: target.modDidReceiveMemoryWaring(context)
+        case .didFailToRegisterForRemoteNotificationsEvent: target.modDidFailToRegisterForRemoteNotifications(context)
+        case .didRegisterForRemoteNotificationsEvent: target.modDidRegisterForRemoteNotifications(context)
+        case .didReceiveLocalNotificationEvent: target.modDidReceiveLocalNotification(context)
+        case .willPresentNotificationEvent: target.modWillPresentNotification(context)
+        case .didReceiveNotificationResponseEvent: target.modDidReceiveNotificationResponse(context)
+        case .willContinueUserActivityEvent: target.modWillContinueUserActivity(context)
+        case .continueUserActivityEvent: target.modContinueUserActivity(context)
+        case .didUpdateUserActivityEvent: target.modDidUpdateContinueUserActivity(context)
+        case .didFailToContinueUserActivityEvent: target.modDidFailToContinueUserActivity(context)
+        case .handleWatchKitExtensionRequestEvent: target.modHandleWatchKitExtensionRequest(context)
         default:
             assertionFailure()
 //            target.modDidCustomEvent(context)

@@ -11,9 +11,10 @@ ToyBrick is a iOS Project Modular Framework written by Swift, which is based on 
 
 * Milestone 01
 - [x] 基于 Module 实现 App 生命周期托管 
-- [ ] 基于 Service 实现模块解耦
+- [x ] 基于 Service 实现模块解耦
 - [ ] 去除 BeeHive 的影子
 - [ ] 去除 Objective-C 的实现
+- [ ] 完善 Demo 代码 
 
 * Milestone 02
 - [ ] 单元测试
@@ -21,6 +22,7 @@ ToyBrick is a iOS Project Modular Framework written by Swift, which is based on 
     - [ ] Module init 时机优化
     - [ ] Module：支持自定义事件
 - [ ] Container：容器化现有的 AppDelegate，不依赖 App 生命周期
+- [ ] Module 变为基于 Service 的实例化
 - [ ] ……
 
 

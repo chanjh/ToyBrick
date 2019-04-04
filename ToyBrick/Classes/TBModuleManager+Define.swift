@@ -1,6 +1,6 @@
 //
-//  BHModuleManager+Define.swift
-//  BeeHive-Swift
+//  TBModuleManager+Define.swift
+//  ToyBrick-Swift
 //
 //  Created by 陈嘉豪 on 2019/3/28.
 //  Copyright © 2019 Gill Chan. All rights reserved.

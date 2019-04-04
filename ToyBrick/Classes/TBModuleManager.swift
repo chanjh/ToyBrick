@@ -1,6 +1,6 @@
 //
-//  BHModuleManager.swift
-//  BeeHive-Swift
+//  TBModuleManager.swift
+//  ToyBrick-Swift
 //
 //  Created by 陈嘉豪 on 2019/3/27.
 //  Copyright © 2019 Gill Chan. All rights reserved.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class BHModuleManager {
+class TBModuleManager {
     
     fileprivate let kModuleArrayKey               = "moduleClasses"
     fileprivate let kModuleInfoNameKey            = "moduleClass"
@@ -16,11 +16,11 @@ class BHModuleManager {
     fileprivate let kModuleInfoPriorityKey        = "modulePriority"
     fileprivate let kModuleInfoHasInstantiatedKey = "moduleHasInstantiated"
     
-    static let shared: BHModuleManager = BHModuleManager()
+    static let shared: TBModuleManager = TBModuleManager()
     fileprivate var BHModuleInfos: [[String: Any]] = []
-    fileprivate var BHModules: [BHModuleProtocol] = []
+    fileprivate var BHModules: [TBModuleProtocol] = []
     fileprivate var BHSelectorByEvent: [Int: String] = [:]//makeSelectorByEvent()
-    fileprivate var BHModulesByEvent: [Int: [BHModuleProtocol]] = [:]
+    fileprivate var BHModulesByEvent: [Int: [TBModuleProtocol]] = [:]
     
     func registerDynamicModule(_ moduleClass: AnyClass, shouldTriggerInitEvent: Bool = false) {
         addModule(from: moduleClass, shouldTriggerInitEvent: shouldTriggerInitEvent)
@@ -31,7 +31,7 @@ class BHModuleManager {
             handleModulesSetupEvent()
         } else if eventType == .BHMTearDownEvent {
             for index in (BHModules.count - 1)...0 {
-                BHModules[index].modTearDown(BHContext.shared)
+                BHModules[index].modTearDown(TBContext.shared)
             }
         } else {
             BHModules.forEach { (instance) in
@@ -41,7 +41,7 @@ class BHModuleManager {
     }
     
     func loadLocalModules() {
-        guard let path = Bundle.main.path(forResource: BHContext.shared.moduleName, ofType: "plist"),
+        guard let path = Bundle.main.path(forResource: TBContext.shared.moduleName, ofType: "plist"),
             FileManager.default.fileExists(atPath: path) else { return }
         let moduleList = NSDictionary(contentsOfFile: path)
         var moduleInfoByClass: [String: Int] = [:]
@@ -72,15 +72,15 @@ class BHModuleManager {
                 return module1Priority < module2Priority
             }
         }
-        var tmpArray: [BHModuleProtocol] = []
+        var tmpArray: [TBModuleProtocol] = []
         BHModuleInfos.forEach { (module) in
             guard let classStr = module[kModuleInfoNameKey] as? String else { return }
             let hasInstantiated = module[kModuleInfoHasInstantiatedKey] as? Bool ?? false
             let appName = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String
             let realClassName = (appName?.replacingOccurrences(of: "-", with: "_") ?? "") + "." + classStr
-            if let moduleClass = NSClassFromString(realClassName) as? BHModuleProtocol.Type, !hasInstantiated {
+            if let moduleClass = NSClassFromString(realClassName) as? TBModuleProtocol.Type, !hasInstantiated {
                 /// TODO: 延迟实例化
-                let moduleInstance = moduleClass.init(BHContext.shared)
+                let moduleInstance = moduleClass.init(TBContext.shared)
                 tmpArray.append(moduleInstance)
             }
         }
@@ -90,9 +90,9 @@ class BHModuleManager {
 }
 
 /// MAKR: -- Register
-extension BHModuleManager {
+extension TBModuleManager {
     private func addModule(from obj: AnyClass?, shouldTriggerInitEvent: Bool) {
-        guard let cla = obj as? BHModuleProtocol.Type else { return }
+        guard let cla = obj as? TBModuleProtocol.Type else { return }
         let moduleName = NSStringFromClass(cla)
         var flag = true
         for module in BHModules {
@@ -105,7 +105,7 @@ extension BHModuleManager {
             return
         }
         var moduleInfo: [String: Any] = [:]
-        let moduleInstance = cla.init(BHContext.shared)
+        let moduleInstance = cla.init(TBContext.shared)
         let levelInt = moduleInstance.basicModuleLevel()
         moduleInfo[kModuleInfoLevelKey] = levelInt
         moduleInfo[kModuleInfoNameKey] = moduleName
@@ -135,7 +135,7 @@ extension BHModuleManager {
             self.registerEventsByModuleInstance(moduleInstance)
         }
     }
-    private func registerEventsByModuleInstance(_ moduleInstance: BHModuleProtocol) {
+    private func registerEventsByModuleInstance(_ moduleInstance: TBModuleProtocol) {
         let events = BHSelectorByEvent.keys
         events.forEach { (obj) in
             if let type = BHModuleEventType(rawValue: obj), let selector = BHSelectorByEvent[obj] {
@@ -143,7 +143,7 @@ extension BHModuleManager {
             }
         }
     }
-    private func registerEvent(_ eventType: BHModuleEventType, moduleInstance: BHModuleProtocol, selectorStr: String) {
+    private func registerEvent(_ eventType: BHModuleEventType, moduleInstance: TBModuleProtocol, selectorStr: String) {
         let selector = NSSelectorFromString(selectorStr)
         if !moduleInstance.responds(to: selector) {
             return
@@ -170,9 +170,9 @@ extension BHModuleManager {
 }
 
 /// MARK: -- Handle
-extension BHModuleManager {
-    private func triggerEvent(_ eventType: BHModuleEventType, target: BHModuleProtocol, param: [String: Any]? = nil) {
-        let context = BHContext.shared
+extension TBModuleManager {
+    private func triggerEvent(_ eventType: BHModuleEventType, target: TBModuleProtocol, param: [String: Any]? = nil) {
+        let context = TBContext.shared
         switch eventType {
         case .BHMInitEvent: target.modInit(context)
         case .BHMSplashEvent: target.modSplash(context)
@@ -203,7 +203,7 @@ extension BHModuleManager {
     private func handleModulesSetupEvent() {
         for instance in BHModules {
             let bk: () -> Void = {
-                instance.modSetUp(BHContext.shared)
+                instance.modSetUp(TBContext.shared)
             }
             if instance.async {
                 DispatchQueue.main.async {
@@ -214,89 +214,4 @@ extension BHModuleManager {
             }
         }
     }
-}
-
-extension BHModuleManager {
-//    private func handleModuleEvent(eventType: BHModuleEventType,
-//                                   target: BHModuleProtocol?,
-//                                   param: [AnyHashable: Any]?) {
-//        switch eventType {
-//        case .BHMInitEvent: handleModulesInitEvent(for: nil, param: param)
-//        case .BHMTearDownEvent: handleModulesTearDownEvent(for: nil, param: param)
-//        default:
-//            handleModuleEvent(eventType: eventType,
-//                              target: nil,
-//                              selectorStr: BHSelectorByEvent[eventType.rawValue],
-//                              param: param)
-//        }
-//
-//    }
-//    private func handleModulesInitEvent(for target: BHModuleProtocol?, param: [AnyHashable: Any]?) {
-//        let context = BHContext.shared
-//        let tmpParam = context.customParam
-//        let tmpEvent = context.customEvent
-//        context.customParam = param
-//        context.customEvent = .BHMInitEvent
-//        var moduleInstances: [BHModuleProtocol] = []
-//        if let instance = target {
-//            moduleInstances.append(instance)
-//        } else {
-//            moduleInstances = BHModulesByEvent[BHModuleEventType.BHMInitEvent.rawValue] ?? []
-//        }
-//        moduleInstances.forEach { (instance) in
-//            BHTimeProfiler.shared.recordEventTime("\(String(describing: instance.superclass)) -- modInit:")
-//            if instance.async {
-//                DispatchQueue.main.async {
-//                    instance.modInit(context)
-//                }
-//            } else {
-//                instance.modInit(context)
-//            }
-//        }
-//        context.customParam = tmpParam
-//        context.customEvent = tmpEvent
-//    }
-//    private func handleModulesTearDownEvent(for target: BHModuleProtocol?, param: [AnyHashable: Any]?) {
-//        let context = BHContext.shared
-//        let tmpParam = context.customParam
-//        let tmpEvent = context.customEvent
-//        context.customParam = param
-//        context.customEvent = .BHMInitEvent
-//        var moduleInstances: [BHModuleProtocol] = []
-//        if let instance = target {
-//            moduleInstances.append(instance)
-//        } else {
-//            moduleInstances = BHModulesByEvent[BHModuleEventType.BHMTearDownEvent.rawValue] ?? []
-//        }
-//        moduleInstances.forEach { (instance) in
-//            instance.modTearDown(context)
-//        }
-//        context.customParam = tmpParam
-//        context.customEvent = tmpEvent
-//    }
-//    private func handleModuleEvent(eventType: BHModuleEventType,
-//                                   target: BHModuleProtocol?,
-//                                   selectorStr: String?,
-//                                   param: [AnyHashable: Any]?) {
-//        guard let selectorStr = selectorStr ?? (BHSelectorByEvent[eventType.rawValue]) else { return }
-//        let selector = Selector(selectorStr)
-//        var moduleInstances: [BHModuleProtocol] = []
-//        if let instance = target {
-//            moduleInstances.append(instance)
-//        } else {
-//            moduleInstances = BHModulesByEvent[eventType.rawValue] ?? []
-//        }
-//        let context = BHContext.shared
-//        let tmpParam = context.customParam
-//        let tmpEvent = context.customEvent
-//        moduleInstances.forEach { (moduleInstance) in
-//            let context = BHContext.shared
-//            context.customParam = param
-//            context.customEvent = eventType
-//            moduleInstance.perform(selector, with: context)
-//            BHTimeProfiler.shared.recordEventTime("\(String(describing: moduleInstance.superclass)) --- \(selectorStr)")
-//        }
-//        context.customParam = tmpParam
-//        context.customEvent = tmpEvent
-//    }
 }

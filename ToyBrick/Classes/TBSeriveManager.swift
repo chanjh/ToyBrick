@@ -8,8 +8,8 @@
 import Foundation
 
 internal typealias FunctionType = Any
-class BHSeriveManager {
-    static let shared = BHSeriveManager()
+class TBSeriveManager {
+    static let shared = TBSeriveManager()
     private var serviceInfos: [ServiceKey: ServiceEntry] = [:]
     private var serviceInstances: [ServiceKey: Any] = [:]
 
@@ -44,7 +44,7 @@ class BHSeriveManager {
     }
 }
 
-private extension BHSeriveManager {
+private extension TBSeriveManager {
     struct ServiceEntry {
         let serviceType: Any.Type
         let key: ServiceKey

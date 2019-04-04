@@ -1,6 +1,6 @@
 //
-//  BHAppDelegate.swift
-//  BeeHive-Swift
+//  TBAppDelegate.swift
+//  ToyBrick-Swift
 //
 //  Created by 陈嘉豪 on 2019/3/27.
 //  Copyright © 2019 Gill Chan. All rights reserved.
@@ -9,123 +9,123 @@
 import UIKit
 import UserNotifications
 
-open class BHAppDelegate: UIResponder, UIApplicationDelegate {
+open class TBAppDelegate: UIResponder, UIApplicationDelegate {
     
     open func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        BHModuleManager.shared.triggerEvent(.BHMSetupEvent)
-        BHModuleManager.shared.triggerEvent(.BHMInitEvent)
+        TBModuleManager.shared.triggerEvent(.BHMSetupEvent)
+        TBModuleManager.shared.triggerEvent(.BHMInitEvent)
         DispatchQueue.main.async {
-            BHModuleManager.shared.triggerEvent(.BHMSplashEvent)
+            TBModuleManager.shared.triggerEvent(.BHMSplashEvent)
         }
         if #available(iOS 10, *) {
             UNUserNotificationCenter.current().delegate = self
         }
         #if DEBUG
-        BHTimeProfiler.shared.saveTimeProfileDataIntoFile("BeeHiveTimeProfiler")
+        TBTimeProfiler.shared.saveTimeProfileDataIntoFile("BeeHiveTimeProfiler")
         #endif
         return true
     }
 
     open func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
         let item = BHShortcutItem(shortcutItem: shortcutItem, scompletionHandler: completionHandler)
-        BeeHive.shared.context?.touchShortcutItem = item
-        BHModuleManager.shared.triggerEvent(.BHMQuickActionEvent)
+        ToyBrick.shared.context?.touchShortcutItem = item
+        TBModuleManager.shared.triggerEvent(.BHMQuickActionEvent)
     }
     
     open func applicationWillResignActive(_ application: UIApplication) {
-        BHModuleManager.shared.triggerEvent(.BHMWillResignActiveEvent)
+        TBModuleManager.shared.triggerEvent(.BHMWillResignActiveEvent)
     }
     
     open func applicationDidEnterBackground(_ application: UIApplication) {
-        BHModuleManager.shared.triggerEvent(.BHMDidEnterBackgroundEvent)
+        TBModuleManager.shared.triggerEvent(.BHMDidEnterBackgroundEvent)
     }
     
     open func applicationWillEnterForeground(_ application: UIApplication) {
-        BHModuleManager.shared.triggerEvent(.BHMWillEnterForegroundEvent)
+        TBModuleManager.shared.triggerEvent(.BHMWillEnterForegroundEvent)
     }
     
     open func applicationDidBecomeActive(_ application: UIApplication) {
-        BHModuleManager.shared.triggerEvent(.BHMDidBecomeActiveEvent)
+        TBModuleManager.shared.triggerEvent(.BHMDidBecomeActiveEvent)
     }
     
     open func applicationWillTerminate(_ application: UIApplication) {
-        BHModuleManager.shared.triggerEvent(.BHMWillTerminateEvent)
+        TBModuleManager.shared.triggerEvent(.BHMWillTerminateEvent)
     }
 
     open func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         let item = BHOpenURLItem(openURL: url, options: options)
-        BeeHive.shared.context?.openURLItem = item
-        BHModuleManager.shared.triggerEvent(.BHMOpenURLEvent)
+        ToyBrick.shared.context?.openURLItem = item
+        TBModuleManager.shared.triggerEvent(.BHMOpenURLEvent)
         return true
     }
 
     open func applicationDidReceiveMemoryWarning(_ application: UIApplication) {
-        BHModuleManager.shared.triggerEvent(.BHMDidReceiveMemoryWarningEvent)
+        TBModuleManager.shared.triggerEvent(.BHMDidReceiveMemoryWarningEvent)
     }
 
     open func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        BHContext.shared.notificationsItem.error = error
-        BHModuleManager.shared.triggerEvent(.BHMDidFailToRegisterForRemoteNotificationsEvent)
+        TBContext.shared.notificationsItem.error = error
+        TBModuleManager.shared.triggerEvent(.BHMDidFailToRegisterForRemoteNotificationsEvent)
     }
     
     open func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        BeeHive.shared.context?.notificationsItem.deviceToken = deviceToken
-        BHModuleManager.shared.triggerEvent(.BHMDidRegisterForRemoteNotificationsEvent)
+        ToyBrick.shared.context?.notificationsItem.deviceToken = deviceToken
+        TBModuleManager.shared.triggerEvent(.BHMDidRegisterForRemoteNotificationsEvent)
     }
     
     open func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        var notItem = BeeHive.shared.context?.notificationsItem
+        var notItem = ToyBrick.shared.context?.notificationsItem
         notItem?.userInfo = userInfo
         notItem?.notificationResultHander = completionHandler
-        BHModuleManager.shared.triggerEvent(.BHMDidRegisterForRemoteNotificationsEvent)
+        TBModuleManager.shared.triggerEvent(.BHMDidRegisterForRemoteNotificationsEvent)
     }
     
     open func application(_ application: UIApplication, didUpdate userActivity: NSUserActivity) {
-        BeeHive.shared.context?.userActivityItem.userActivity = userActivity
-        BHModuleManager.shared.triggerEvent(.BHMDidUpdateUserActivityEvent)
+        ToyBrick.shared.context?.userActivityItem.userActivity = userActivity
+        TBModuleManager.shared.triggerEvent(.BHMDidUpdateUserActivityEvent)
     }
     open func application(_ application: UIApplication, didFailToContinueUserActivityWithType userActivityType: String, error: Error) {
-        var item = BeeHive.shared.context?.userActivityItem
+        var item = ToyBrick.shared.context?.userActivityItem
         item?.userActivityType = userActivityType
         item?.userActivityError = error
-        BHModuleManager.shared.triggerEvent(.BHMDidFailToContinueUserActivityEvent)
+        TBModuleManager.shared.triggerEvent(.BHMDidFailToContinueUserActivityEvent)
     }
     open func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        BeeHive.shared.context?.userActivityItem.userActivity = userActivity
-        BeeHive.shared.context?.userActivityItem.restorationHandler = restorationHandler
-        BHModuleManager.shared.triggerEvent(.BHMContinueUserActivityEvent)
+        ToyBrick.shared.context?.userActivityItem.userActivity = userActivity
+        ToyBrick.shared.context?.userActivityItem.restorationHandler = restorationHandler
+        TBModuleManager.shared.triggerEvent(.BHMContinueUserActivityEvent)
         return true
     }
     
     open func application(_ application: UIApplication, willContinueUserActivityWithType userActivityType: String) -> Bool {
-        BeeHive.shared.context?.userActivityItem.userActivityType = userActivityType
-        BHModuleManager.shared.triggerEvent(.BHMWillContinueUserActivityEvent)
+        ToyBrick.shared.context?.userActivityItem.userActivityType = userActivityType
+        TBModuleManager.shared.triggerEvent(.BHMWillContinueUserActivityEvent)
         return true
     }
     
     open func application(_ application: UIApplication, handleWatchKitExtensionRequest userInfo: [AnyHashable : Any]?, reply: @escaping ([AnyHashable : Any]?) -> Void) {
-        BeeHive.shared.context?.watchItem = BHWatchItem(userInfo: userInfo, replyHandler: reply)
-        BHModuleManager.shared.triggerEvent(.BHMHandleWatchKitExtensionRequestEvent)
+        ToyBrick.shared.context?.watchItem = BHWatchItem(userInfo: userInfo, replyHandler: reply)
+        TBModuleManager.shared.triggerEvent(.BHMHandleWatchKitExtensionRequestEvent)
     }
     
     open func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        var notItem = BeeHive.shared.context?.notificationsItem
+        var notItem = ToyBrick.shared.context?.notificationsItem
         notItem?.notification = notification
         notItem?.notificationPresentationOptionsHandler = completionHandler
         notItem?.center = center
-        BHModuleManager.shared.triggerEvent(.BHMWillPresentNotificationEvent)
+        TBModuleManager.shared.triggerEvent(.BHMWillPresentNotificationEvent)
     }
     
     open func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        var notItem = BeeHive.shared.context?.notificationsItem
+        var notItem = ToyBrick.shared.context?.notificationsItem
         notItem?.notificationResponse = response
         notItem?.notificationCompletionHandler = completionHandler
         notItem?.center = center
-        BHModuleManager.shared.triggerEvent(.BHMDidReceiveNotificationResponseEvent)
+        TBModuleManager.shared.triggerEvent(.BHMDidReceiveNotificationResponseEvent)
     }
 }
 
-extension BHAppDelegate: UNUserNotificationCenterDelegate { }
+extension TBAppDelegate: UNUserNotificationCenterDelegate { }
 
 typealias BHShortcutCompletionHandler = (Bool) -> Void
 public struct BHShortcutItem {

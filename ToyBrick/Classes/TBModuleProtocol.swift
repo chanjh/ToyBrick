@@ -13,6 +13,7 @@ public protocol TBModuleProtocol: NSObjectProtocol {
     func basicModuleLevel() -> ModuleLevel
     ////越大越优先
     var modulePrioriry: Int { get }
+    /// 这个定义有问题
     var async: Bool { get }
 
     init(_ context: TBContext)

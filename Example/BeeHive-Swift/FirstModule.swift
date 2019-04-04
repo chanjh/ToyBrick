@@ -17,7 +17,9 @@ class FirstModule: NSObject, TBModuleProtocol {
         }
         print("Function: \(#function), line: \(#line)")
     }
-    func modInit(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
+    func modInit(_ context: TBContext) {
+        print("Function: \(#function), line: \(#line)")
+    }
     func modSplash(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
     func modQuickAction(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
     func modTearDown(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }

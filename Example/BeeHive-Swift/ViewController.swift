@@ -12,6 +12,7 @@ import ToyBrick
 class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("Function: \(#function)")
         let instance = ToyBrick.shared.create(FirstServiceProtocol.self)
         instance?.testFunc()
     }

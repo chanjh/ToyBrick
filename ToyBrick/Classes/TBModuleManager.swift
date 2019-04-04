@@ -19,7 +19,7 @@ class TBModuleManager {
     static let shared: TBModuleManager = TBModuleManager()
     fileprivate var moduleInfos: [[String: Any]] = []
     fileprivate var modules: [TBModuleProtocol] = []
-    fileprivate var selectorByEvent: [Int: String] = [:]//makeSelectorByEvent()
+    fileprivate var selectorByEvent: [Int: String] = [:]
     fileprivate var modulesByEvent: [Int: [TBModuleProtocol]] = [:]
     
     func registerDynamicModule(_ moduleClass: AnyClass, shouldTriggerInitEvent: Bool = false) {
@@ -27,16 +27,8 @@ class TBModuleManager {
     }
     
     func triggerEvent(_ eventType: ModuleEventType, param: [String: Any]? = nil) {
-        if eventType == .setupEvent {
-            handleModulesSetupEvent()
-        } else if eventType == .tearDownEvent {
-            for index in (modules.count - 1)...0 {
-                modules[index].modTearDown(TBContext.shared)
-            }
-        } else {
-            modules.forEach { (instance) in
-                triggerEvent(eventType, target: instance, param: param)
-            }
+        modules.forEach { (instance) in
+            triggerEvent(eventType, target: instance, param: param)
         }
     }
     
@@ -173,7 +165,9 @@ extension TBModuleManager {
     private func triggerEvent(_ eventType: ModuleEventType, target: TBModuleProtocol, param: [String: Any]? = nil) {
         let context = TBContext.shared
         switch eventType {
+        case .setupEvent: target.modSetUp(context)
         case .initEvent: target.modInit(context)
+        case .tearDownEvent: target.modTearDown(context)
         case .splashEvent: target.modSplash(context)
         case .willResignActiveEvent: target.modWillResignActive(context)
         case .didEnterBackgroundEvent: target.modDidEnterBackground(context)
@@ -197,20 +191,6 @@ extension TBModuleManager {
         default:
             assertionFailure()
 //            target.modDidCustomEvent(context)
-        }
-    }
-    private func handleModulesSetupEvent() {
-        for instance in modules {
-            let bk: () -> Void = {
-                instance.modSetUp(TBContext.shared)
-            }
-            if instance.async {
-                DispatchQueue.main.async {
-                    bk()
-                }
-            } else {
-                bk()
-            }
         }
     }
 }

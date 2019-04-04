@@ -14,6 +14,7 @@
 		0D05D29E224BD18300BB87BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D05D29D224BD18300BB87BD /* Assets.xcassets */; };
 		0D05D2A1224BD18300BB87BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D05D29F224BD18300BB87BD /* LaunchScreen.storyboard */; };
 		E83CBCC12256076800BD1990 /* FirstService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83CBCC02256076800BD1990 /* FirstService.swift */; };
+		E83CBCC722564AE300BD1990 /* ToyBrick.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E83CBCC62256499800BD1990 /* ToyBrick.bundle */; };
 		E891B2302253206900FBF537 /* FirstModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = E891B22F2253206900FBF537 /* FirstModule.swift */; };
 		E891B2322253207100FBF537 /* ToyBrick in Resources */ = {isa = PBXBuildFile; fileRef = E891B2312253207100FBF537 /* ToyBrick */; };
 /* End PBXBuildFile section */
@@ -31,6 +32,7 @@
 		829BD311D4BBF7D7B74E22A4 /* Pods_BeeHive_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeeHive_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93235EF22E69A0D4CEB73677 /* Pods-BeeHive-Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeeHive-Swift.debug.xcconfig"; path = "Target Support Files/Pods-BeeHive-Swift/Pods-BeeHive-Swift.debug.xcconfig"; sourceTree = "<group>"; };
 		E83CBCC02256076800BD1990 /* FirstService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstService.swift; sourceTree = "<group>"; };
+		E83CBCC62256499800BD1990 /* ToyBrick.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ToyBrick.bundle; sourceTree = "<group>"; };
 		E891B22F2253206900FBF537 /* FirstModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstModule.swift; sourceTree = "<group>"; };
 		E891B2312253207100FBF537 /* ToyBrick */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ToyBrick; path = ../../ToyBrick; sourceTree = "<group>"; };
 		F641B1044F313F56C567F1E9 /* Pods-BeeHive-Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeeHive-Swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeeHive-Swift/Pods-BeeHive-Swift.release.xcconfig"; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 		0D05D295224BD18200BB87BD /* BeeHive-Swift */ = {
 			isa = PBXGroup;
 			children = (
+				E83CBCC62256499800BD1990 /* ToyBrick.bundle */,
 				0D05D296224BD18200BB87BD /* AppDelegate.swift */,
 				E891B22F2253206900FBF537 /* FirstModule.swift */,
 				0D05D298224BD18200BB87BD /* ViewController.swift */,
@@ -164,6 +167,7 @@
 				0D05D2A1224BD18300BB87BD /* LaunchScreen.storyboard in Resources */,
 				0D05D29E224BD18300BB87BD /* Assets.xcassets in Resources */,
 				0D05D29C224BD18200BB87BD /* Main.storyboard in Resources */,
+				E83CBCC722564AE300BD1990 /* ToyBrick.bundle in Resources */,
 				E891B2322253207100FBF537 /* ToyBrick in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

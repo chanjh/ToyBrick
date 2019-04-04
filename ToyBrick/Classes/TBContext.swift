@@ -13,8 +13,7 @@ open class TBContext {
     
     open var application: UIApplication?
     open var launchOptions: [UIApplication.LaunchOptionsKey: Any]?
-    open var moduleName: String?
-    open var serviceConfigName: String?
+    open var modulePath: String?
 
     open var customParam: [AnyHashable: Any]?
     open var customEvent: ModuleEventType?

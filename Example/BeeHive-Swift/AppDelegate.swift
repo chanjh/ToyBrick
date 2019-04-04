@@ -17,16 +17,10 @@ class AppDelegate: TBAppDelegate {
     override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         TBContext.shared.application = application
         TBContext.shared.launchOptions = launchOptions
-        TBContext.shared.moduleName = "ToyBrick.bundle/BeeHive"
-        TBContext.shared.serviceConfigName = "ToyBrick.bundle/BHService"
+        TBContext.shared.modulePath = Bundle.init(for: AppDelegate.self).path(forResource: "ToyBrick.bundle/BeeHive", ofType: "plist")
         ToyBrick.shared.enableException = true
         ToyBrick.shared.context = TBContext.shared
         TBTimeProfiler.shared.recordEventTime("BeeHive::super start launch")
-
-        ToyBrick.registerDynamicModule(FirstModule.self)
-        ToyBrick.shared.register(FirstServiceProtocol.self) { () -> FirstService? in
-            return FirstService()
-        }
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 

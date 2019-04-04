@@ -39,7 +39,7 @@ public class ToyBrick {
 
 /// Private
 extension ToyBrick {
-    func loadStaticModules() {
+    fileprivate func loadStaticModules() {
         TBModuleManager.shared.loadLocalModules()
         TBModuleManager.shared.registedAllModules()
     }

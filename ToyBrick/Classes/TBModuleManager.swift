@@ -17,10 +17,10 @@ class TBModuleManager {
     fileprivate let kModuleInfoHasInstantiatedKey = "moduleHasInstantiated"
     
     static let shared: TBModuleManager = TBModuleManager()
-    fileprivate var BHModuleInfos: [[String: Any]] = []
-    fileprivate var BHModules: [TBModuleProtocol] = []
-    fileprivate var BHSelectorByEvent: [Int: String] = [:]//makeSelectorByEvent()
-    fileprivate var BHModulesByEvent: [Int: [TBModuleProtocol]] = [:]
+    fileprivate var moduleInfos: [[String: Any]] = []
+    fileprivate var modules: [TBModuleProtocol] = []
+    fileprivate var selectorByEvent: [Int: String] = [:]//makeSelectorByEvent()
+    fileprivate var modulesByEvent: [Int: [TBModuleProtocol]] = [:]
     
     func registerDynamicModule(_ moduleClass: AnyClass, shouldTriggerInitEvent: Bool = false) {
         addModule(from: moduleClass, shouldTriggerInitEvent: shouldTriggerInitEvent)
@@ -30,23 +30,22 @@ class TBModuleManager {
         if eventType == .setupEvent {
             handleModulesSetupEvent()
         } else if eventType == .tearDownEvent {
-            for index in (BHModules.count - 1)...0 {
-                BHModules[index].modTearDown(TBContext.shared)
+            for index in (modules.count - 1)...0 {
+                modules[index].modTearDown(TBContext.shared)
             }
         } else {
-            BHModules.forEach { (instance) in
+            modules.forEach { (instance) in
                 triggerEvent(eventType, target: instance, param: param)
             }
         }
     }
     
     func loadLocalModules() {
-        guard let path = Bundle.main.path(forResource: TBContext.shared.moduleName, ofType: "plist"),
-            FileManager.default.fileExists(atPath: path) else { return }
+        guard let path = TBContext.shared.modulePath else { return }
         let moduleList = NSDictionary(contentsOfFile: path)
         var moduleInfoByClass: [String: Int] = [:]
         guard let modulesArray = (moduleList?.object(forKey: kModuleArrayKey) as? [[String: Any]]) else { return }
-        BHModuleInfos.forEach { (info) in
+        moduleInfos.forEach { (info) in
             if let key = info[kModuleInfoNameKey] as? String {
                 moduleInfoByClass[key] = 1
             }
@@ -54,14 +53,14 @@ class TBModuleManager {
         modulesArray.forEach { (dict) in
             if let key = dict[kModuleInfoNameKey] as? String {
                 if moduleInfoByClass[key] == nil {
-                    self.BHModuleInfos.append(dict)
+                    self.moduleInfos.append(dict)
                 }
             }
         }
     }
 
     func registedAllModules() {
-        BHModuleInfos.sort { (module1, module2) -> Bool in
+        moduleInfos.sort { (module1, module2) -> Bool in
             guard let module1Level = module1[kModuleInfoNameKey]  as? Int, let module2Level = module2[kModuleInfoLevelKey] as? Int else {
                 return false
             }
@@ -73,7 +72,7 @@ class TBModuleManager {
             }
         }
         var tmpArray: [TBModuleProtocol] = []
-        BHModuleInfos.forEach { (module) in
+        moduleInfos.forEach { (module) in
             guard let classStr = module[kModuleInfoNameKey] as? String else { return }
             let hasInstantiated = module[kModuleInfoHasInstantiatedKey] as? Bool ?? false
             let appName = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String
@@ -84,7 +83,7 @@ class TBModuleManager {
                 tmpArray.append(moduleInstance)
             }
         }
-        BHModules.append(contentsOf: tmpArray)
+        modules.append(contentsOf: tmpArray)
         registerAllSystemEvents()
     }
 }
@@ -95,7 +94,7 @@ extension TBModuleManager {
         guard let cla = obj as? TBModuleProtocol.Type else { return }
         let moduleName = NSStringFromClass(cla)
         var flag = true
-        for module in BHModules {
+        for module in modules {
             if module.isKind(of: cla) {
                 flag = false
                 break
@@ -109,10 +108,10 @@ extension TBModuleManager {
         let levelInt = moduleInstance.basicModuleLevel()
         moduleInfo[kModuleInfoLevelKey] = levelInt
         moduleInfo[kModuleInfoNameKey] = moduleName
-        BHModuleInfos.append(moduleInfo)
-        BHModules.append(moduleInstance)
+        moduleInfos.append(moduleInfo)
+        modules.append(moduleInstance)
         moduleInfo[kModuleInfoHasInstantiatedKey] = true
-        BHModules.sort { (moduleInstance1, moduleInstance2) -> Bool in
+        modules.sort { (moduleInstance1, moduleInstance2) -> Bool in
             let module1Level = moduleInstance1.basicModuleLevel()
             let module2Level = moduleInstance2.basicModuleLevel()
             if module1Level.rawValue != module2Level.rawValue {
@@ -131,14 +130,14 @@ extension TBModuleManager {
 //        }
     }
     private func registerAllSystemEvents() {
-        BHModules.forEach { (moduleInstance) in
+        modules.forEach { (moduleInstance) in
             self.registerEventsByModuleInstance(moduleInstance)
         }
     }
     private func registerEventsByModuleInstance(_ moduleInstance: TBModuleProtocol) {
-        let events = BHSelectorByEvent.keys
+        let events = selectorByEvent.keys
         events.forEach { (obj) in
-            if let type = ModuleEventType(rawValue: obj), let selector = BHSelectorByEvent[obj] {
+            if let type = ModuleEventType(rawValue: obj), let selector = selectorByEvent[obj] {
                 self.registerEvent(type, moduleInstance: moduleInstance, selectorStr: selector)
             }
         }
@@ -148,13 +147,13 @@ extension TBModuleManager {
         if !moduleInstance.responds(to: selector) {
             return
         }
-        if BHSelectorByEvent[eventType.rawValue] == nil {
-            BHSelectorByEvent[eventType.rawValue] = selectorStr
+        if selectorByEvent[eventType.rawValue] == nil {
+            selectorByEvent[eventType.rawValue] = selectorStr
         }
-        if BHModulesByEvent[eventType.rawValue] == nil {
-            BHModulesByEvent[eventType.rawValue] = []
+        if modulesByEvent[eventType.rawValue] == nil {
+            modulesByEvent[eventType.rawValue] = []
         }
-        if var eventModules = BHModulesByEvent[eventType.rawValue], !eventModules.contains(where: { (obj) -> Bool in return obj === moduleInstance }) {
+        if var eventModules = modulesByEvent[eventType.rawValue], !eventModules.contains(where: { (obj) -> Bool in return obj === moduleInstance }) {
             eventModules.append(moduleInstance)
             eventModules.sort { (moduleInstance1, moduleInstance2) -> Bool in
                 let module1Level = moduleInstance1.basicModuleLevel()
@@ -201,7 +200,7 @@ extension TBModuleManager {
         }
     }
     private func handleModulesSetupEvent() {
-        for instance in BHModules {
+        for instance in modules {
             let bk: () -> Void = {
                 instance.modSetUp(TBContext.shared)
             }

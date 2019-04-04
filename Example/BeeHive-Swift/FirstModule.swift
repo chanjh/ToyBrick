@@ -11,7 +11,12 @@ import ToyBrick
 
 class FirstModule: NSObject, TBModuleProtocol {
     required init(_ context: TBContext) { }
-    func modSetUp(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
+    func modSetUp(_ context: TBContext) {
+        ToyBrick.shared.register(FirstServiceProtocol.self) { () -> FirstService? in
+            return FirstService()
+        }
+        print("Function: \(#function), line: \(#line)")
+    }
     func modInit(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
     func modSplash(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
     func modQuickAction(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }

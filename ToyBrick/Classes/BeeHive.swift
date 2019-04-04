@@ -20,13 +20,30 @@ public class BeeHive {
     public class func registerDynamicModule(_ module: AnyClass) {
         BHModuleManager.shared.registerDynamicModule(module)
     }
+
+    public func register<Service>(_ serviceType: Service.Type,
+                                  name: String? = nil,
+                                  singleton: Bool = false,
+                                  factory: @escaping () -> Service?) {
+        BHSeriveManager.shared.register(serviceType, name: name, singleton: singleton, factory: factory)
+    }
+
+    public func getSingleton<Service>(_ serviceType: Service.Type,
+                               name: String? = nil) -> Service? {
+        return BHSeriveManager.shared.getSingleton(serviceType, name: name)
+    }
+
+    public func create<Service>(_ serviceType: Service.Type,
+                                name: String? = nil) -> Service? {
+        return BHSeriveManager.shared.create(serviceType, name: name)
+    }
 }
 
 /// Private
 extension BeeHive {
     func loadStaticServices() {
-        BHSeriveManager.shared.enableException = enableException
-        BHSeriveManager.shared.registerLocalServices()
+//        BHSeriveManager.shared.enableException = enableException
+//        BHSeriveManager.shared.registerLocalServices()
     }
     func loadStaticModules() {
         BHModuleManager.shared.loadLocalModules()

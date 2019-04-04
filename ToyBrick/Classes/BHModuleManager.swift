@@ -59,6 +59,7 @@ class BHModuleManager {
             }
         }
     }
+
     func registedAllModules() {
         BHModuleInfos.sort { (module1, module2) -> Bool in
             guard let module1Level = module1[kModuleInfoNameKey]  as? Int, let module2Level = module2[kModuleInfoLevelKey] as? Int else {
@@ -78,6 +79,7 @@ class BHModuleManager {
             let appName = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String
             let realClassName = (appName?.replacingOccurrences(of: "-", with: "_") ?? "") + "." + classStr
             if let moduleClass = NSClassFromString(realClassName) as? BHModuleProtocol.Type, !hasInstantiated {
+                /// TODO: 延迟实例化
                 let moduleInstance = moduleClass.init(BHContext.shared)
                 tmpArray.append(moduleInstance)
             }

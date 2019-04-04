@@ -7,13 +7,12 @@
 //
 
 import UIKit
+import ToyBrick
 
 class ViewController: UIViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        let instance = BeeHive.shared.create(FirstServiceProtocol.self)
+        instance?.testFunc()
     }
-
-
 }
-

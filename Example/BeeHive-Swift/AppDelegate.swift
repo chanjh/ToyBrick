@@ -22,6 +22,11 @@ class AppDelegate: BHAppDelegate {
         BeeHive.shared.enableException = true
         BeeHive.shared.context = BHContext.shared
         BHTimeProfiler.shared.recordEventTime("BeeHive::super start launch")
+
+        BeeHive.shared.register(FirstServiceProtocol.self) { () -> FirstService? in
+            return FirstService()
+        }
+        
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 

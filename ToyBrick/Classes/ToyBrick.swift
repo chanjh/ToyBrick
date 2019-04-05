@@ -15,14 +15,12 @@ public class ToyBrick {
             loadStaticModules()
         }
     }
-    public func register<Module>(_ module: Module.Type,
-                                 level: ModuleLevel,
-                                 prioriry: Int) {
-        ModuleManager.shared.register(module, level: level, prioriry: prioriry)
+    public func register<Module>(_ module: ModuleEntry<Module>) {
+        ModuleManager.shared.register(module)
     }
     @available(*, deprecated, message: "Use ModuleManager")
     public class func registerDynamicModule(_ module: AnyClass) {
-        TBModuleManager.shared.registerDynamicModule(module)
+//        TBModuleManager.shared.registerDynamicModule(module)
     }
 
     public func register<Service>(_ serviceType: Service.Type,

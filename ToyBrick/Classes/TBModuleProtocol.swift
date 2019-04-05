@@ -8,13 +8,21 @@
 
 import Foundation
 
-/// NSObjectProtocol 太 OC 了，有没有 Swift 一点的做法？
-public protocol TBModuleProtocol: NSObjectProtocol {
-    func basicModuleLevel() -> ModuleLevel
+public struct ModuleEntry<Module> {
+    let module: Module.Type
+    let level: ModuleLevel
+    let prioriry: Int
+    public init(module: Module.Type, level: ModuleLevel = .normal, prioriry: Int = 1000) {
+        self.module = module
+        self.level = level
+        self.prioriry = prioriry
+    }
+}
+
+public protocol TBModuleProtocol {
     ////越大越优先
     var modulePrioriry: Int { get }
-    /// 这个定义有问题
-    var async: Bool { get }
+    static func async() -> Bool
 
     init(_ context: TBContext)
     
@@ -48,7 +56,7 @@ public protocol TBModuleProtocol: NSObjectProtocol {
 public extension TBModuleProtocol {
     func basicModuleLevel() -> ModuleLevel { return ModuleLevel.normal }
     var modulePrioriry: Int { return 1000 }
-    var async: Bool { return true }
+    static func async() -> Bool { return false }
     func modSetUp(_ context: TBContext) { }
     func modInit(_ context: TBContext) { }
     func modSplash(_ context: TBContext) { }

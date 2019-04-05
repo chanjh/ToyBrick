@@ -8,21 +8,51 @@
 import Foundation
 
 class ModuleManager {
-    
     static let shared = ModuleManager()
-    var moduleInfo: [[ModuleKey: ModuleEntry]] = []
-    var modules: [ModuleEntry] = []
+    
+    var moduleInfo: [[ModuleKey: ModuleInnerEntry]] = []
+    var modules: [ModuleInnerEntry] = []
     var moduleInstances: [ModuleKey: TBModuleProtocol] = [:]
     
-    func register<Module>(_ module: Module.Type,
-                          level: ModuleLevel,
-                          prioriry: Int) {
+    func register<Module>(_ module: ModuleEntry<Module>) {
+        register(module.module.self, level: module.level, prioriry: module.prioriry)
+    }
+
+    func triggerEvent(_ eventType: ModuleEventType, param: [String: Any]? = nil) {
+        modules.forEach { (entry) in
+            triggerEvent(eventType, entry: entry, param: param)
+        }
+    }
+}
+
+extension ModuleManager {
+    struct ModuleKey: Hashable {
+        static func == (lhs: ModuleManager.ModuleKey, rhs: ModuleManager.ModuleKey) -> Bool {
+            return lhs.module == rhs.module
+        }
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(ObjectIdentifier(module).hashValue)
+        }
+        let module: Any.Type
+    }
+    struct ModuleInnerEntry {
+        let module: Any.Type
+        let key: ModuleKey
+        let level: ModuleLevel
+        let prioriry: Int
+    }
+}
+/// MARK: -- Private
+extension ModuleManager {
+    private func register<Module>(_ module: Module.Type,
+                                  level: ModuleLevel,
+                                  prioriry: Int) {
         if !(module is TBModuleProtocol.Type) {
             assertionFailure()
             return
         }
         let key = ModuleKey(module: module)
-        let entry = ModuleEntry(module: module, key: key, level: level, prioriry: prioriry)
+        let entry = ModuleInnerEntry(module: module, key: key, level: level, prioriry: prioriry)
         var exist = false
         for var info in moduleInfo {
             if info[key] != nil {
@@ -43,44 +73,27 @@ class ModuleManager {
             }
         }
     }
-
-    func triggerEvent(_ eventType: ModuleEventType, param: [String: Any]? = nil) {
-        modules.forEach { (entry) in
-            triggerEvent(eventType, entry: entry, param: param)
-        }
-    }
-    
-    private func triggerEvent(_ eventType: ModuleEventType, entry: ModuleEntry, param: [String: Any]? = nil) {
-        guard let module = entry.module as? TBModuleProtocol.Type else {
-            assertionFailure()
-            return
-        }
-        let key = ModuleKey(module: entry.module)
-        let instance: TBModuleProtocol = moduleInstances[key] ?? module.init(TBContext.shared)
-        triggerEvent(eventType, target: instance, param: param)
-    }
-}
-
-extension ModuleManager {
-    struct ModuleKey: Hashable {
-        static func == (lhs: ModuleManager.ModuleKey, rhs: ModuleManager.ModuleKey) -> Bool {
-            return lhs.module == rhs.module
-        }
-        public var hashValue: Int {
-            return ObjectIdentifier(module).hashValue
-        }
-        let module: Any.Type
-    }
-    struct ModuleEntry {
-        let module: Any.Type
-        let key: ModuleKey
-        let level: ModuleLevel
-        let prioriry: Int
-    }
 }
 
 /// MARK: -- Handle
 extension ModuleManager {
+    private func triggerEvent(_ eventType: ModuleEventType, entry: ModuleInnerEntry, param: [String: Any]? = nil) {
+        guard let module = entry.module as? TBModuleProtocol.Type else {
+            assertionFailure()
+            return
+        }
+        let async = module.async()
+        let key = ModuleKey(module: entry.module)
+        let instance: TBModuleProtocol = moduleInstances[key] ?? module.init(TBContext.shared)
+        let handler = { [weak self] in
+            self?.triggerEvent(eventType, target: instance, param: param)
+        }
+        if async {
+            DispatchQueue.main.async { handler() }
+        } else {
+            handler()
+        }
+    }
     private func triggerEvent(_ eventType: ModuleEventType, target: TBModuleProtocol, param: [String: Any]? = nil) {
         let context = TBContext.shared
         switch eventType {

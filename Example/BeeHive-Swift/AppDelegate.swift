@@ -8,6 +8,7 @@
 
 import UIKit
 import ToyBrick
+import Module001
 
 @UIApplicationMain
 class AppDelegate: TBAppDelegate {
@@ -20,9 +21,14 @@ class AppDelegate: TBAppDelegate {
         TBContext.shared.modulePath = Bundle.init(for: AppDelegate.self).path(forResource: "ToyBrick.bundle/BeeHive", ofType: "plist")
         ToyBrick.shared.enableException = true
         ToyBrick.shared.context = TBContext.shared
-        ToyBrick.shared.register(FirstModule.self, level: .normal, prioriry: 1000)
+        makeModule()
         TBTimeProfiler.shared.recordEventTime("ToyBrick::super start launch")
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+    }
+    
+    private func makeModule() {
+        ToyBrick.shared.register(ModuleEntry(module: FirstModule.self))
+        ToyBrick.shared.register(ModuleEntry(module: Module001.self))
     }
 }
 

@@ -28,11 +28,7 @@ class TBSeriveManager {
     func getSingleton<Service>(_ serviceType: Service.Type,
                                name: String? = nil) -> Service? {
         let key = ServiceKey(serviceType: serviceType, name: name)
-        if let service = serviceInstances[key] as? Service {
-            return service
-        } else {
-            return nil
-        }
+        return serviceInstances[key] as? Service ?? nil
     }
 
     func create<Service>(_ serviceType: Service.Type,
@@ -54,8 +50,8 @@ private extension TBSeriveManager {
         static func == (lhs: ServiceKey, rhs: ServiceKey) -> Bool {
             return lhs.name == rhs.name && lhs.serviceType == rhs.serviceType
         }
-        public var hashValue: Int {
-            return name.hashValue ^ ObjectIdentifier(serviceType).hashValue
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(ObjectIdentifier(serviceType).hashValue)
         }
         let serviceType: Any.Type
         let name: String?

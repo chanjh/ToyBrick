@@ -9,7 +9,7 @@
 import Foundation
 import ToyBrick
 
-class FirstModule: NSObject, TBModuleProtocol {
+class FirstModule: TBModuleProtocol {
     required init(_ context: TBContext) { }
     func modSetUp(_ context: TBContext) {
         ToyBrick.shared.register(FirstServiceProtocol.self) { () -> FirstService? in

@@ -17,6 +17,5 @@ TobBrick is a iOS Project Modular Framework written by Swift, which is based on 
   s.ios.deployment_target = '11.0'
 
   s.source_files = 'ToyBrick/Classes/**/*'
-  s.resource = 'ToyBrick/*.bundle'
   
 end

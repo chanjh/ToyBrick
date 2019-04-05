@@ -3,6 +3,7 @@ platform :ios, '11.0'
 target 'BeeHive-Swift' do
   use_frameworks!
   pod 'ToyBrick', :path=>'../'
-  pod 'TestPod', :path=>'./TestPod'
+  pod 'Module001', :path=>'./Module001'
+  pod 'Module002', :path=>'./Module002'
 
 end

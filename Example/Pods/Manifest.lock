@@ -1,21 +1,28 @@
 PODS:
-  - TestPod (0.0.1)
+  - Module001 (0.0.1):
+    - ToyBrick
+  - Module002 (0.0.1):
+    - ToyBrick
   - ToyBrick (0.0.1)
 
 DEPENDENCIES:
-  - TestPod (from `./TestPod`)
+  - Module001 (from `./Module001`)
+  - Module002 (from `./Module002`)
   - ToyBrick (from `../`)
 
 EXTERNAL SOURCES:
-  TestPod:
-    :path: "./TestPod"
+  Module001:
+    :path: "./Module001"
+  Module002:
+    :path: "./Module002"
   ToyBrick:
     :path: "../"
 
 SPEC CHECKSUMS:
-  TestPod: a0b737bf84834799b5f685edd4641001179b11c6
+  Module001: a969f5a1125325960c47eb028d0c74d723e1cbb8
+  Module002: 4946434225f198ec7f52f6b3a3cbc6d82ecbba2d
   ToyBrick: cf5a4bb5fa91ca17035cac8a9db4b1fd65170003
 
-PODFILE CHECKSUM: 4429b69e7440c5759cbb643f8653b2d4208493e8
+PODFILE CHECKSUM: b29ca6247246b39f57965893d132499a954239ab
 
 COCOAPODS: 1.6.1

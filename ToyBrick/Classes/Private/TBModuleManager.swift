@@ -8,7 +8,10 @@
 
 import Foundation
 
+@available(*, deprecated, message: "Use ModuleManager")
 class TBModuleManager {
+    
+    static let shared: TBModuleManager = TBModuleManager()
     
     fileprivate let kModuleArrayKey               = "moduleClasses"
     fileprivate let kModuleInfoNameKey            = "moduleClass"
@@ -16,10 +19,13 @@ class TBModuleManager {
     fileprivate let kModuleInfoPriorityKey        = "modulePriority"
     fileprivate let kModuleInfoHasInstantiatedKey = "moduleHasInstantiated"
     
-    static let shared: TBModuleManager = TBModuleManager()
+    /// Module 的所有信息
     fileprivate var moduleInfos: [[String: Any]] = []
+    /// Registed Module
     fileprivate var modules: [TBModuleProtocol] = []
+    /// 弃用
     fileprivate var selectorByEvent: [Int: String] = [:]
+    /// 弃用
     fileprivate var modulesByEvent: [Int: [TBModuleProtocol]] = [:]
     
     func registerDynamicModule(_ moduleClass: AnyClass, shouldTriggerInitEvent: Bool = false) {
@@ -36,14 +42,16 @@ class TBModuleManager {
         guard let path = TBContext.shared.modulePath else { return }
         let moduleList = NSDictionary(contentsOfFile: path)
         var moduleInfoByClass: [String: Int] = [:]
-        guard let modulesArray = (moduleList?.object(forKey: kModuleArrayKey) as? [[String: Any]]) else { return }
+        guard let modulesArray = (moduleList?[kModuleArrayKey] as? [[String: Any]]) else { return }
         moduleInfos.forEach { (info) in
             if let key = info[kModuleInfoNameKey] as? String {
+                // 标记为已经保存
                 moduleInfoByClass[key] = 1
             }
         }
         modulesArray.forEach { (dict) in
             if let key = dict[kModuleInfoNameKey] as? String {
+                // 是否已经保存
                 if moduleInfoByClass[key] == nil {
                     self.moduleInfos.append(dict)
                 }
@@ -53,14 +61,17 @@ class TBModuleManager {
 
     func registedAllModules() {
         moduleInfos.sort { (module1, module2) -> Bool in
-            guard let module1Level = module1[kModuleInfoNameKey]  as? Int, let module2Level = module2[kModuleInfoLevelKey] as? Int else {
+            guard let module1Level = module1[kModuleInfoLevelKey] as? Int, let module2Level = module2[kModuleInfoLevelKey] as? Int else {
+                assertionFailure("kModuleInfoLevelKey should not be nil")
                 return false
             }
             if module1Level != module2Level {
                 return module1Level > module2Level
             } else {
-                guard let module1Priority = module1[kModuleInfoPriorityKey] as? Int, let module2Priority = module2[kModuleInfoPriorityKey] as? Int else { return false }
-                return module1Priority < module2Priority
+                guard let module1Priority = module1[kModuleInfoPriorityKey] as? Int, let module2Priority = module2[kModuleInfoPriorityKey] as? Int else {
+                    return false
+                }
+                return module1Priority > module2Priority
             }
         }
         var tmpArray: [TBModuleProtocol] = []
@@ -76,11 +87,11 @@ class TBModuleManager {
             }
         }
         modules.append(contentsOf: tmpArray)
-        registerAllSystemEvents()
+//        registerAllSystemEvents()
     }
 }
-
 /// MAKR: -- Register
+@available(*, deprecated, message: "Use ModuleManager")
 extension TBModuleManager {
     private func addModule(from obj: AnyClass?, shouldTriggerInitEvent: Bool) {
         guard let cla = obj as? TBModuleProtocol.Type else { return }
@@ -109,10 +120,10 @@ extension TBModuleManager {
             if module1Level.rawValue != module2Level.rawValue {
                 return module1Level.rawValue > module2Level.rawValue
             } else {
-                return moduleInstance1.modulePrioriry < moduleInstance2.modulePrioriry
+                return moduleInstance1.modulePrioriry > moduleInstance2.modulePrioriry
             }
         }
-        registerEventsByModuleInstance(moduleInstance)
+//        registerEventsByModuleInstance(moduleInstance)
 //        if shouldTriggerInitEvent {
 //            handleModuleEvent(eventType: .BHMSetupEvent, target: moduleInstance, selectorStr: nil, param: nil)
 //            handleModulesInitEvent(for: moduleInstance, param: nil)
@@ -121,6 +132,46 @@ extension TBModuleManager {
 //            }
 //        }
     }
+}
+
+/// MARK: -- Handle
+@available(*, deprecated, message: "Use ModuleManager")
+extension TBModuleManager {
+    private func triggerEvent(_ eventType: ModuleEventType, target: TBModuleProtocol, param: [String: Any]? = nil) {
+        let context = TBContext.shared
+        switch eventType {
+        case .setupEvent: target.modSetUp(context)
+        case .initEvent: target.modInit(context)
+        case .tearDownEvent: target.modTearDown(context)
+        case .splashEvent: target.modSplash(context)
+        case .willResignActiveEvent: target.modWillResignActive(context)
+        case .didEnterBackgroundEvent: target.modDidEnterBackground(context)
+        case .willEnterForegroundEvent: target.modWillEnterForeground(context)
+        case .didBecomeActiveEvent: target.modDidBecomActive(context)
+        case .willTerminateEvent: target.modWillTerminate(context)
+        case .unmountEvent: target.modUnmount(context)
+        case .quickActionEvent: target.modQuickAction(context)
+        case .openURLEvent: target.modOpebURL(context)
+        case .didReceiveMemoryWarningEvent: target.modDidReceiveMemoryWaring(context)
+        case .didFailToRegisterForRemoteNotificationsEvent: target.modDidFailToRegisterForRemoteNotifications(context)
+        case .didRegisterForRemoteNotificationsEvent: target.modDidRegisterForRemoteNotifications(context)
+        case .didReceiveLocalNotificationEvent: target.modDidReceiveLocalNotification(context)
+        case .willPresentNotificationEvent: target.modWillPresentNotification(context)
+        case .didReceiveNotificationResponseEvent: target.modDidReceiveNotificationResponse(context)
+        case .willContinueUserActivityEvent: target.modWillContinueUserActivity(context)
+        case .continueUserActivityEvent: target.modContinueUserActivity(context)
+        case .didUpdateUserActivityEvent: target.modDidUpdateContinueUserActivity(context)
+        case .didFailToContinueUserActivityEvent: target.modDidFailToContinueUserActivity(context)
+        case .handleWatchKitExtensionRequestEvent: target.modHandleWatchKitExtensionRequest(context)
+        default:
+            assertionFailure()
+//            target.modDidCustomEvent(context)
+        }
+    }
+}
+/// 注册事件。暂时没用到
+@available(*, deprecated, message: "Use ModuleManager")
+extension TBModuleManager {
     private func registerAllSystemEvents() {
         modules.forEach { (moduleInstance) in
             self.registerEventsByModuleInstance(moduleInstance)
@@ -156,41 +207,6 @@ extension TBModuleManager {
                     return moduleInstance1.modulePrioriry < moduleInstance2.modulePrioriry
                 }
             }
-        }
-    }
-}
-
-/// MARK: -- Handle
-extension TBModuleManager {
-    private func triggerEvent(_ eventType: ModuleEventType, target: TBModuleProtocol, param: [String: Any]? = nil) {
-        let context = TBContext.shared
-        switch eventType {
-        case .setupEvent: target.modSetUp(context)
-        case .initEvent: target.modInit(context)
-        case .tearDownEvent: target.modTearDown(context)
-        case .splashEvent: target.modSplash(context)
-        case .willResignActiveEvent: target.modWillResignActive(context)
-        case .didEnterBackgroundEvent: target.modDidEnterBackground(context)
-        case .willEnterForegroundEvent: target.modWillEnterForeground(context)
-        case .didBecomeActiveEvent: target.modDidBecomActive(context)
-        case .willTerminateEvent: target.modWillTerminate(context)
-        case .unmountEvent: target.modUnmount(context)
-        case .quickActionEvent: target.modQuickAction(context)
-        case .openURLEvent: target.modOpebURL(context)
-        case .didReceiveMemoryWarningEvent: target.modDidReceiveMemoryWaring(context)
-        case .didFailToRegisterForRemoteNotificationsEvent: target.modDidFailToRegisterForRemoteNotifications(context)
-        case .didRegisterForRemoteNotificationsEvent: target.modDidRegisterForRemoteNotifications(context)
-        case .didReceiveLocalNotificationEvent: target.modDidReceiveLocalNotification(context)
-        case .willPresentNotificationEvent: target.modWillPresentNotification(context)
-        case .didReceiveNotificationResponseEvent: target.modDidReceiveNotificationResponse(context)
-        case .willContinueUserActivityEvent: target.modWillContinueUserActivity(context)
-        case .continueUserActivityEvent: target.modContinueUserActivity(context)
-        case .didUpdateUserActivityEvent: target.modDidUpdateContinueUserActivity(context)
-        case .didFailToContinueUserActivityEvent: target.modDidFailToContinueUserActivity(context)
-        case .handleWatchKitExtensionRequestEvent: target.modHandleWatchKitExtensionRequest(context)
-        default:
-            assertionFailure()
-//            target.modDidCustomEvent(context)
         }
     }
 }

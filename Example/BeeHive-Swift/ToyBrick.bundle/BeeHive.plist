@@ -14,6 +14,14 @@
 			<key>modulePriority</key>
 			<string>599</string>
 		</dict>
+		<dict>
+			<key>moduleClass</key>
+			<string>Module001</string>
+			<key>moduleLevel</key>
+			<integer>1</integer>
+			<key>modulePriority</key>
+			<string>599</string>
+		</dict>
 	</array>
 </dict>
 </plist>

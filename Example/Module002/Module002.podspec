@@ -1,8 +1,8 @@
 
 Pod::Spec.new do |s|
-  s.name             = 'TestPod'
+  s.name             = 'Module002'
   s.version          = '0.0.1'
-  s.summary          = 'TestPod: ????'
+  s.summary          = 'Module002: ????'
 
   s.description      = <<-DESC
 Whaaaaaaaaaaat
@@ -16,6 +16,6 @@ Whaaaaaaaaaaat
 
   s.ios.deployment_target = '11.0'
 
-  s.source_files = 'TestPod/Classes/**/*'
-  
+  s.source_files = 'Classes/**/*'
+  s.dependency 'ToyBrick'
 end

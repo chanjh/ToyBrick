@@ -20,9 +20,9 @@ class AppDelegate: TBAppDelegate {
         TBContext.shared.modulePath = Bundle.init(for: AppDelegate.self).path(forResource: "ToyBrick.bundle/BeeHive", ofType: "plist")
         ToyBrick.shared.enableException = true
         ToyBrick.shared.context = TBContext.shared
+        ToyBrick.shared.register(FirstModule.self, level: .normal, prioriry: 1000)
         TBTimeProfiler.shared.recordEventTime("ToyBrick::super start launch")
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
-
 }
 

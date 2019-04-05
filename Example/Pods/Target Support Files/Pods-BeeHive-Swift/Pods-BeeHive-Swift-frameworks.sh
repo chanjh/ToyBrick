@@ -153,9 +153,11 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/Module001/Module001.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ToyBrick/ToyBrick.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/Module001/Module001.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ToyBrick/ToyBrick.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then

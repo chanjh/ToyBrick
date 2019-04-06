@@ -8,7 +8,11 @@
 import Foundation
 import ToyBrick
 
-public class Module001: NSObject, TBModuleProtocol {
+public protocol Module001Protocol {
+    func moduleFunc()
+}
+
+public class Module001: NSObject, TBModuleProtocol, Module001Protocol {
     public required init(_ context: TBContext) { }
     public func modSetUp(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
     public func modInit(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
@@ -35,4 +39,7 @@ public class Module001: NSObject, TBModuleProtocol {
     public func modDidUpdateContinueUserActivity(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
     public func modHandleWatchKitExtensionRequest(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
     public func modDidCustomEvent(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
+    public func moduleFunc() {
+        print("Module Func")
+    }
 }

@@ -1,16 +1,23 @@
 PODS:
+  - Middle (0.0.1):
+    - Module001
+    - Module002
+    - ToyBrick
   - Module001 (0.0.1):
     - ToyBrick
   - Module002 (0.0.1):
     - ToyBrick
-  - ToyBrick (0.0.1)
+  - ToyBrick (0.1.0)
 
 DEPENDENCIES:
+  - Middle (from `./Middle`)
   - Module001 (from `./Module001`)
   - Module002 (from `./Module002`)
   - ToyBrick (from `../`)
 
 EXTERNAL SOURCES:
+  Middle:
+    :path: "./Middle"
   Module001:
     :path: "./Module001"
   Module002:
@@ -19,10 +26,11 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
+  Middle: 657ec4e1f5a64dd4194919e45b0fb9198186f876
   Module001: a969f5a1125325960c47eb028d0c74d723e1cbb8
   Module002: 4946434225f198ec7f52f6b3a3cbc6d82ecbba2d
-  ToyBrick: cf5a4bb5fa91ca17035cac8a9db4b1fd65170003
+  ToyBrick: 5892a4de949624844694f0f7e73cb6b66fbc7407
 
-PODFILE CHECKSUM: b29ca6247246b39f57965893d132499a954239ab
+PODFILE CHECKSUM: 2733941f7f038887e0e2f711b06c4b7c232c935b
 
 COCOAPODS: 1.6.1

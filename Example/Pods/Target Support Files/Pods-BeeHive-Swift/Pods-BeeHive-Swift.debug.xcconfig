@@ -1,9 +1,9 @@
 ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Module001" "${PODS_CONFIGURATION_BUILD_DIR}/ToyBrick"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Middle" "${PODS_CONFIGURATION_BUILD_DIR}/Module001" "${PODS_CONFIGURATION_BUILD_DIR}/ToyBrick"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Module001/Module001.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/ToyBrick/ToyBrick.framework/Headers"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Middle/Middle.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/Module001/Module001.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/ToyBrick/ToyBrick.framework/Headers"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_LDFLAGS = $(inherited) -framework "Module001" -framework "ToyBrick"
+OTHER_LDFLAGS = $(inherited) -framework "Middle" -framework "Module001" -framework "ToyBrick"
 OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)

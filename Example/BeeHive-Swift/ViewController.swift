@@ -8,12 +8,14 @@
 
 import UIKit
 import ToyBrick
+import Middle
 
 class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Function: \(#function)")
-        let instance = ToyBrick.shared.create(FirstServiceProtocol.self)
-        instance?.testFunc()
+//        let instance = ToyBrick.shared.create(FirstServiceProtocol.self)
+//        instance?.testFunc()
+        Middle.shared.makeModule001()?.moduleFunc()
     }
 }

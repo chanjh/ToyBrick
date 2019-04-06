@@ -5,5 +5,6 @@ target 'BeeHive-Swift' do
   pod 'ToyBrick', :path=>'../'
   pod 'Module001', :path=>'./Module001'
   pod 'Module002', :path=>'./Module002'
+  pod 'Middle', :path=>'./Middle'
 
 end

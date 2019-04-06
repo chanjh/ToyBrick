@@ -8,13 +8,15 @@
 
 import Foundation
 import ToyBrick
+import Middle
 
 class FirstModule: TBModuleProtocol {
     required init(_ context: TBContext) { }
     func modSetUp(_ context: TBContext) {
-        ToyBrick.shared.register(FirstServiceProtocol.self) { () -> FirstService? in
-            return FirstService()
-        }
+//        ToyBrick.shared.register(FirstServiceProtocol.self) { () -> FirstService? in
+//            return FirstService()
+//        }
+        Middle.shared.registerModule001()
         print("Function: \(#function), line: \(#line)")
     }
     func modInit(_ context: TBContext) {

@@ -16,21 +16,27 @@ ToyBrick is an iOS Project Modular Framework written by Swift, which is inspired
     - [x] 暂时去除加载 plist 的支持，去除 string -> class 的过程。重新设计注册过程，不再依赖 OC 的 Runtime 特性
 - [ ] Module 优化
     - [x] 去除 BeeHive 的影子
-    - [ ] 支持使用 plist 跨 Swift Module 注册（待定）
+    - [ ] ~~支持使用 plist 跨 Swift Module 注册（待定）~~ (不准备支持 Plist 注册)
     - [ ] 支持带参数
 - [x] 去除 Objective-C 的实现
 - [ ] 增加注释
 - [ ] 完善 Demo 代码
-- [ ] 单例统一托管
+- [ ] 线程安全
+- [ ] 单例优化
+	- [ ] 两个 Manager 去单例，让使用者可以自己创建 Manager
+	- [ ] 将必要的单例统一托管
 
 * ⛳️ Milestone 02
-- [ ] 单元测试
+- [ ] Service 储存策略
+	- [ ] Service 支持多种储存策略。暂定有 weak、singInstance
+	- [ ] Service factory 内对象储存策略（待定）
 - [ ] Module 继续优化
     - [ ] Module init 时机优化
     - [ ] Module：支持自定义事件
 - [ ] Container：容器化现有的 AppDelegate，不依赖 App 生命周期
 - [ ] Module 变为基于 Service 的实例化
 - [ ] 扩展 Service Name 字段，实现类似路由的功能
+- [ ] 单元测试
 - [ ] ……
 
 

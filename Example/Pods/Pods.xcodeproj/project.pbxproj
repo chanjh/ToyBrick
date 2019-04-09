@@ -16,7 +16,6 @@
 				B532B60A156CDA4FF5155CA1A1FF9581 /* PBXTargetDependency */,
 			);
 			name = Module002;
-			productName = Module002;
 		};
 /* End PBXAggregateTarget section */
 
@@ -119,15 +118,15 @@
 		065E0E5C229779F313AA825F189836B4 /* Module001.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Module001.xcconfig; sourceTree = "<group>"; };
 		0B9E6D72C14A268038C8EB2861783A05 /* Module001-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Module001-Info.plist"; sourceTree = "<group>"; };
 		1390EDBCBCE5CA37F45AA4B9F43535A0 /* Module001-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Module001-umbrella.h"; sourceTree = "<group>"; };
-		18551FA0CAFB98C81F3A55A10CBB6F50 /* ToyBrick.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ToyBrick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		18551FA0CAFB98C81F3A55A10CBB6F50 /* ToyBrick.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ToyBrick.framework; path = ToyBrick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		19C9A93C1C830BDC6FCE10F2B751B225 /* TBModuleManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TBModuleManager.swift; sourceTree = "<group>"; };
-		2CDA4532270FBF21BE67D9BF981FE9D6 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		2CDA4532270FBF21BE67D9BF981FE9D6 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		2D66D798E9EF34EBA455D8B1B6CE4578 /* ToyBrick.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ToyBrick.swift; path = ToyBrick/Classes/ToyBrick.swift; sourceTree = "<group>"; };
 		33E6E4BF809945EF922F7EEC320F0FA5 /* Middle-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Middle-Info.plist"; sourceTree = "<group>"; };
 		362AF641507133800476F3D7EB1561F0 /* TBSeriveManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TBSeriveManager.swift; sourceTree = "<group>"; };
 		3EC4086ACD30636C4B9A54192E5EAA0F /* ToyBrick-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ToyBrick-dummy.m"; sourceTree = "<group>"; };
 		3F1DBC9E21F8C1C36562611BBE02B4A8 /* Pods-BeeHive-Swift-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BeeHive-Swift-frameworks.sh"; sourceTree = "<group>"; };
-		40899FD360C62387B8F385FCFDC7F32B /* Middle.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = Middle.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		40899FD360C62387B8F385FCFDC7F32B /* Middle.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = Middle.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		42073298156F5436941C379A33F99CFA /* ToyBrick.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ToyBrick.modulemap; sourceTree = "<group>"; };
 		44FB59AF6B62CB615D1468D8B315624F /* Pods-BeeHive-Swift-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BeeHive-Swift-acknowledgements.plist"; sourceTree = "<group>"; };
 		4B0A7D67F593544AACBD4CCBAE365543 /* Middle-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Middle-prefix.pch"; sourceTree = "<group>"; };
@@ -139,24 +138,24 @@
 		60A3904866816DD8C6DDE90498241A18 /* Middle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Middle.swift; path = Classes/Middle.swift; sourceTree = "<group>"; };
 		61B7622F86E9CF70EB4FFC74D6856A3D /* Pods-BeeHive-Swift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-BeeHive-Swift.modulemap"; sourceTree = "<group>"; };
 		63B8D0755A2E7049CA3601E8292C6B56 /* ToyBrick.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ToyBrick.xcconfig; sourceTree = "<group>"; };
-		700CBDBFEC6522AA618221C10ED55AAE /* Module002.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = Module002.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		757CBFCD7A973135355121A2C7E2FC4A /* Pods_BeeHive_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeeHive_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		700CBDBFEC6522AA618221C10ED55AAE /* Module002.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = Module002.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		757CBFCD7A973135355121A2C7E2FC4A /* Pods_BeeHive_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_BeeHive_Swift.framework; path = "Pods-BeeHive-Swift.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B6E7AA9EEE7446AD51367075DF7F127 /* ToyBrick-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ToyBrick-umbrella.h"; sourceTree = "<group>"; };
 		7E5B34F545C711130DA6F438DFC07CE2 /* TBTimeProfiler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TBTimeProfiler.swift; sourceTree = "<group>"; };
 		81E9A3A64CAAB241F70875C87CE9BE27 /* Pods-BeeHive-Swift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BeeHive-Swift-Info.plist"; sourceTree = "<group>"; };
 		824E6376B1C237D8172FFBA0E7D5834F /* Middle.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Middle.modulemap; sourceTree = "<group>"; };
 		8AC5B7B897AE76E4F1F51E6C90BEED3B /* TBModuleManager+Define.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "TBModuleManager+Define.swift"; sourceTree = "<group>"; };
 		8B783C9E35A2304AEC9683EFBE7E9CB4 /* Pods-BeeHive-Swift-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BeeHive-Swift-acknowledgements.markdown"; sourceTree = "<group>"; };
-		91B1BCD650D2E5C34735177E617493CF /* ToyBrick.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = ToyBrick.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		91B1BCD650D2E5C34735177E617493CF /* ToyBrick.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = ToyBrick.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		94547E51EB01CECE6E967EEC4B557389 /* Pods-BeeHive-Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BeeHive-Swift.debug.xcconfig"; sourceTree = "<group>"; };
 		96E110B85D2EC2CE85EF09EE715E179B /* Module001-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Module001-prefix.pch"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A27077994C62EECF69BB5F1C30BA2D5B /* Middle-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Middle-umbrella.h"; sourceTree = "<group>"; };
-		B2AE0A058196BA4EA561EE6E00F3EF94 /* Module001.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Module001.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2AE0A058196BA4EA561EE6E00F3EF94 /* Module001.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Module001.framework; path = Module001.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B32D642F7A069C046F2542ACF3664E6E /* Module001.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Module001.modulemap; sourceTree = "<group>"; };
 		B4A2ED6CBCC6EED9E8C3BD19E3EBA41B /* ModuleManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ModuleManager.swift; sourceTree = "<group>"; };
 		B4A44B508EFA62EF57F203BD2977C61A /* Module001-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Module001-dummy.m"; sourceTree = "<group>"; };
-		B64F2E72279C4146967C3CFCFA52D098 /* Module001.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = Module001.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		B64F2E72279C4146967C3CFCFA52D098 /* Module001.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = Module001.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		B69AFC64AE34E97E8F86611B947C1191 /* Module001.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Module001.swift; path = Classes/Module001.swift; sourceTree = "<group>"; };
 		B86572787371A88F78F219BFBD5B354A /* Module002.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Module002.xcconfig; sourceTree = "<group>"; };
 		B8F9BE12E39FBFD930DAC3D7A3705701 /* ToyBrick-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ToyBrick-Info.plist"; sourceTree = "<group>"; };
@@ -164,7 +163,7 @@
 		BC6997F89B45B015C037B0DCFCDD60CC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		BCEB43D4D9663F3EDBA38292F008E381 /* ToyBrick-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ToyBrick-prefix.pch"; sourceTree = "<group>"; };
 		C228560C675BB8B9B4388FD0E7725D55 /* Pods-BeeHive-Swift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BeeHive-Swift-umbrella.h"; sourceTree = "<group>"; };
-		D0D9CC5FCF36604C25D10CD59F320332 /* Middle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Middle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0D9CC5FCF36604C25D10CD59F320332 /* Middle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Middle.framework; path = Middle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA153808C0C9C225E637563B1BFCE66C /* Pods-BeeHive-Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BeeHive-Swift.release.xcconfig"; sourceTree = "<group>"; };
 		E2811E99A35D9A1444872D671FC411DA /* Module001.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Module001.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC637592D2A36DC1A6FE2B4A51913252 /* Pods-BeeHive-Swift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BeeHive-Swift-dummy.m"; sourceTree = "<group>"; };
@@ -557,11 +556,10 @@
 				LastUpgradeCheck = 0930;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;

@@ -17,6 +17,7 @@ ToyBrick is an iOS Project Modular Framework written by Swift, which is inspired
 - [ ] Module 优化
     - [x] 去除 BeeHive 的影子
     - [ ] 支持使用 plist 跨 Swift Module 注册（待定）
+    - [ ] 支持带参数
 - [x] 去除 Objective-C 的实现
 - [ ] 增加注释
 - [ ] 完善 Demo 代码

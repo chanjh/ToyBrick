@@ -9,15 +9,29 @@ import Foundation
 
 class ModuleManager {
     static let shared = ModuleManager()
-    
+    /// 通过 key（name + Module.Type）找到 Entry
     var moduleInfo: [[ModuleKey: ModuleInnerEntry]] = []
+    /// 按照优先级排序后的 Module
     var modules: [ModuleInnerEntry] = []
+    /// 保存实例化后的 Module
     var moduleInstances: [ModuleKey: TBModuleProtocol] = [:]
-    
+
+    /**
+     注册模块
+     - module: 实现 TBModuleProtocol 协议的类型
+     - level: 等级，越大越优先
+     - prioriry: 优先级，越大越优先
+     */
     func register<Module>(_ module: ModuleEntry<Module>) {
         register(module.module.self, level: module.level, prioriry: module.prioriry)
     }
 
+    /**
+     调用已经注册对应 eventType 的 Module，并带上参数
+     - eventType: Module 事件类型
+     - param: 参数
+     */
+    // TODO: anyhashable
     func triggerEvent(_ eventType: ModuleEventType, param: [String: Any]? = nil) {
         modules.forEach { (entry) in
             triggerEvent(eventType, entry: entry, param: param)
@@ -77,6 +91,12 @@ extension ModuleManager {
 
 /// MARK: -- Handle
 extension ModuleManager {
+    /**
+     调用某个 Module 的 event，并带上参数
+     - eventType: Module 事件类型
+     - entry: 带初始化的类型
+     - param: 参数
+     */
     private func triggerEvent(_ eventType: ModuleEventType, entry: ModuleInnerEntry, param: [String: Any]? = nil) {
         guard let module = entry.module as? TBModuleProtocol.Type else {
             assertionFailure()

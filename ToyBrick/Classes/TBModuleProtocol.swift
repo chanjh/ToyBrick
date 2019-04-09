@@ -8,11 +8,16 @@
 
 import Foundation
 
+public struct ModuleContext {
+    var tbContext: TBContext
+    var param: [AnyHashable: Any]?
+}
+
 public struct ModuleEntry<Module> {
     let module: Module.Type
     let level: ModuleLevel
     let prioriry: Int
-    public init(module: Module.Type, level: ModuleLevel = .normal, prioriry: Int = 1000) {
+    public init(module: Module.Type, level: ModuleLevel = .normal, prioriry: ModulePrioriry = 1000) {
         self.module = module
         self.level = level
         self.prioriry = prioriry

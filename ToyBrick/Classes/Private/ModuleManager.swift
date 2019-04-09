@@ -32,7 +32,7 @@ class ModuleManager {
      - param: 参数
      */
     // TODO: anyhashable
-    func triggerEvent(_ eventType: ModuleEventType, param: [String: Any]? = nil) {
+    func triggerEvent(_ eventType: ModuleEventType, param: [AnyHashable: Any]? = nil) {
         modules.forEach { (entry) in
             triggerEvent(eventType, entry: entry, param: param)
         }
@@ -60,7 +60,7 @@ extension ModuleManager {
 extension ModuleManager {
     private func register<Module>(_ module: Module.Type,
                                   level: ModuleLevel,
-                                  prioriry: Int) {
+                                  prioriry: ModulePrioriry) {
         if !(module is TBModuleProtocol.Type) {
             assertionFailure()
             return
@@ -97,7 +97,7 @@ extension ModuleManager {
      - entry: 带初始化的类型
      - param: 参数
      */
-    private func triggerEvent(_ eventType: ModuleEventType, entry: ModuleInnerEntry, param: [String: Any]? = nil) {
+    private func triggerEvent(_ eventType: ModuleEventType, entry: ModuleInnerEntry, param: [AnyHashable: Any]? = nil) {
         guard let module = entry.module as? TBModuleProtocol.Type else {
             assertionFailure()
             return
@@ -114,7 +114,7 @@ extension ModuleManager {
             handler()
         }
     }
-    private func triggerEvent(_ eventType: ModuleEventType, target: TBModuleProtocol, param: [String: Any]? = nil) {
+    private func triggerEvent(_ eventType: ModuleEventType, target: TBModuleProtocol, param: [AnyHashable: Any]? = nil) {
         let context = TBContext.shared
         switch eventType {
         case .setupEvent: target.modSetUp(context)

@@ -13,7 +13,7 @@ public enum ModuleLevel: Int {
     case normal
 }
 
-typealias ModulePrioriry = Int
+public typealias ModulePrioriry = Int
 
 public enum ModuleEventType: Int {
     case setupEvent = 0

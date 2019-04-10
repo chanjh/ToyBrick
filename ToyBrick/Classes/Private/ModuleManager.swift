@@ -31,7 +31,6 @@ class ModuleManager {
      - eventType: Module 事件类型
      - param: 参数
      */
-    // TODO: anyhashable
     func triggerEvent(_ eventType: ModuleEventType, param: [AnyHashable: Any]? = nil) {
         modules.forEach { (entry) in
             triggerEvent(eventType, entry: entry, param: param)
@@ -104,7 +103,7 @@ extension ModuleManager {
         }
         let async = module.async()
         let key = ModuleKey(module: entry.module)
-        let instance: TBModuleProtocol = moduleInstances[key] ?? module.init(TBContext.shared)
+        let instance: TBModuleProtocol = moduleInstances[key] ?? module.init(ModuleContext(tbContext: TBContext.shared, param: param))
         let handler = { [weak self] in
             self?.triggerEvent(eventType, target: instance, param: param)
         }
@@ -115,7 +114,7 @@ extension ModuleManager {
         }
     }
     private func triggerEvent(_ eventType: ModuleEventType, target: TBModuleProtocol, param: [AnyHashable: Any]? = nil) {
-        let context = TBContext.shared
+        let context = ModuleContext(tbContext: TBContext.shared, param: param)
         switch eventType {
         case .setupEvent: target.modSetUp(context)
         case .initEvent: target.modInit(context)

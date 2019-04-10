@@ -13,7 +13,7 @@ public class Middle {
     public static let shared = Middle()
     public func registerModule001() {
         ToyBrick.shared.register(Module001Protocol.self) { () -> Module001Protocol? in
-            return Module001(TBContext.shared)
+            return Module001(ModuleContext())
         }
     }
     

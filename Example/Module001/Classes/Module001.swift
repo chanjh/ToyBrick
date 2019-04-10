@@ -13,32 +13,32 @@ public protocol Module001Protocol {
 }
 
 public class Module001: NSObject, TBModuleProtocol, Module001Protocol {
-    public required init(_ context: TBContext) { }
-    public func modSetUp(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
-    public func modInit(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
-    public func modSplash(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
-    public func modQuickAction(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
-    public func modTearDown(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
-    public func modWillResignActive(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
-    public func modDidEnterBackground(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
-    public func modWillEnterForeground(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
-    public func modDidBecomActive(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
-    public func modWillTerminate(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
-    public func modUnmount(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
-    public func modOpebURL(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
-    public func modDidReceiveMemoryWaring(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
-    public func modDidFailToRegisterForRemoteNotifications(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
-    public func modDidRegisterForRemoteNotifications(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
-    public func modDidReceiveRemoteNotification(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
-    public func modDidReceiveLocalNotification(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
-    public func modWillPresentNotification(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
-    public func modDidReceiveNotificationResponse(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
-    public func modWillContinueUserActivity(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
-    public func modContinueUserActivity(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
-    public func modDidFailToContinueUserActivity(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
-    public func modDidUpdateContinueUserActivity(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
-    public func modHandleWatchKitExtensionRequest(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
-    public func modDidCustomEvent(_ context: TBContext) { print("Function: \(#function), line: \(#line)") }
+    public required init(_ context: ModuleContext) { }
+    public func modSetUp(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
+    public func modInit(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
+    public func modSplash(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
+    public func modQuickAction(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
+    public func modTearDown(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
+    public func modWillResignActive(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
+    public func modDidEnterBackground(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
+    public func modWillEnterForeground(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
+    public func modDidBecomActive(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
+    public func modWillTerminate(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
+    public func modUnmount(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
+    public func modOpebURL(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
+    public func modDidReceiveMemoryWaring(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
+    public func modDidFailToRegisterForRemoteNotifications(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
+    public func modDidRegisterForRemoteNotifications(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
+    public func modDidReceiveRemoteNotification(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
+    public func modDidReceiveLocalNotification(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
+    public func modWillPresentNotification(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
+    public func modDidReceiveNotificationResponse(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
+    public func modWillContinueUserActivity(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
+    public func modContinueUserActivity(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
+    public func modDidFailToContinueUserActivity(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
+    public func modDidUpdateContinueUserActivity(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
+    public func modHandleWatchKitExtensionRequest(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
+    public func modDidCustomEvent(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
     public func moduleFunc() {
         print("Module Func")
     }

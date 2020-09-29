@@ -134,29 +134,29 @@ public struct TBShortcutItem {
 }
 
 public struct TBOpenURLItem {
-    var openURL: URL
-    var options: [UIApplication.OpenURLOptionsKey : Any]
+	public var openURL: URL
+	public var options: [UIApplication.OpenURLOptionsKey : Any]
 }
 
 typealias TBNotificationResultHandler = (UIBackgroundFetchResult) -> Void
 typealias TBNotificationPresentationOptionsHandler = (UNNotificationPresentationOptions) -> Void
 typealias TBNotificationCompletionHandler = () -> Void
 public struct TBNotificationsItem {
-    var error: Error?
-    var deviceToken: Data?
-    var userInfo: [AnyHashable : Any]?
-    var notificationResultHander: TBNotificationResultHandler?
-    var notification: UNNotification?
-    var notificationPresentationOptionsHandler: TBNotificationPresentationOptionsHandler?
-    var center: UNUserNotificationCenter?
-    var notificationResponse: UNNotificationResponse?
-    var notificationCompletionHandler: TBNotificationCompletionHandler?
+	public var error: Error?
+	public var deviceToken: Data?
+	public var userInfo: [AnyHashable : Any]?
+	var notificationResultHander: TBNotificationResultHandler?
+	public var notification: UNNotification?
+	var notificationPresentationOptionsHandler: TBNotificationPresentationOptionsHandler?
+	public var center: UNUserNotificationCenter?
+	public var notificationResponse: UNNotificationResponse?
+	var notificationCompletionHandler: TBNotificationCompletionHandler?
 }
 
 typealias TBUserActivityRestorationHandler = ([UIUserActivityRestoring]?) -> Void
 public struct TBUserActivityItem {
-    var userActivity: NSUserActivity?
-    var userActivityType: String?
+	public var userActivity: NSUserActivity?
+	public var userActivityType: String?
     var userActivityError: Error?
     var restorationHandler: TBUserActivityRestorationHandler?
 }

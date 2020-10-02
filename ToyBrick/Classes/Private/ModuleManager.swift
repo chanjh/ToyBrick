@@ -7,9 +7,9 @@
 
 import Foundation
 
-class ModuleManager {
+open class ModuleManager {
     
-    static let shared = ModuleManager()
+    static public let shared = ModuleManager()
     var moduleInfo: [[ModuleKey: ModuleEntry]] = []
     var modules: [ModuleEntry] = []
     var moduleInstances: [ModuleKey: TBModuleProtocol] = [:]
@@ -44,7 +44,7 @@ class ModuleManager {
         }
     }
 
-    func triggerEvent(_ eventType: ModuleEventType, param: [String: Any]? = nil) {
+	public func triggerEvent(_ eventType: ModuleEventType, param: [String: Any]? = nil) {
         modules.forEach { (entry) in
             triggerEvent(eventType, entry: entry, param: param)
         }

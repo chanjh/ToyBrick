@@ -6,14 +6,14 @@
 //
 
 import Foundation
-import ToyBrick
 import Module001
+import ToyBrick
 
 public class Middle {
     public static let shared = Middle()
     public func registerModule001() {
         ToyBrick.shared.register(Module001Protocol.self) { () -> Module001Protocol? in
-            return Module001(ModuleContext())
+            Module001(ModuleContext())
         }
     }
     

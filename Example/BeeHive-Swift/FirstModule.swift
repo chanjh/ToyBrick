@@ -7,21 +7,28 @@
 //
 
 import Foundation
-import ToyBrick
 import Middle
+import ToyBrick
 
 class FirstModule: TBModuleProtocol {
-    required init(_ context: ModuleContext) { }
+    var context: ModuleContext
+    
+    required init(_ context: ModuleContext) {
+        self.context = context
+    }
+
     func modSetUp(_ context: ModuleContext) {
-//        ToyBrick.shared.register(FirstServiceProtocol.self) { () -> FirstService? in
-//            return FirstService()
-//        }
-        Middle.shared.registerModule001()
+        ToyBrick.shared.register(FirstServiceProtocol.self) { () -> FirstService? in
+            FirstService()
+        }
+//        Middle.shared.registerModule001()
         print("Function: \(#function), line: \(#line)")
     }
+
     func modInit(_ context: ModuleContext) {
         print("Function: \(#function), line: \(#line)")
     }
+
     func modSplash(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
     func modQuickAction(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
     func modTearDown(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
@@ -44,5 +51,7 @@ class FirstModule: TBModuleProtocol {
     func modDidFailToContinueUserActivity(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
     func modDidUpdateContinueUserActivity(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
     func modHandleWatchKitExtensionRequest(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
-    func modDidCustomEvent(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
+    func modDidCustomEvent(_ context: ModuleContext, params: [String: Any]?) {
+        print("Function: \(#function), line: \(#line) params: \(params ?? [:])")
+    }
 }

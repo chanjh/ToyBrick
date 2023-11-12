@@ -194,17 +194,12 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BeeHive-Swift/Pods-BeeHive-Swift-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Middle/Middle.framework",
-				"${BUILT_PRODUCTS_DIR}/Module001/Module001.framework",
-				"${BUILT_PRODUCTS_DIR}/ToyBrick/ToyBrick.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BeeHive-Swift/Pods-BeeHive-Swift-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Middle.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Module001.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ToyBrick.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BeeHive-Swift/Pods-BeeHive-Swift-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

@@ -13,7 +13,12 @@ public protocol Module001Protocol {
 }
 
 public class Module001: NSObject, TBModuleProtocol, Module001Protocol {
-    public required init(_ context: ModuleContext) { }
+    public var context: ModuleContext
+    
+    public required init(_ context: ModuleContext) {
+        self.context = context
+    }
+
     public func modSetUp(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
     public func modInit(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
     public func modSplash(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
@@ -38,7 +43,11 @@ public class Module001: NSObject, TBModuleProtocol, Module001Protocol {
     public func modDidFailToContinueUserActivity(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
     public func modDidUpdateContinueUserActivity(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
     public func modHandleWatchKitExtensionRequest(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
-    public func modDidCustomEvent(_ context: ModuleContext) { print("Function: \(#function), line: \(#line)") }
+    public func modDidCustomEvent(_ context: ModuleContext, params: [String: Any]?) {
+        print("Function: \(#function), line: \(#line) params: \(params ?? [:])")
+//        context.tbContext.
+    }
+
     public func moduleFunc() {
         print("Module Func")
     }

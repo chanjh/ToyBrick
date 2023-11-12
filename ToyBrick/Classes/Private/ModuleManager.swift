@@ -7,78 +7,26 @@
 
 import Foundation
 
-class ModuleManager {
-    static let shared = ModuleManager()
-    /// 通过 key（name + Module.Type）找到 Entry
-    var moduleInfo: [[ModuleKey: ModuleInnerEntry]] = []
-    /// 按照优先级排序后的 Module
-    var modules: [ModuleInnerEntry] = []
-    /// 保存实例化后的 Module
+open class ModuleManager {
+    public static let shared = ModuleManager()
+    var moduleInfo: [[ModuleKey: ModuleEntry]] = []
+    var modules: [ModuleEntry] = []
     var moduleInstances: [ModuleKey: TBModuleProtocol] = [:]
-
-    /**
-     注册模块
-     - module: 实现 TBModuleProtocol 协议的类型
-     - level: 等级，越大越优先
-     - prioriry: 优先级，越大越优先
-     */
-    func register<Module>(_ module: ModuleEntry<Module>) {
-        register(module.module.self, level: module.level, prioriry: module.prioriry)
-    }
-
-    /**
-     调用已经注册对应 eventType 的 Module，并带上参数
-     - eventType: Module 事件类型
-     - param: 参数
-     */
-    func triggerEvent(_ eventType: ModuleEventType, param: [AnyHashable: Any]? = nil) {
-        modules.forEach { (entry) in
-            triggerEvent(eventType, entry: entry, param: param)
-        }
-    }
-}
-
-extension ModuleManager {
-    struct ModuleKey: Hashable {
-        static func == (lhs: ModuleManager.ModuleKey, rhs: ModuleManager.ModuleKey) -> Bool {
-            return lhs.module == rhs.module
-        }
-        func hash(into hasher: inout Hasher) {
-            hasher.combine(ObjectIdentifier(module).hashValue)
-        }
-        let module: Any.Type
-    }
-    struct ModuleInnerEntry {
-        let module: Any.Type
-        let key: ModuleKey
-        let level: ModuleLevel
-        let prioriry: Int
-    }
-}
-/// MARK: -- Private
-extension ModuleManager {
-    private func register<Module>(_ module: Module.Type,
-                                  level: ModuleLevel,
-                                  prioriry: ModulePrioriry) {
-        if !(module is TBModuleProtocol.Type) {
-            assertionFailure()
-            return
-        }
-        let key = ModuleKey(module: module)
-        let entry = ModuleInnerEntry(module: module, key: key, level: level, prioriry: prioriry)
+    
+    func register(_ entry: ModuleEntry) {
         var exist = false
-        for var info in moduleInfo {
-            if info[key] != nil {
+        for info in moduleInfo {
+            if info[entry.key] != nil {
                 exist = true
                 break
             }
         }
         if !exist {
-            let newValue = [key: entry]
+            let newValue = [entry.key: entry]
             moduleInfo.append(newValue)
         }
         modules.append(entry)
-        modules.sort { (lmd, rmd) -> Bool in
+        modules.sort { lmd, rmd -> Bool in
             if lmd.level.rawValue != rmd.level.rawValue {
                 return lmd.level.rawValue > rmd.level.rawValue
             } else {
@@ -86,35 +34,24 @@ extension ModuleManager {
             }
         }
     }
-}
 
-/// MARK: -- Handle
-extension ModuleManager {
-    /**
-     调用某个 Module 的 event，并带上参数
-     - eventType: Module 事件类型
-     - entry: 带初始化的类型
-     - param: 参数
-     */
-    private func triggerEvent(_ eventType: ModuleEventType, entry: ModuleInnerEntry, param: [AnyHashable: Any]? = nil) {
-        guard let module = entry.module as? TBModuleProtocol.Type else {
-            assertionFailure()
-            return
-        }
-        let async = module.async()
-        let key = ModuleKey(module: entry.module)
-        let instance: TBModuleProtocol = moduleInstances[key] ?? module.init(ModuleContext(tbContext: TBContext.shared, param: param))
-        let handler = { [weak self] in
-            self?.triggerEvent(eventType, target: instance, param: param)
-        }
-        if async {
-            DispatchQueue.main.async { handler() }
-        } else {
-            handler()
+    public func triggerEvent(_ eventType: ModuleEventType, param: [String: Any]? = nil) {
+        modules.forEach { entry in
+            triggerEvent(eventType, entry: entry, param: param)
         }
     }
-    private func triggerEvent(_ eventType: ModuleEventType, target: TBModuleProtocol, param: [AnyHashable: Any]? = nil) {
-        let context = ModuleContext(tbContext: TBContext.shared, param: param)
+    
+    private func triggerEvent(_ eventType: ModuleEventType, entry: ModuleEntry, param: [String: Any]? = nil) {
+        let instance: TBModuleProtocol = moduleInstances[entry.key] ?? entry.module.init(ModuleContext())
+        triggerEvent(eventType, target: instance, param: param)
+    }
+}
+ 
+// MARK: - - Handle
+
+extension ModuleManager {
+    private func triggerEvent(_ eventType: ModuleEventType, target: TBModuleProtocol, param: [String: Any]? = nil) {
+        let context = target.context
         switch eventType {
         case .setupEvent: target.modSetUp(context)
         case .initEvent: target.modInit(context)
@@ -139,6 +76,7 @@ extension ModuleManager {
         case .didUpdateUserActivityEvent: target.modDidUpdateContinueUserActivity(context)
         case .didFailToContinueUserActivityEvent: target.modDidFailToContinueUserActivity(context)
         case .handleWatchKitExtensionRequestEvent: target.modHandleWatchKitExtensionRequest(context)
+        case .didCustomEvent: target.modDidCustomEvent(context, params: param)
         default:
             assertionFailure()
 //            target.modDidCustomEvent(context)

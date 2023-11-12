@@ -9,7 +9,7 @@
 import UIKit
 
 open class TBContext {
-    public static let shared: TBContext = TBContext()
+    public static let shared: TBContext = .init()
     
     open var application: UIApplication?
     open var launchOptions: [UIApplication.LaunchOptionsKey: Any]?
@@ -20,7 +20,7 @@ open class TBContext {
 
     open var touchShortcutItem: TBShortcutItem?
     open var openURLItem: TBOpenURLItem?
-    open var notificationsItem: TBNotificationsItem = TBNotificationsItem()
-    open var userActivityItem: TBUserActivityItem = TBUserActivityItem()
+    open var notificationsItem: TBNotificationsItem = .init()
+    open var userActivityItem: TBUserActivityItem = .init()
     open var watchItem: TBWatchItem?
 }

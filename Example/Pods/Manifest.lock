@@ -7,7 +7,7 @@ PODS:
     - ToyBrick
   - Module002 (0.0.1):
     - ToyBrick
-  - ToyBrick (0.1.0)
+  - ToyBrick (0.1.2)
 
 DEPENDENCIES:
   - Middle (from `./Middle`)
@@ -29,8 +29,8 @@ SPEC CHECKSUMS:
   Middle: 657ec4e1f5a64dd4194919e45b0fb9198186f876
   Module001: a969f5a1125325960c47eb028d0c74d723e1cbb8
   Module002: 4946434225f198ec7f52f6b3a3cbc6d82ecbba2d
-  ToyBrick: 5892a4de949624844694f0f7e73cb6b66fbc7407
+  ToyBrick: da6bdf9e68bbf99f6da31e9bc4d97a1b4f1d71f3
 
 PODFILE CHECKSUM: 2733941f7f038887e0e2f711b06c4b7c232c935b
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.14.2

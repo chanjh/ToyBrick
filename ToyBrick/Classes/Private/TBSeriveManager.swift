@@ -3,11 +3,11 @@
 //  ToyBrick
 //
 //  Created by chenjiahao.gill on 2019/4/3.
-//  
+//
 
 import Foundation
 
-internal typealias FunctionType = Any
+typealias FunctionType = Any
 class TBSeriveManager {
     static let shared = TBSeriveManager()
     /// 已经注册的对象
@@ -24,7 +24,8 @@ class TBSeriveManager {
     func register<Service>(_ serviceType: Service.Type,
                            name: String? = nil,
                            singleton: Bool = false,
-                           factory: @escaping () -> Service?) {
+                           factory: @escaping () -> Service?)
+    {
         let key = ServiceKey(serviceType: serviceType, name: name)
         let entry = ServiceEntry(serviceType: serviceType, key: key, factory: factory, singleton: singleton)
         serviceInfos[key] = entry
@@ -39,7 +40,8 @@ class TBSeriveManager {
      - name: a key that enable you can register the same Service type
      */
     func create<Service>(_ serviceType: Service.Type,
-                         name: String? = nil) -> Service? {
+                         name: String? = nil) -> Service?
+    {
         let key = ServiceKey(serviceType: serviceType, name: name)
         guard let entry = serviceInfos[key] else { return nil }
         if entry.singleton, serviceInstances[key] as? Service != nil {
@@ -60,13 +62,16 @@ private extension TBSeriveManager {
         let factory: FunctionType
         let singleton: Bool
     }
+
     struct ServiceKey: Hashable {
         static func == (lhs: ServiceKey, rhs: ServiceKey) -> Bool {
             return lhs.name == rhs.name && lhs.serviceType == rhs.serviceType
         }
+
         func hash(into hasher: inout Hasher) {
             hasher.combine(ObjectIdentifier(serviceType).hashValue)
         }
+
         let serviceType: Any.Type
         let name: String?
     }
